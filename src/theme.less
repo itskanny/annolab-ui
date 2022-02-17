@@ -93,8 +93,8 @@
 @text-color: fade(@black, 85%);
 @text-color-secondary: fade(@black, 45%);
 @text-color-inverse: @white;
-@icon-color: inherit;
-@icon-color-hover: fade(@black, 75%);
+@icon-color: @primary-input;
+@icon-color-hover: fade(@primary-input, 75%);
 @heading-color: fade(@black, 85%);
 @text-color-dark: fade(@white, 85%);
 @text-color-secondary-dark: fade(@white, 65%);
@@ -444,7 +444,7 @@
   ) - @border-width-base;
 @input-placeholder-color: @primary-on-input;
 @input-color: @primary-on-input;
-@input-icon-color: @input-color;
+@input-icon-color: @primary-on-input;
 @input-border-color: transparent;
 @input-bg: @primary-input;
 @input-number-hover-border-color: @input-hover-border-color;
@@ -456,7 +456,7 @@
 @input-hover-border-color: @primary-5;
 @input-disabled-bg: @disabled-bg;
 @input-outline-offset: 0 0;
-@input-icon-hover-color: fade(@black, 85%);
+@input-icon-hover-color: fade(@primary-5, 85%);
 @input-disabled-color: @disabled-color;
 
 // Mentions

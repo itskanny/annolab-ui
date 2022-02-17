@@ -1,2 +1,63 @@
 @import '~antd/dist/antd.less';
 @import "./theme";
+
+.an-banner-form {
+  .ant-input-password-icon{
+    color: #A7A3FF;
+  }
+
+  .ant-input-affix-wrapper-lg {
+    padding: 13.5px 11px;
+  }
+
+  .ant-btn-lg{
+    padding: 13.5px 11px;
+    height: 54.14px;
+
+  }
+
+  .ant-input-lg{
+    padding: 13.5px 11px;
+  }
+}
+
+.an-banner{
+  @apply tw-flex tw-flex-col tw-relative md:tw-h-full tw-items-center md:tw-items-start tw-justify-center;
+
+  &-- {
+    &type {
+    @apply tw-text-4xl tw-font-bold tw-mb-2;
+    }
+
+    &name{
+    @apply tw-text-primary tw-font-bold tw-mt-1 tw-mb-0 tw-text-3xl;
+    }
+
+    &tagline {
+    @apply tw-font-semibold tw-text-xl;
+    }
+
+    &action--wrapper{
+    @apply tw-hidden md:tw-block;
+    }
+
+    &action--description{
+    @apply tw-mb-0 tw-mt-5;
+    }
+
+    &action--link {
+    @apply tw-text-primary tw-font-semibold;
+    }
+
+    &action--prefix{
+    @apply tw-m-0;
+    }
+
+    &image{
+    @apply tw-absolute tw-left-64 tw-bottom-0 tw-hidden md:tw-block;
+    }
+  }
+
+
+}
+

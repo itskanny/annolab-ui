@@ -2,6 +2,29 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to run development sever
+
+For this project you will need yarn installed globally that can be done by using
+
+`npm install -g yarn`
+
+Then clone this repository
+Move to this folder in terminal by
+
+`cd path\to\folder\annolab-ui`
+
+Then we need to install all required dependencies for the project. For that run
+
+`yarn install`
+
+This command will install all dependencies and then you can start development server by using
+
+`npm run start`
+
+The visit `http://localhost:3000` for the page
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

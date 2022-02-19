@@ -14,8 +14,8 @@ Move to this folder in terminal by
 `cd path\to\folder\annolab-ui`
 
 Then we need to install all required dependencies for the project. For that run
-`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
-`yarn install`
+1-`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` and then run
+2-`yarn install`
 
 This command will install all dependencies and then you can start development server by using
 

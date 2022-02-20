@@ -1,5 +1,4 @@
-import {Button, Form, Input} from "antd";
-
+import {Button, DatePicker, Form, Input, Upload} from "antd";
 
 const UpdateProfileForm = props => {
 
@@ -19,7 +18,7 @@ const UpdateProfileForm = props => {
                 name="dob"
                 rules={[{ required: true, message: 'Enter Your Date Of Birth' }]}
             >
-                <Input size={"large"} placeholder={'*Date Of Birth'} type={"date"}/>
+                <DatePicker size={"large"} placeholder={'Date of birth'} />
             </Form.Item>
 
             <Form.Item
@@ -27,7 +26,13 @@ const UpdateProfileForm = props => {
                 name="avatar_file"
                 rules={[{ required: true, message: 'Select Icon' }]}
             >
-                <Input size={"large"} placeholder={'*Avatar Image'} type={"file"}/>
+                <Upload
+                    listType="picture-card"
+                    showUploadList={false}
+                    className="avatar-uploader"
+                >
+                    Upload Avatar
+                </Upload>
             </Form.Item>
 
 

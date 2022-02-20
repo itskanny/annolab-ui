@@ -13,8 +13,7 @@ const UpdateProfile = props => {
                         typeText={'Just A Little Further'}
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
-                        stepperText={'Complete Setup by completing following actions'}
-                        stepperDescription={'A Profile sets you apart'}
+                        current={0}
 
                     />
                 </Col>

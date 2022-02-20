@@ -4,6 +4,8 @@ import './App.less';
 import {Content, Header} from "antd/es/layout/layout";
 import Signup from "./Pages/Signup/Signup";
 import Login from './Pages/Login/Login';
+import RecoverPassword from './Pages/ForgetPassword/RecoverPassword';
+import SetNewPassword from './Pages/ForgetPassword/SetNewPassword';
 
 const App = () => (
     <Layout className={'tw-h-full'}>
@@ -11,7 +13,7 @@ const App = () => (
 
         {/*</Header>*/}
         <Content>
-            <Login/>
+            <SetNewPassword/>
         </Content>
     </Layout>
 );

@@ -19,9 +19,10 @@ const LoginForm = props => {
                 rules={[{ required: true, message: 'Incorrect password entered' }]}
             >
                 <Input.Password size={"large"} placeholder={'*Password'} type={"password"}/>
-                <p className={'tw-mb-0 tw-text-right '}>Forget password?</p>
 
             </Form.Item>
+
+            <p className={'tw-mb-3 tw-text-right tw-text-primary tw-font-semibold;'}>Forget password?</p>
 
 
 

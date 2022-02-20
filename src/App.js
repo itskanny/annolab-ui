@@ -8,6 +8,9 @@ import RecoverPassword from './Pages/ForgetPassword/RecoverPassword';
 import SetNewPassword from './Pages/ForgetPassword/SetNewPassword';
 import UpdateProfile from './Pages/AccountSteps/UpdateProfile';
 import CreateOrganization from './Pages/AccountSteps/CreateOrganization';
+import CreateProject from './Pages/AccountSteps/CreateProject';
+import CreateTeam from './Pages/AccountSteps/CreateTeam';
+import AddImage from './Pages/AccountSteps/AddImage';
 
 const App = () => (
     <Layout className={'tw-h-full'}>
@@ -15,7 +18,7 @@ const App = () => (
 
         {/*</Header>*/}
         <Content>
-            <UpdateProfile/>
+            <AddImage/>
         </Content>
     </Layout>
 );

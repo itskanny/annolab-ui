@@ -1,4 +1,4 @@
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input,Upload} from "antd";
 
 
 const CreateOrganizationForm = props => {
@@ -21,12 +21,18 @@ const CreateOrganizationForm = props => {
                 <Input size={"large"} placeholder={'*Organization Tagline'} type={"text"}/>
             </Form.Item>
 
-            <Form.Item
+             <Form.Item
                 label=""
                 name="organization_file"
-                rules={[{ required: true, message: 'Uplaad File' }]}
+                rules={[{ required: true, message: 'Select Icon' }]}
             >
-                <Input size={"large"} placeholder={'*Upload File'} type={"file"}/>
+                <Upload
+                    listType="picture-card"
+                    showUploadList={false}
+                    className="avatar-uploader"
+                >
+                    Upload File
+                </Upload>
             </Form.Item>
 
 

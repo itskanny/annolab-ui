@@ -13,9 +13,8 @@ const CreateOrganization = props => {
                         typeText={'Just A Little Further'}
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
-                        stepperText={'Complete Setup by completing following actions'}
-                        stepperDescription={'Create your organization and own it'}
-                        actionLink={''}
+                        current={1}
+
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>
@@ -25,5 +24,6 @@ const CreateOrganization = props => {
         </>
     )
 }
+
 
 export default CreateOrganization

@@ -13,7 +13,6 @@ const App = () => (
 
         {/*</Header>*/}
         <Content>
-            {/*<RecoverPassword/>*/}
             <SetNewPassword/>
         </Content>
     </Layout>

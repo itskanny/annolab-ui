@@ -17,6 +17,7 @@ const Stepper = props => {
 
     return (
         <>
+            <p>After these steps you can start using AnnoLab</p>
             <div className={'tw-hidden md:tw-block'}>
                 <Steps direction="vertical" size="small" current={props.current} progressDot={customDot}>
                     <Step title="Profile"/>

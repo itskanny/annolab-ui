@@ -14,6 +14,7 @@ const CreateOrganization = props => {
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
                         current={1}
+                        hasStepper={true}
 
                     />
                 </Col>

@@ -14,6 +14,7 @@ const CreateTeam = props => {
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
                         current={3}
+                        hasStepper={true}
 
                     />
                 </Col>

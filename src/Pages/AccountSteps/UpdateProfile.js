@@ -13,7 +13,8 @@ const UpdateProfile = props => {
                         typeText={'Just A Little Further'}
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
-                        current={0}
+                        hasStepper={true}
+                        current={1}
 
                     />
                 </Col>

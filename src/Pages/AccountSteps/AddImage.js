@@ -14,6 +14,7 @@ const AddImage = props => {
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
                         current={4}
+                        hasStepper={true}
 
                     />
                 </Col>

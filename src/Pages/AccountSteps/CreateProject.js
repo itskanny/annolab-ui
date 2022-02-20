@@ -14,6 +14,7 @@ const CreateProject = props => {
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
                         current={2}
+                        hasStepper={true}
 
                     />
                 </Col>

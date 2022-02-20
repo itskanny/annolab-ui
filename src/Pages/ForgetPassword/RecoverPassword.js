@@ -12,7 +12,9 @@ const RecoverPassword = props => {
                 <Col span={24} md={16} className={'gutter-row tw-h-full'}>
                     <Banner
                         typeText={'Recover Password'}
-                        actionDescription={'If you don`t have an account Registered'}
+                        name={'AnnoLab'}
+                        tagLine={'Dream Annotator'}
+                        actionDescription={'If you don\'t have an account Registered'}
                         actionPrefix={'You can '}
                         actionText={'Sign Up'}
                         actionLink={''}

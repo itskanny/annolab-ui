@@ -1,0 +1,23 @@
+.h1 {
+    font-size: 60px !important;
+  }
+
+  .center {
+  
+    margin-left: 500px;
+    
+    
+   
+    
+  }
+  #main {
+    width: 200px;
+    border: 1px dotted black;
+  }
+  h1 {
+    margin: 0;
+      display: inline-block;
+  }
+  button {
+    float: right;
+  }

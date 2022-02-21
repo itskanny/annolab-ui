@@ -19,6 +19,7 @@ const App = () => (
         {/*</Header>*/}
         <Content>
             <AddImage/>
+
         </Content>
     </Layout>
 );

@@ -21,6 +21,7 @@
   }
 }
 
+
 .an-banner{
   @apply tw-flex tw-flex-col tw-relative md:tw-h-full tw-items-center md:tw-items-start tw-justify-center;
 
@@ -59,5 +60,59 @@
   }
 
 
+}
+
+.an-header-icons{
+  @apply tw-text-icon;
+}
+
+.an-avatar-text {
+  line-height: 19px;
+  @apply tw-text-icon;
+
+  .an-avatar-text-username{
+    @apply tw-font-bold tw-m-0 tw-p-0 tw-text-black;
+  }
+
+  .an-avatar-text-account{
+
+  }
+}
+
+.ant-layout {
+  .ant-layout-header{
+    @apply tw-px-2 lg:tw-px-3  xl:tw-px-10 xxl:tw-px-16     ;
+  }
+}
+
+.an-navbar {
+
+  .an-header-icons{
+    @apply tw-text-icon;
+
+
+
+  }
+
+  .an-avatar-text {
+    line-height: 19px;
+  @apply tw-text-icon;
+
+    .an-avatar-text-username{
+    @apply tw-font-bold tw-m-0 tw-p-0 tw-text-black;
+    }
+
+    .an-avatar-text-account{
+
+    }
+  }
+
+  .an-navbar-button{
+    @apply tw-font-bold tw-px-5;
+  }
+
+  .an-navbar-button-active{
+    @apply tw-bg-primary-light tw-text-primary;
+  }
 }
 

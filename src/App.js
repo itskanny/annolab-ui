@@ -6,16 +6,14 @@ import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
 import RecoverPassword from "./Pages/ForgetPassword/RecoverPassword";
 import SetNewPassword from "./Pages/ForgetPassword/SetNewPassword";
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./Components/Ui/Navbar/Navbar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignupForm from "./Components/Forms/SignupForm/SignupForm";
 import AddProject from "./Pages/AddProject/AddProject";
 
 const App = () => (
   <Layout className={"tw-h-full"}>
-    {/*<Header>*/}
-
-    {/*</Header>*/}
+    <Navbar/>
     <Content>
       <Router>
         <Switch>

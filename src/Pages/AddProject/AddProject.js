@@ -1,15 +1,13 @@
 import React from "react";
 import { Col, Row } from "antd";
 import AddProjectForm from "../../Components/Forms/AddProject/AddProjectForm";
-import Navbar from "../../Components/Navbar/Navbar";
 import "./AddProject.css";
 import { Button } from "antd";
 
 const AddProject = () => {
   return (
     <div >
-      <Navbar></Navbar>
-      <div  >
+      <div>
         <h3 className="h1">Create Project</h3>
         
       </div>

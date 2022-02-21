@@ -1,4 +1,5 @@
 import {ReactComponent as Man} from "../../../images/man.svg";
+import Stepper from "../Stepper/Stepper";
 
 const Banner = props => {
 
@@ -12,6 +13,8 @@ const Banner = props => {
                 <p className={'an-banner--action--description'}>{props.actionDescription}</p>
                 <p className={'an-banner--action--prefix'}>{props.actionPrefix}<span to={props.actionLink} className={'an-banner--action--link'}>{props.actionText}</span></p>
             </div>
+
+            {props.hasStepper && <Stepper current={props.current}/>}
 
             <div className={'an-banner--image'}>
                 <Man/>

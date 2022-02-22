@@ -4,10 +4,12 @@ import { Button, Form, Input } from "antd";
 const AddProjectForm = () => {
   return (
     <>
-    
       <Form className={"an-banner-form"}>
+        <label>
+          <b>Workspace</b>
+        </label>
         <Form.Item
-          label="Workspace"
+          label=""
           name="Workspace"
           rules={[{ required: true, message: "Enter WorkSpace" }]}
         >
@@ -19,37 +21,59 @@ const AddProjectForm = () => {
           />
         </Form.Item>
 
+        <label>
+          <b>Project Name</b>
+        </label>
         <Form.Item
-          label="Project Name"
+          label=""
           name="Project Name"
           rules={[{ required: true, message: "Enter Project Name" }]}
         >
-          <Input className={"tw-mb-4"} size={"large"} placeholder={"*Project Name"} type={"text"} />
+          <Input
+            className={"tw-mb-4"}
+            size={"large"}
+            placeholder={"*Project Name"}
+            type={"text"}
+          />
+        </Form.Item>
+        <label>
+          <b>Description</b>
+        </label>
+        <Form.Item name="Description" label="">
+          <Input.TextArea />
         </Form.Item>
 
-        
+        <div className=" flex justify-end ...">
+          <Button className="h-12 px-6 m-2" type="primary" htmlType="submit">
+            Save
+          </Button>
 
-        <Form.Item name="Description" label="Description">
-            <Input.TextArea />
-          </Form.Item>
+          <Button className="h-12 px-6 m-2" type="primary" htmlType="reset">
+            Cancel
+          </Button>
+        </div>
+      </Form>
 
+      <Form>
+        <label>
+          <b>Invite Users</b>
+        </label>
         <Form.Item
-          label="Invite Users"
+          label=""
           name="Invite Users"
-          //rules={[{ required: true, message: "Enter WorkSpace" }]}
+          rules={[{ required: true, message: "Enter Email" }]}
         >
           <Input
             size={"large"}
             placeholder={"Invite Users"}
-            type={"text"}
+            type={"email"}
             className={"tw-mb-4"}
           />
-
-          <Button type="primary" htmlType="submit">
-            Invite
-          </Button>
-         
         </Form.Item>
+
+        <Button type="primary" htmlType="submit">
+          Invite
+        </Button>
       </Form>
     </>
   );

@@ -1,9 +1,11 @@
 .h1 {
-    font-size: 60px !important;
+    font-size: 55px !important;
+    text-align: left;
+align-self: auto;
   }
 
   .center {
-  
+  margin :auto;
     margin-left: 500px;
     
     

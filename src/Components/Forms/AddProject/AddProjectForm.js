@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
+import Selector from "../../Ui/Selector/Selector";
 
 const AddProjectForm = () => {
   return (
@@ -13,12 +14,7 @@ const AddProjectForm = () => {
           name="Workspace"
           rules={[{ required: true, message: "Enter WorkSpace" }]}
         >
-          <Input
-            size={"large"}
-            placeholder={"*Add Workspace here"}
-            type={"text"}
-            className={"tw-mb-4"}
-          />
+         <Selector/>
         </Form.Item>
 
         <label>

@@ -3,10 +3,12 @@ import { Col, Row } from "antd";
 import AddProjectForm from "../../Components/Forms/AddProject/AddProjectForm";
 import "./AddProject.css";
 import { Button } from "antd";
+import Navbar from "../../Components/Ui/Navbar/Navbar";
 
 const AddProject = () => {
   return (
     <div >
+        <Navbar></Navbar>
       <div>
         <h3 className="h1">Create Project</h3>
         
@@ -18,13 +20,7 @@ const AddProject = () => {
         </Col>
       </div>
       < div className=" flex justify-end ...">
-        <Button  className="h-12 px-6 m-2" type="primary" htmlType="submit" >
-          Save
-        </Button>
 
-        <Button className="h-12 px-6 m-2" type="primary" htmlType="cancel" >
-          Cancel
-        </Button>
         </div>
     </div>
   );

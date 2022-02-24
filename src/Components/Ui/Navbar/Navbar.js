@@ -5,12 +5,9 @@ import {Avatar, Input} from "antd";
 import {
     HambergerMenu,
     LogoutCurve,
-    MenuBoard,
     NotificationBing,
     SearchNormal,
-    Setting,
     Setting2,
-    Settings
 } from "iconsax-react";
 import NavButton from "../Button/NavButton";
 

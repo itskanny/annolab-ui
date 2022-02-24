@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from "antd";
 
-const InviteWalaForm=()=>{
+const InviteForm=()=>{
 
 
 
@@ -31,4 +31,4 @@ const InviteWalaForm=()=>{
 
     </>);
 }
-export default InviteWalaForm;
+export default InviteForm;

@@ -1,4 +1,5 @@
 import {Button, Form, Input} from "antd";
+import {Link} from "react-router-dom";
 
 
 const LoginForm = props => {
@@ -27,9 +28,11 @@ const LoginForm = props => {
 
 
             <Form.Item>
+                <Link to="/signup">
                 <Button type="primary" htmlType="submit" block size={'large'}>
-                    Login
+                   Login
                 </Button>
+                </Link>
             </Form.Item>
 
         </Form>

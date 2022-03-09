@@ -23,13 +23,11 @@ import List from "./Pages/List/List";
 
 const App = () => (
     <>
-<List></List>
+        <Layout className={"tw-h-full"}>
 
-        <Router>
-
-
-
-
+            <Navbar/>
+            <List/>
+            <Content>
                 <Route path="/addimage">
                     <AddImage></AddImage>
                 </Route>
@@ -72,8 +70,9 @@ const App = () => (
                     <ImportProject></ImportProject>
                 </Route>
 
+            </Content>
+        </Layout>
 
-        </Router>
     </>
 );
 

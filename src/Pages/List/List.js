@@ -1,10 +1,10 @@
 import React from "react"
 import {Link} from "react-router-dom";
 
-const List=()=>{
+const List = () => {
 
 
-    return(<>
+    return (<>
 
         <ul>
             <li><Link to="/Updateprofile">Update Profile</Link></li>
@@ -14,10 +14,11 @@ const List=()=>{
 
             <li><Link to="/addimage">Add Image</Link></li>
             <li><Link to="/addproject">Add Project</Link></li>
-            <li><Link to="/"></Link></li>
-            <li><Link to="/"></Link></li>
-            <li><Link to="/"></Link></li>
-            <li><Link to="/"></Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/invite">Invite</Link></li>
+            <li><Link to="/recoverpassword">recoverpassword</Link></li>
+            <li><Link to="/setnewpassword">SetNewPassword</Link></li>
             <li><Link to="/exportproject">Export Project</Link></li>
             <li><Link to="/importproject">Import Project</Link></li>
         </ul>

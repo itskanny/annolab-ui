@@ -2,8 +2,7 @@ import React from "react";
 import {Col, Row} from "antd";
 import AddProjectForm from "../../Components/Forms/AddProject/AddProjectForm";
 import "./AddProject.css";
-import Banner from "../../Components/Ui/Banner/Banner";
-import LoginForm from "../../Components/Forms/Login/LoginForm";
+
 
 const AddProject = () => {
     return (

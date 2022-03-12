@@ -2,7 +2,6 @@ import React from "react";
 import {Col, Row} from "antd";
 
 
-import Navbar from "../../Components/Ui/Navbar/Navbar";
 import UploadImg from "../../Components/Ui/UploadImg/UploadImg";
 
 
@@ -16,11 +15,11 @@ const ImportProject = () => {
 
 
                 <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                     Import
                 </button>
                 <button
-                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                     Cancel
                 </button>
 
@@ -41,7 +40,7 @@ const ImportProject = () => {
                             <div class="mb-3 w-96">
                                 <label for="formFile" class="form-label inline-block mb-2 text-gray-700">Click Here to
                                     Import</label>
-                                <UploadImg class="flex justify-center"></UploadImg>
+                                <UploadImg class="flex justify-center"/>
                             </div>
                         </div>
                     </Col>

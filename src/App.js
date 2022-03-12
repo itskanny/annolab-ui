@@ -1,11 +1,11 @@
 import React from 'react';
-import {Col, Layout} from 'antd';
+import { Layout} from 'antd';
 import './App.less';
 import './App.css'
 import {Content} from "antd/es/layout/layout";
 import SetNewPassword from './Pages/ForgetPassword/SetNewPassword';
 import Navbar from "./Components/Ui/Navbar/Navbar";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { Route} from "react-router-dom";
 import ImportProject from "./Pages/ImportProject/ImportProject";
 import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
@@ -29,45 +29,45 @@ const App = () => (
             <List/>
             <Content>
                 <Route path="/addimage">
-                    <AddImage></AddImage>
+                    <AddImage/>
                 </Route>
                 <Route path="/createorganization">
-                    <CreateOrganization></CreateOrganization>
+                    <CreateOrganization/>
                 </Route>
                 <Route path="/createproject">
-                    <CreateProject></CreateProject>
+                    <CreateProject/>
                 </Route>
                 <Route path="/createteam">
-                    <CreateTeam></CreateTeam>
+                    <CreateTeam/>
                 </Route>
                 <Route path="/updateprofile">
-                    <UpdateProfile></UpdateProfile>
+                    <UpdateProfile/>
                 </Route>
                 <Route path="/addproject">
-                    <AddProject></AddProject>
+                    <AddProject/>
                 </Route>
                 <Route path="/exportproject">
-                    <ExportProject></ExportProject>
+                    <ExportProject/>
                 </Route>
                 <Route path="/recoverpassword">
-                    <RecoverPassword></RecoverPassword>
+                    <RecoverPassword/>
                 </Route>
                 <Route path="/setnewpassword">
-                    <SetNewPassword></SetNewPassword>
+                    <SetNewPassword/>
                 </Route>
 
                 <Route path="/invite">
-                    <Invite></Invite>
+                    <Invite/>
                 </Route>
 
                 <Route path="/login">
-                    <Login></Login>
+                    <Login/>
                 </Route>
                 <Route path="/signup">
-                    <Signup></Signup>
+                    <Signup/>
                 </Route>
                 <Route path="/importproject">
-                    <ImportProject></ImportProject>
+                    <ImportProject/>
                 </Route>
 
             </Content>

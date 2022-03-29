@@ -1,17 +1,9 @@
-import {Button, DatePicker, Form, Input, Upload} from "antd";
+import {Button, DatePicker, Form, Upload} from "antd";
 
 const UpdateProfileForm = props => {
 
     return (
         <Form className={'an-banner-form'}>
-
-            <Form.Item
-                label=""
-                name="full_name"
-                rules={[{ required: true, message: 'Enter Your Full Name' }]}
-            >
-                <Input size={"large"} placeholder={'*Full Name'} type={"text"}/>
-            </Form.Item>
 
             <Form.Item
                 label=""
@@ -23,7 +15,7 @@ const UpdateProfileForm = props => {
 
             <Form.Item
                 label=""
-                name="avatar_file"
+                name="avatar"
                 rules={[{ required: true, message: 'Select Icon' }]}
             >
                 <Upload

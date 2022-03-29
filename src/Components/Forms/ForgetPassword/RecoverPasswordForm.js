@@ -1,4 +1,5 @@
 import {Button, Form, Input} from "antd";
+import {Link} from "react-router-dom";
 
 
 const RecoverPasswordForm = props => {
@@ -20,7 +21,7 @@ const RecoverPasswordForm = props => {
                 </Button>
 
             </Form.Item>
-            <p className={'tw-m-0 tw-text-center '}>or <span className={'tw-text-primary tw-font-semibold'}>Login</span></p>
+            <Link to={'/login'}><p className={'tw-m-0 tw-text-center '}>or <span className={'tw-text-primary tw-font-semibold'}>Login</span></p></Link>
 
 
         </Form>

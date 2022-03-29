@@ -3,7 +3,6 @@ import {Col, Row,} from "antd";
 import SignupForm from "../../Components/Forms/SignupForm/SignupForm";
 import Banner from "../../Components/Ui/Banner/Banner";
 
-
 const Signup = props => {
 
     return (
@@ -17,7 +16,7 @@ const Signup = props => {
                         actionDescription={'If you already have an account'}
                         actionPrefix={'You can '}
                         actionText={'Login Here!'}
-                        actionLink={''}
+                        actionLink={'/login'}
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>

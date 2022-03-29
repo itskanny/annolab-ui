@@ -15,6 +15,7 @@ const SetNewPassword = props => {
                         name={'AnnoLab'}
                         tagLine={'Dream Annotator'}
                         actionDescription={'We recommend a strong password for you security'}
+                        actionLink={''}
 
                     />
                 </Col>

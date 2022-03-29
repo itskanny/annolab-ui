@@ -18,7 +18,6 @@ const List = () => {
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/invite">Invite</Link></li>
             <li><Link to="/recoverpassword">recoverpassword</Link></li>
-            <li><Link to="/setnewpassword">SetNewPassword</Link></li>
             <li><Link to="/exportproject">Export Project</Link></li>
             <li><Link to="/importproject">Import Project</Link></li>
         </ul>

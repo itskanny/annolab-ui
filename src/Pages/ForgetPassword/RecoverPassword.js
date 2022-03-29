@@ -17,7 +17,7 @@ const RecoverPassword = props => {
                         actionDescription={'If you don\'t have an account Registered'}
                         actionPrefix={'You can '}
                         actionText={'Sign Up'}
-                        actionLink={''}
+                        actionLink={'/signup'}
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>

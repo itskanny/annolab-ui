@@ -17,10 +17,10 @@ const Login = props => {
                         actionDescription={'If you don`t have an account then Register'}
                         actionPrefix={'You can '}
                         actionText={'Register Here!'}
-                        actionLink={''}
+                        actionLink={'/signup'}
                     />
                 </Col>
-                <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>
+                <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8} >
                     <LoginForm/>
                 </Col>
             </Row>

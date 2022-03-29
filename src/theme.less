@@ -19,6 +19,7 @@
 
 @primary-input: #F0EFFF;
 @primary-on-input: #A7A3FF;
+@primary-on-text: #9A9AAF;
 
 @primary-color: #4D47C3;
 @primary-color-hover: color(~`colorPalette('@{primary-color}', 5) `);
@@ -443,7 +444,7 @@
     ceil(((@input-height-lg - @font-size-lg * @line-height-base) / 2) * 10) / 10
   ) - @border-width-base;
 @input-placeholder-color: @primary-on-input;
-@input-color: @primary-on-input;
+@input-color: @primary-on-text;
 @input-icon-color: @primary-on-input;
 @input-border-color: transparent;
 @input-bg: @primary-input;

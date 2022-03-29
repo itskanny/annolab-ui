@@ -1,7 +1,9 @@
 const CracoLessPlugin = require('craco-less');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     plugins: [
+        new Dotenv(),
         {
             plugin: CracoLessPlugin,
             options: {

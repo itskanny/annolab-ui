@@ -16,6 +16,7 @@ const AddImage = props => {
                         current={4}
                         hasStepper={true}
 
+
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>

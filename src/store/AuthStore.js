@@ -87,6 +87,10 @@ class AuthStore{
 
     signupUser(user, password){
         this.setLoading(true)
+        console.log({
+            email: user.email,
+            password: password
+        })
         return UserProvider.login({
             email: user.email,
             password: password

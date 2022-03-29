@@ -67,4 +67,47 @@ export class UserProvider {
             });
 
     }
+
+    static resetPassword(email){
+        return apiHelper
+            .post('auth/users/reset_password/', email)
+            .then(response => {
+                console.log(response)
+                return {
+                    data: response.data,
+                    hasErrors: false,
+                    status: response.status,
+                    statusText: response.statusText
+                }
+            })
+            .catch(errors => {
+                return {
+                    data: errors.response.data,
+                    hasErrors: true,
+                    status: errors.response.status,
+                    statusText: errors.response.statusText,
+                }
+            })
+    }
+
+    static updatePassword(credentials){
+        return apiHelper
+            .post('auth/users/reset_password_confirm/', credentials)
+            .then(response => {
+                return {
+                    data: response.data,
+                    hasErrors: false,
+                    status: response.status,
+                    statusText: response.statusText,
+                }
+            })
+            .catch(errors => {
+                return {
+                    data: errors.response.data,
+                    hasErrors: true,
+                    status: errors.response.status,
+                    statusText: errors.response.statusText,
+                }
+            })
+    }
 }

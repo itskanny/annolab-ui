@@ -111,7 +111,7 @@ const App = () => (
                            }
                        }
                 />
-                <Route path="/setnewpassword" exact
+                <Route path="/setnewpassword/:uid/:token" exact
                        render={
                            (props) => {
                                return !authStore.isLoggedIn ? <SetNewPassword/> : <Redirect to="/home"/>

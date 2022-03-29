@@ -19,16 +19,17 @@ const SignupForm = props => {
         UserProvider.signup(values)
             .then(data => {
                 if (!data.hasErrors){
-                    openNotification('success', "User signed up successfully", true)
                     console.log(data)
                     authStore.signupUser(data.data, values.password).then(result => {
                         if (result){
+                            openNotification('success', "User signed up successfully", true)
                             authStore.setSetup(true)
                             history.replace('/updateprofile')
                         }
                         else {
                             setIsLoading(false)
                             openNotification('error', "User signup failed", false)
+                            authStore.setLoading(false)
                         }
                     })
                 }

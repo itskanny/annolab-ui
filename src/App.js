@@ -26,7 +26,7 @@ import {observer} from "mobx-react";
 const Loader = observer(({auth}) => {
     return (
         auth.isLoading ?
-            <div className={'tw-h-full tw-w-full tw-z-50 tw-flex tw-justify-center tw-items-center'}>
+            <div className={'tw-h-full tw-w-full tw-z-50 tw-flex tw-justify-center tw-items-center tw-absolute'}>
                 <Spin/>
             </div>
             : <></>

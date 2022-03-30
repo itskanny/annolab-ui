@@ -19,8 +19,8 @@ const UpdateProfileForm = props => {
                 rules={[{ required: true, message: 'Select Icon' }]}
             >
                 <Upload
+                    multiple={false}
                     listType="picture-card"
-                    showUploadList={false}
                     className="avatar-uploader"
                 >
                     Upload Avatar

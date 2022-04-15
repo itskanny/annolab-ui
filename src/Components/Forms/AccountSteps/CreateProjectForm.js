@@ -17,14 +17,6 @@ const CreateProjectForm = props => {
 
             <Form.Item
                 label=""
-                name="completion_date"
-                rules={[{ required: true, message: 'Enter Your Project Completion Date' }]}
-            >
-                <DatePicker size={"large"} placeholder={'*Completion Date'} />
-            </Form.Item>
-
-            <Form.Item
-                label=""
                 name="avatar_file"
                 rules={[{ required: true, message: 'Select Icon' }]}
             >

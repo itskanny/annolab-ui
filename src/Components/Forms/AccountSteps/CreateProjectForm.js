@@ -1,4 +1,5 @@
 import {Button, Form, Input,Upload,DatePicker} from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 
 const CreateProjectForm = props => {
@@ -15,6 +16,16 @@ const CreateProjectForm = props => {
             </Form.Item>
 
 
+
+     
+            <Form.Item
+                label=""
+                name="type_description"
+                rules={[{ required: true, message: 'Enter Type Description' }]}
+            >
+                <TextArea size={"large"} placeholder={'*Type Description'} type={"textarea"}/>
+            </Form.Item>
+
             <Form.Item
                 label=""
                 name="avatar_file"
@@ -27,14 +38,6 @@ const CreateProjectForm = props => {
                 >
                     Upload Avatar
                 </Upload>
-            </Form.Item>
-     
-            <Form.Item
-                label=""
-                name="type_description"
-                rules={[{ required: true, message: 'Enter Type Description' }]}
-            >
-                <Input size={"large"} placeholder={'*Type Description'} type={"text"}/>
             </Form.Item>
     
 

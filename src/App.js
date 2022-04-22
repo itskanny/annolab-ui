@@ -22,13 +22,12 @@ import List from "./Pages/List/List";
 import {authStore} from "./store/AuthStore";
 import HomePage from "./Pages/Home/HomePage";
 import {observer} from "mobx-react";
+import FullScreenLoader from "./helpers/FullScreenLoader";
 
 const Loader = observer(({auth}) => {
     return (
         auth.isLoading ?
-            <div className={'tw-h-full tw-w-full tw-z-50 tw-flex tw-justify-center tw-items-center tw-absolute'}>
-                <Spin/>
-            </div>
+            <FullScreenLoader/>
             : <></>
     )
 })

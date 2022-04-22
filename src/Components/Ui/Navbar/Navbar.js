@@ -75,11 +75,11 @@ const Navbar = props => {
                                 </div>
                                 <div className={'tw-flex tw-items-center'}>
                                     <div className={'tw-inline-block tw-mr-2'}>
-                                        <Avatar className={'tw-bg-primary-light'} src="https://joeschmoe.io/api/v1/random"/>
+                                        <Avatar className={'tw-bg-primary-light'} src={auth.user.getAvatar}/>
                                         {/*<Avatar className={'tw-bg-primary-light'} size="large" src="https://i.pravatar.cc/300" />*/}
                                     </div>
                                     <div className={'an-avatar-text tw-inline-block'}>
-                                        <p className={'an-avatar-text-username'}>{auth.user.name}</p>
+                                        <p className={'an-avatar-text-username'}>{auth.user.getName}</p>
                                         <p className={'tw-m-0 tw-p-0'}>Account Holder</p>
                                     </div>
                                 </div>
@@ -100,7 +100,6 @@ const Navbar = props => {
     const logout = () => {
         authStore.removeToken()
     }
-
     return (
         <Header className={'tw-flex tw-items-center an-navbar tw-justify-between'}>
             <NavbarObserved auth={authStore}/>

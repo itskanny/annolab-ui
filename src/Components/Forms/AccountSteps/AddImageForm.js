@@ -1,4 +1,4 @@
-import {Button, Form, Image,Upload} from "antd";
+import {Button, Form, Image, Upload} from "antd";
 
 
 const AddImageForm = props => {
@@ -30,6 +30,7 @@ const AddImageForm = props => {
             >
                 <Image
                 width={200}
+
                 src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
               />
             </Form.Item>

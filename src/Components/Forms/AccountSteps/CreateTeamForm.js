@@ -1,4 +1,5 @@
 import {Button, Form, Input,Upload,DatePicker} from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 
 const CreateTeamForm = props => {
@@ -14,13 +15,13 @@ const CreateTeamForm = props => {
                 <Input size={"large"} placeholder={'*Team Name'} type={"text"}/>
             </Form.Item>
 
-
             <Form.Item
                 label=""
-                name="disband_date"
-                rules={[{ required: true, message: 'Enter Disband Date' }]}
+                name="team_description"
+                rules={[{ required: true, message: 'Enter Team Description' }]}
             >
-                <DatePicker size={"large"} placeholder={'*Disband Date'} />
+                <TextArea size={"large"} placeholder={'*Team Description'} type={"textarea"}/>
+
             </Form.Item>
 
             <Form.Item
@@ -37,13 +38,7 @@ const CreateTeamForm = props => {
                 </Upload>
             </Form.Item>
      
-            <Form.Item
-                label=""
-                name="team_description"
-                rules={[{ required: true, message: 'Enter Team Description' }]}
-            >
-                <Input size={"large"} placeholder={'*Team Description'} type={"text"}/>
-            </Form.Item>
+
     
 
             <Form.Item>

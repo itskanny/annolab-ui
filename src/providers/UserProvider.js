@@ -1,4 +1,5 @@
 import {apiAuthorizedHelper, apiHelper} from "../axios/axios";
+import {authStore} from "../store/AuthStore";
 
 
 export class UserProvider {
@@ -109,5 +110,28 @@ export class UserProvider {
                     statusText: errors.response.statusText,
                 }
             })
+    }
+
+    static partialUpdateUsers(values){
+        return apiAuthorizedHelper
+            .patch(`users/${authStore.user.getId}/`, values)
+            .then(response => {
+                return {
+                    data: response.data,
+                    hasErrors: false,
+                    status: response.status,
+                    statusText: response.statusText,
+                }
+            })
+            .catch(errors => {
+                return {
+                    data: errors.response.data,
+                    hasErrors: true,
+                    status: errors.response.status,
+                    statusText: errors.response.statusText,
+                }
+            })
+
+
     }
 }

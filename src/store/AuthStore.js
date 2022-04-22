@@ -34,12 +34,14 @@ class AuthStore{
     }
 
     loadUserData(){
+        this.user.setLoading(true)
         if (this.isLoggedIn) {
             this.setIsLoginRequired(false)
             this.setLoading(true)
             console.log('LoadingData')
             UserProvider.fetchUser().then(data => {
                 this.user.login(data.data)
+                this.user.setLoading(false)
                 this.setLoading(false)
             })
             this.printData()
@@ -87,10 +89,7 @@ class AuthStore{
 
     signupUser(user, password){
         this.setLoading(true)
-        console.log({
-            email: user.email,
-            password: password
-        })
+        this.user.setLoading(true)
         return UserProvider.login({
             email: user.email,
             password: password
@@ -98,6 +97,7 @@ class AuthStore{
             if (!data.hasErrors){
                 this.setAndStoreToken(data.data.auth_token)
                 this.user.login(user)
+                this.user.setLoading(false)
                 this.setLoading(false)
                 return true
             }

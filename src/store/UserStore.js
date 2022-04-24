@@ -1,6 +1,8 @@
 import {action, makeAutoObservable, observable} from "mobx";
 import {UserProvider} from "../providers/UserProvider";
-import login from "../Pages/Login/Login";
+
+import {organizationStore} from "./OrganizationStore";
+import {OrganizationProvider} from "../providers/OrganizationProvider";
 
 
 export class UserStore{
@@ -11,6 +13,7 @@ export class UserStore{
     date_of_birth=null;
     avatar=null;
     loading=false
+    organization
 
     constructor() {
         makeAutoObservable( this, {
@@ -30,6 +33,7 @@ export class UserStore{
             setDateOfBirth: action,
 
         })
+        this.organization = organizationStore
     }
 
 
@@ -118,6 +122,27 @@ export class UserStore{
 
     setDate0fBirth(date_of_birth) {
         this.date_of_birth = date_of_birth
+    }
+
+    getOrganization(){
+        OrganizationProvider.fetchOrganization()
+            .then(data => {
+                if (!data.hasErrors) {
+                    this.organization.setOrganization(data.data ? data.data : {
+                        name: null,
+                        id: null,
+                        tagline: null,
+                        avatar: null,
+                        owner: null
+                    })
+                    console.log(this.organization)
+                }
+            })
+    }
+
+    setOrganization(org){
+        this.organization.setOrganization(org)
+        console.log(this.organization)
     }
 }
 

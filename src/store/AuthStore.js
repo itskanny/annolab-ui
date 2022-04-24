@@ -41,6 +41,7 @@ class AuthStore{
             console.log('LoadingData')
             UserProvider.fetchUser().then(data => {
                 this.user.login(data.data)
+                this.user.getOrganization()
                 this.user.setLoading(false)
                 this.setLoading(false)
             })

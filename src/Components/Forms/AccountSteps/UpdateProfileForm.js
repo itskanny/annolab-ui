@@ -1,19 +1,12 @@
 import {Alert, Button, DatePicker, Form, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
-import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
 import {observer} from "mobx-react";
 import FullScreenLoader from "../../../helpers/FullScreenLoader";
 import {useHistory} from "react-router-dom";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
 
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-}
-
-const UpdateProfileObserved = observer(({auth}) =>{
+const UpdateProfileObserved = observer(({auth}) => {
     return (
         auth.user.isLoading() ?
             <FullScreenLoader/>
@@ -22,35 +15,12 @@ const UpdateProfileObserved = observer(({auth}) =>{
 })
 
 const ProfileForm = props => {
-    const [imageUrl, setImageUrl] = useState()
-    const [loading, setLoading] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [form] = Form.useForm()
     const history = useHistory()
-    const [nonFieldVisible,  setNonFieldVisible] = useState(false)
+    const [nonFieldVisible, setNonFieldVisible] = useState(false)
     const [nonFieldErrorMessage, setNonFieldErrorMessage] = useState([])
 
-    const uploadButton = (
-        <div>
-            {loading ? <LoadingOutlined/> : <PlusOutlined/>}
-            <div style={{marginTop: 8}}>Upload Avatar</div>
-        </div>
-    );
-
-    const handleChange = info => {
-        if (info.file.status === 'uploading') {
-            setLoading(true)
-            return;
-        }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            getBase64(info.file.originFileObj, imageUrl => {
-                    setImageUrl(imageUrl)
-                    setLoading(false)
-                }
-            );
-        }
-    };
 
     const onFinish = (values) => {
         setIsLoading(true)
@@ -58,14 +28,14 @@ const ProfileForm = props => {
             date_of_birth: values.data_of_birth.format('YYYY-MM-DD'),
         })
             .then(data => {
-                if (!data.hasErrors){
+                if (!data.hasErrors) {
                     openNotification('success', "Profile updated successfully", true)
                     history.push('createorganization')
-                }
-                else {
+                } else {
                     handleFormErrors(data, form, setNonFieldErrorMessage, setNonFieldVisible)
+
+                    setIsLoading(false)
                 }
-                setIsLoading(false)
             })
     }
 
@@ -107,9 +77,8 @@ const ProfileForm = props => {
                     name={'avatar'}
                     // showUploadList={false}
                     maxCount={1}
-                    listType='picture'l
+                    listType='picture'
                     className="avatar-uploader an-avatar-uploader"
-                    onChange={handleChange}
                     headers={
                         {
                             "Authorization": `token ${authStore.token}`,

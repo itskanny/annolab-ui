@@ -12,13 +12,13 @@ export class OrganizationProvider {
                         data: response,
                         hasErrors: false,
                         status: response.status,
-                        statusText: response.statusText
+                        statusText: response.statusTexts
                     }
                 })
                 .catch((error) => {
                     // console.log(error)
                     if (error.response.data.owner){
-                        error.response.data.name = ["User already has an organization"]
+                        error.response.data.non_field_errors = ["User already has an organization"]
                     }
                     return {
                         data: error.response.data,

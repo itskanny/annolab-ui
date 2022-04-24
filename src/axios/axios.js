@@ -14,6 +14,10 @@ export const apiAuthorizedHelper =axios.create({
 apiAuthorizedHelper.interceptors.request.use(function (config) {
     // Do something before request is sent
     config.headers['Authorization'] = `token ${authStore.token}`
+    // console.log("Adding: ", authStore.user.organization.id)
+    // if (authStore.user.organization.id){
+    //     config.headers['Organization'] = `${authStore.user.organization.id}`
+    // }
     return config;
 }, function (error) {
     // Do something with request error

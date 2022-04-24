@@ -1,6 +1,6 @@
 import {Alert, Button, Form, Input, Upload} from "antd";
 import {observer} from "mobx-react";
-import FullScreenLoader from "../../../helpers/FullScreenLoader";
+import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
@@ -11,7 +11,7 @@ import {handleFormErrors, openNotification} from "../../../helpers/helper";
 const CreateOrganizationObserved = observer(({auth}) =>{
     return (
         auth.user.isLoading() ?
-            <FullScreenLoader/>
+            <InlineLoader/>
             : <OrganizationForm/>
     )
 })

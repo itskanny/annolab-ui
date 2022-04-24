@@ -72,4 +72,20 @@ class OrganizationStore{
     }
 }
 
+class ShouldSendOrg{
+    _sendOrg = false
+    constructor() {
+        makeAutoObservable(this)
+    }
+
+    get sendOrg() {
+        return this._sendOrg;
+    }
+
+    set sendOrg(value) {
+        this._sendOrg = value;
+    }
+}
+
 export const organizationStore = new OrganizationStore()
+export const shouldSendOrg = new ShouldSendOrg()

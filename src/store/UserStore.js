@@ -125,7 +125,7 @@ export class UserStore{
     }
 
     getOrganization(){
-        OrganizationProvider.fetchOrganization()
+        return OrganizationProvider.fetchOrganization()
             .then(data => {
                 if (!data.hasErrors) {
                     this.organization.setOrganization(data.data ? data.data : {
@@ -137,6 +137,7 @@ export class UserStore{
                     })
                     console.log(this.organization)
                 }
+                return data.data
             })
     }
 

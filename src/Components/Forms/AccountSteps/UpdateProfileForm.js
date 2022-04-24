@@ -2,14 +2,14 @@ import {Alert, Button, DatePicker, Form, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {observer} from "mobx-react";
-import FullScreenLoader from "../../../helpers/FullScreenLoader";
+import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useHistory} from "react-router-dom";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
 
 const UpdateProfileObserved = observer(({auth}) => {
     return (
         auth.user.isLoading() ?
-            <FullScreenLoader/>
+            <InlineLoader/>
             : <ProfileForm/>
     )
 })

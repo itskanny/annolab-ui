@@ -24,26 +24,13 @@ const ImageForm = props => {
     const [nonFieldErrorMessage, setNonFieldErrorMessage] = useState([])
     const [uploadCount, setUploadCount] = useState(0)
 
-    const onFinish = (values) => {
-
-        setIsLoading(true)
-
-        projectStore.create({
-            ...values,
-            avatar: values.avatar.fileList[0].originFileObj,
-            organization: authStore.user.organization.id
-        })
-            .then(data => {
-                if (!data.hasErrors) {
-                    console.log(projectStore.getProject)
-                    openNotification('success', "Images uploaded successfully", true)
-                    history.replace('home')
-                } else {
-                    console.log(data)
-                    handleFormErrors(data, form, setNonFieldErrorMessage, setNonFieldVisible)
-                    setIsLoading(false)
-                }
-            })
+    const onFinish = () => {
+        if (!isLoading){
+            openNotification('success', 'Images uploaded', true)
+            openNotification('success', 'Basic setup completed now you can freely use Annolab', true)
+            authStore.setSetup(false)
+            history.replace('home')
+        }
     }
 
     return (

@@ -71,6 +71,7 @@ const ProfileForm = props => {
                 name="avatar"
             >
                 <Upload
+                    accept={"image/png, image/jpeg, image/jpg"}
                     style={{width: '100%'}}
                     action={process.env.REACT_APP_BASE_URL + `users/${authStore.user.getId}/`}
                     multiple={false}

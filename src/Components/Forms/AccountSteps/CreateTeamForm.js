@@ -1,4 +1,4 @@
-import {Button, Form, Input, Upload, DatePicker, Alert} from "antd";
+import {Button, Form, Input, Upload, Alert} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {observer} from "mobx-react";
 import {InlineLoader} from "../../../helpers/FullScreenLoader";
@@ -83,6 +83,7 @@ const TeamForm = props => {
                 rules={[{ required: true, message: 'Select avatar' }]}
             >
                 <Upload
+                    accept={"image/png, image/jpeg, image/jpg"}
                     style={{width: '100%'}}
                     action={process.env.REACT_APP_BASE_URL + `teams/`}
                     multiple={false}

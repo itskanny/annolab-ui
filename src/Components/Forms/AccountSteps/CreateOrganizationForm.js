@@ -81,6 +81,7 @@ const OrganizationForm = props => {
                 rules={[{required: true, message: 'Select an avatar for organization'}]}
             >
                 <Upload
+                    accept={"image/png, image/jpeg, image/jpg"}
                     style={{width: '100%'}}
                     action={process.env.REACT_APP_BASE_URL + `organizations/`}
                     multiple={false}

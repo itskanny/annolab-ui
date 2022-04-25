@@ -1,11 +1,11 @@
-import {Alert, Button, Form, Upload} from "antd";
+import {Button, Form, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
 import {observer} from "mobx-react";
 import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {openNotification} from "../../../helpers/helper";
 
 
 const AddImageObserved = observer(({auth}) => {
@@ -16,12 +16,10 @@ const AddImageObserved = observer(({auth}) => {
     )
 })
 
-const ImageForm = props => {
+const ImageForm = () => {
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
-    const [nonFieldVisible, setNonFieldVisible] = useState(false)
-    const [nonFieldErrorMessage, setNonFieldErrorMessage] = useState([])
     const [uploadCount, setUploadCount] = useState(0)
 
     const onFinish = () => {
@@ -40,17 +38,6 @@ const ImageForm = props => {
             initialValues={{remember: true}}
             onFinish={onFinish}
         >
-
-            {nonFieldVisible ? (
-                <Alert className={'tw-pb-2 tw-mb-5'}
-                       description={nonFieldErrorMessage}
-                       message={"Error"}
-                       type={"error"}
-                />
-            ) : (
-                ""
-            )}
-
             <Form.Item
                 label=""
                 name="image"
@@ -73,12 +60,12 @@ const ImageForm = props => {
                             "Authorization": `token ${authStore.token}`,
                         }
                     }
-                    beforeUpload={file => {
+                    beforeUpload={() => {
                         if (!isLoading){
                             setIsLoading(true)
                         }
                     }}
-                    onRemove={file => {
+                    onRemove={() => {
                         setUploadCount(prevState => {
                             if (uploadCount>0){
                                 return prevState-1
@@ -133,7 +120,7 @@ const ImageForm = props => {
 }
 
 
-const AddImageForm = props => {
+const AddImageForm = () => {
     const history = useHistory()
 
     if (!projectStore.id) {

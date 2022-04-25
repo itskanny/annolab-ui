@@ -3,10 +3,10 @@ import {Link, useHistory} from "react-router-dom";
 import {UserProvider} from "../../../providers/UserProvider";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {handleFormErrors} from "../../../helpers/helper";
 
 
-const LoginForm = props => {
+const LoginForm = () => {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
     const [nonFieldVisible,  setNonFieldVisible] = useState(false)

@@ -1,10 +1,11 @@
-import {Alert, Button, DatePicker, Form, Upload} from "antd";
+import {Alert, Button, DatePicker, Dropdown, Form, Menu, Space, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {observer} from "mobx-react";
 import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useHistory} from "react-router-dom";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {DownOutlined, DragOutlined} from "@ant-design/icons";
 
 const UpdateProfileObserved = observer(({auth}) => {
     return (
@@ -13,6 +14,7 @@ const UpdateProfileObserved = observer(({auth}) => {
             : <ProfileForm/>
     )
 })
+
 
 const ProfileForm = props => {
     const [isLoading, setIsLoading] = useState(false)

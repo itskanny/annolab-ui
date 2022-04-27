@@ -39,8 +39,23 @@ const Home = props => {
                     </Card>
                 </Col>
                 <Col span={0} md={16} className={'tw-pl-3'}>
-                    <Card title={'Annolab'}>
+                    <Card
+                        title={'Annolab'}
 
+                    >
+                        <div >
+                            <p className={'tw-text-xl tw-font-semibold'}>Its a lot easier when done done together</p>
+                            <p className={'tw-text-base'}>
+                                Anno-Lab is the solution to your complex pictures data set and It
+                                provides solution to annotate images with accuracy. It helps you get work done fast by allowing you to work
+                                with your teams and team members on the same dataset.
+                            </p>
+                            <div className={'tw-w-full tw-flex tw-justify-start'}>
+                                <Button className={'tw-mr-7'}>Add Project</Button>
+                                <Button>Read Guide</Button>
+                            </div>
+
+                        </div>
                     </Card>
                 </Col>
             </Row>

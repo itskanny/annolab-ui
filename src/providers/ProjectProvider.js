@@ -27,4 +27,26 @@ export class ProjectProvider{
                 }
             })
     }
+
+    static fetchProjects(orgId){
+        const form = new Form()
+
+        return form.get('projects/')
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

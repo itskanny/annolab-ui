@@ -23,13 +23,13 @@ const ListProjects = (props) => {
         ProjectProvider.fetchProjects()
             .then(data => {
                 console.log(data)
-                if (!data.hasErrors){
-                    setProjects( prevState => {
+                if (!data.hasErrors) {
+                    setProjects(prevState => {
                         setLoading(false)
                         return data.data
                     })
-                }else {
-                    setProjects( prevState => {
+                } else {
+                    setProjects(prevState => {
                         setLoading(false)
                         return []
                     })
@@ -48,10 +48,12 @@ const ListProjects = (props) => {
 
     return (
         <>
-            <Popover className={'organization-select-dropdown'} title={'Organizations'} trigger={'click'}
-                     content={content}>
-                <div className={'tw-mb-5 tw-flex tw-w-full tw-justify-between tw-items-center'}>
-                    <p className={'tw-m-0 tw-font-semibold'}>Organization</p>
+            <div className={'tw-mb-5 tw-flex tw-w-full tw-justify-between tw-items-center'}>
+                <p className={'tw-m-0 tw-font-semibold'}>Organization</p>
+                <Popover className={'organization-select-dropdown'} title={'Organizations'}
+                         trigger={'click'}
+                         content={content}>
+
                     <Button>
                         {/* eslint-disable-next-line react/jsx-no-undef */}
                         <Space>
@@ -59,8 +61,9 @@ const ListProjects = (props) => {
                             <ArrowDown2 size={20}/>
                         </Space>
                     </Button>
-                </div>
-            </Popover>
+
+                </Popover>
+            </div>
             <Divider className={'tw-mb-5'}/>
             <Space className={'tw-flex tw-justify-between tw-w-full tw-mb-4'}>
                 <p className={'tw-font-semibold tw-m-0'}>Organization Projects</p>

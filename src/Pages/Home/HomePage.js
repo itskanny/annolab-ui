@@ -1,10 +1,6 @@
-import {Button, Card, Col, Dropdown, List, Menu, Popover, Row, Space} from "antd";
+import {Button, Card, Col, Row} from "antd";
 import {authStore} from "../../store/AuthStore";
-import {useState} from "react";
-import {ArrowDown2} from "iconsax-react";
 import ObservedUserLoader from "../../helpers/UserLoader";
-import {Option} from "antd/es/mentions";
-import DropdownList from "../../Components/Functional/DropdownList/DropdownList";
 import ListProjects from "./ListProjects";
 
 

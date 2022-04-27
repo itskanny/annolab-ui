@@ -1,9 +1,9 @@
 import {Avatar, Button, Divider, Input, List, Popover, Skeleton, Space} from "antd";
-import {Add, ArrowDown2} from "iconsax-react";
+import {ArrowDown2} from "iconsax-react";
 import {useEffect, useState} from "react";
 import {authStore} from "../../store/AuthStore";
 import DropdownList from "../../Components/Functional/DropdownList/DropdownList";
-import {PlusOutlined, SearchOutlined} from "@ant-design/icons";
+import {PlusOutlined} from "@ant-design/icons";
 import {ProjectProvider} from "../../providers/ProjectProvider";
 import {openNotification} from "../../helpers/helper";
 

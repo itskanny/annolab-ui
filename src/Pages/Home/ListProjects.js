@@ -1,50 +1,46 @@
-import {Avatar, Button, Divider, Input, List, Popover, Space} from "antd";
+import {Avatar, Button, Divider, Input, List, Popover, Skeleton, Space} from "antd";
 import {Add, ArrowDown2} from "iconsax-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {authStore} from "../../store/AuthStore";
 import DropdownList from "../../Components/Functional/DropdownList/DropdownList";
 import {PlusOutlined, SearchOutlined} from "@ant-design/icons";
-
-
-const DUMMY_PROJECTS = [
-    {
-        "id": 36,
-        "name": "Bilal's Project 1",
-        "description": "An awesome project",
-        "avatar": "http://localhost:8000/media/project_avatars/1_6.jpg",
-        "organization": 42
-    },
-    {
-        "id": 37,
-        "name": "Team 1",
-        "description": "sfsdfsdf",
-        "avatar": "http://localhost:8000/media/project_avatars/1_8_bZSpEmJ.jpg",
-        "organization": 42
-    },
-    {
-        "id": 42,
-        "name": "Team 2",
-        "description": "dasdasdas",
-        "avatar": "http://localhost:8000/media/project_avatars/1_8_usfv6oT.jpg",
-        "organization": 42
-    },
-    {
-        "id": 43,
-        "name": "Team 4",
-        "description": "dsadasdasd",
-        "avatar": "http://localhost:8000/media/project_avatars/1_8_TTTWjwG.jpg",
-        "organization": 42
-    }
-]
-
+import {ProjectProvider} from "../../providers/ProjectProvider";
+import {openNotification} from "../../helpers/helper";
 
 const ListProjects = (props) => {
 
     const [selectedOrganization, setSelectedOrganization] = useState(authStore.user.organization.getOrganization)
+    const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const changeOrganization = (id) => {
+        authStore.setSelectedOrganizationId(id)
         setSelectedOrganization(props.data.find(obj => obj.id === id))
+        setLoading(true)
     }
+
+    const fetchProjects = () => {
+        ProjectProvider.fetchProjects()
+            .then(data => {
+                console.log(data)
+                if (!data.hasErrors){
+                    setProjects( prevState => {
+                        setLoading(false)
+                        return data.data
+                    })
+                }else {
+                    setProjects( prevState => {
+                        setLoading(false)
+                        return []
+                    })
+                    openNotification('error', 'Could not load projects')
+                }
+            })
+    }
+
+    useEffect(() => {
+        fetchProjects()
+    }, [selectedOrganization])
 
     const content = (
         <DropdownList data={props.data} handleChange={changeOrganization}/>
@@ -54,13 +50,16 @@ const ListProjects = (props) => {
         <>
             <Popover className={'organization-select-dropdown'} title={'Organizations'} trigger={'click'}
                      content={content}>
-                <Button className={'tw-mb-5'}>
-                    {/* eslint-disable-next-line react/jsx-no-undef */}
-                    <Space>
-                        <p className={'tw-font-semibold tw-m-0'}>{selectedOrganization.name}</p>
-                        <ArrowDown2 size={20}/>
-                    </Space>
-                </Button>
+                <div className={'tw-mb-5 tw-flex tw-w-full tw-justify-between tw-items-center'}>
+                    <p className={'tw-m-0 tw-font-semibold'}>Organization</p>
+                    <Button>
+                        {/* eslint-disable-next-line react/jsx-no-undef */}
+                        <Space>
+                            <p className={'tw-font-semibold tw-m-0'}>{selectedOrganization.name}</p>
+                            <ArrowDown2 size={20}/>
+                        </Space>
+                    </Button>
+                </div>
             </Popover>
             <Divider className={'tw-mb-5'}/>
             <Space className={'tw-flex tw-justify-between tw-w-full tw-mb-4'}>
@@ -68,30 +67,50 @@ const ListProjects = (props) => {
                 <Button type="primary" shape={'circle'} icon={<PlusOutlined style={{color: 'white'}}/>}/>
             </Space>
             <div className={'tw-mb-5'}>
-                <Input size={"middle"}  placeholder={'Search Projects'}/>
+                <Input size={"middle"} placeholder={'Search Projects'}/>
             </div>
-            <List
-                dataSource={DUMMY_PROJECTS}
-                renderItem={item => {
-                    return (
-                        <List.Item>
-                            {/*<List.Item.Meta*/}
-                            {/*    avatar={<Avatar src={item.avatar} />}*/}
-                            {/*    title={`${selectedOrganization.name}/${item.name}`}*/}
-                            {/*/>*/}
-                            {/*onClick={e => props.handleChange(item.id)}*/}
-                            {/*className={'tw-m-0 hover:tw-bg-item-hover tw-cursor-pointer'}*/}
-                            <div className={'tw-flex tw-items-center'}>
-                                <Avatar src={item.avatar}/>
-                                <p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${selectedOrganization.name}/${item.name}`}</p>
-                            </div>
 
-                        </List.Item>
-                    )
-                }}
-            >
 
-            </List>
+            {loading ?
+                <div className={'list-skeleton'}>
+                    <Skeleton avatar paragraph={{rows: 0}} active/>
+                    <Divider className={'tw-m-0 tw-mb-2'}/>
+                    <Skeleton avatar paragraph={{rows: 0}} active/>
+                    <Divider/>
+                    <Skeleton avatar paragraph={{rows: 0}} active/>
+                </div>
+                :
+                <List
+                    dataSource={projects}
+                    renderItem={item => {
+                        return (
+                            <List.Item>
+                                {/*<List.Item.Meta*/}
+                                {/*    avatar={<Avatar src={item.avatar} />}*/}
+                                {/*    title={`${selectedOrganization.name}/${item.name}`}*/}
+                                {/*/>*/}
+                                {/*onClick={e => props.handleChange(item.id)}*/}
+                                {/*className={'tw-m-0 hover:tw-bg-item-hover tw-cursor-pointer'}*/}
+                                {!loading && <div className={'tw-flex tw-items-center'}>
+                                    <Avatar src={item.avatar}/>
+                                    <p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${selectedOrganization.name}/${item.name}`}</p>
+                                </div>}
+
+                                {/*<Skeleton loading={loading} active avatar>*/}
+                                {/*    <List.Item.Meta*/}
+                                {/*        avatar={<Avatar src={item.avatar}/>}*/}
+
+                                {/*    />*/}
+                                {/*</Skeleton>*/}
+
+                            </List.Item>
+                        )
+                    }}
+                >
+
+                </List>
+            }
+
 
         </>
 

@@ -17,11 +17,11 @@ const Home = props => {
         },
         {
             name: 'tesds',
-            id: '2',
+            id: '43',
         },
         {
             name: 'tesasdsd',
-            id: '3',
+            id: '44',
         }
 
     ]
@@ -37,7 +37,9 @@ const Home = props => {
                     </Card>
                 </Col>
                 <Col span={0} md={16}>
-                    Col 16 of 24
+                    <Card>
+
+                    </Card>
                 </Col>
             </Row>
         </>

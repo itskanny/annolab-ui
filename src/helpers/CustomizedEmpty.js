@@ -21,10 +21,11 @@ const CustomizedEmpty = props => {
         >
             <Lottie
                 options={defaultOptions}
-                height={200}
-                width={200}
+                height={props.height}
+                width={props.width}
             />
-            <p>{props.description}</p>
+            <p className={`tw-font-semibold tw-mt-5 ${props.textStyles}`}
+            >{props.description}</p>
         </Empty>
     )
 }

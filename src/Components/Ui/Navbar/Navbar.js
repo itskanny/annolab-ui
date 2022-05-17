@@ -12,8 +12,9 @@ import NavButton from "../Button/NavButton";
 import {authStore} from "../../../store/AuthStore";
 import {observer} from "mobx-react";
 import {Link} from "react-router-dom";
-import animationData from '../../../images/lotties/bell-snooze.json'
+import animationData from '../../../images/lotties/no-notification.json'
 import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
+
 
 
 const Navbar = () => {

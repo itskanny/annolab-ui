@@ -1,11 +1,11 @@
 import {Button, Divider, Popover, Space} from "antd";
 import {ArrowDown2} from "iconsax-react";
 import {useEffect, useState} from "react";
-import {authStore} from "../../store/AuthStore";
-import DropdownList from "../../Components/Functional/DropdownList/DropdownList";
+import {authStore} from "../../../store/AuthStore";
+import DropdownList from "../DropdownList/DropdownList";
 import {PlusOutlined} from "@ant-design/icons";
-import {ProjectProvider} from "../../providers/ProjectProvider";
-import {openNotification} from "../../helpers/helper";
+import {ProjectProvider} from "../../../providers/ProjectProvider";
+import {openNotification} from "../../../helpers/helper";
 import ProjectsList from "./ProjectsList";
 
 const ListProjects = (props) => {
@@ -31,7 +31,7 @@ const ListProjects = (props) => {
                 if (!data.hasErrors) {
                     setProjects(prevState => {
                         setLoading(false)
-                        return data.data
+                        return data.data.slice(0,props.listSize ? props.listSize : data.data.length)
                     })
                 } else {
                     setProjects(prevState => {

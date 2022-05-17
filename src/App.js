@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Spin} from 'antd';
+import {Avatar, Layout, List, Spin} from 'antd';
 import './App.less';
 import './App.css'
 import {Content} from "antd/es/layout/layout";
@@ -18,7 +18,7 @@ import CreateTeam from "./Pages/AccountSteps/CreateTeam";
 import CreateProject from "./Pages/AccountSteps/CreateProject";
 import CreateOrganization from "./Pages/AccountSteps/CreateOrganization";
 import AddImage from "./Pages/AccountSteps/AddImage";
-import List from "./Pages/List/List";
+// import List from "./Pages/List/List";
 import {authStore} from "./store/AuthStore";
 import HomePage from "./Pages/Home/HomePage";
 import {observer} from "mobx-react";
@@ -27,7 +27,9 @@ import FullScreenLoader from "./helpers/FullScreenLoader";
 
 import ProjectCard from "./Components/Cards/ProjectCard";
 import ImageDisplayCard from "./Components/Cards/ImageDisplayCard";
-import ProjectListing from "./Pages/ProjectListing/ProjectListing";
+import ProjectListing from "./Pages/Listing/ProjectListing";
+import TeamListing from "./Pages/Listing/Team Listing";
+import ImageListing from "./Pages/Listing/ImageListing";
 
 
 const Loader = observer(({auth}) => {
@@ -40,20 +42,13 @@ const Loader = observer(({auth}) => {
 
 authStore.loadUserData()
 
+
+
 const App = () => (
     <>
-        <Loader auth={authStore}/>
-        <Layout className={"tw-h-full"}>
-
-            <Navbar/>
-            <List/>
-            <Content>
-                <ProjectListing/>
-                <ImportProject/>
-
-            </Content>
-        </Layout>
-
+        <ProjectListing/>
+        <TeamListing></TeamListing>
+        <ImageListing></ImageListing>
     </>
 );
 

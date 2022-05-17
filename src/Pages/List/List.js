@@ -5,7 +5,7 @@ const List = () => {
 
 
     return (<>
-
+<div >
         <ul>
             <li><Link to="/Updateprofile">Update Profile</Link></li>
             <li><Link to="/createorganization">Create Organization</Link></li>
@@ -21,6 +21,8 @@ const List = () => {
             <li><Link to="/exportproject">Export Project</Link></li>
             <li><Link to="/importproject">Import Project</Link></li>
         </ul>
+
+</div>
 
     </>);
 

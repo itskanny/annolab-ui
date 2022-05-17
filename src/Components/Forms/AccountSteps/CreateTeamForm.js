@@ -7,6 +7,7 @@ import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {authStore} from "../../../store/AuthStore";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {teamStore} from "../../../store/TeamStore";
 
 const CreateTeamObserved = observer(({auth}) =>{
     return (
@@ -27,7 +28,7 @@ const TeamForm = props => {
 
         setIsLoading(true)
 
-        projectStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.user.organization.id})
+        teamStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.user.organization.id})
             .then(data => {
                 if (!data.hasErrors){
                     console.log(projectStore.getProject)

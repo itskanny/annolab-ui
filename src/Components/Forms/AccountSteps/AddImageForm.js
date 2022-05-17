@@ -23,7 +23,7 @@ const ImageForm = () => {
     const [uploadCount, setUploadCount] = useState(0)
 
     const onFinish = () => {
-        if (!isLoading){
+        if (!isLoading) {
             openNotification('success', 'Images uploaded', true)
             openNotification('success', 'Basic setup completed now you can freely use Annolab', true)
             authStore.setSetup(false)
@@ -46,11 +46,10 @@ const ImageForm = () => {
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}
                     style={{width: '100%'}}
-                    action={process.env.REACT_APP_BASE_URL + `images/`}
+                    action={process.env.REACT_APP_BASE_URL + `projects/${projectStore.id}/images/`}
                     data={{
                         'project': `${projectStore.id}`
-                    }
-                    }
+                    }}
                     multiple={true}
                     name={'image'}
                     listType='picture'
@@ -61,35 +60,34 @@ const ImageForm = () => {
                         }
                     }
                     beforeUpload={() => {
-                        if (!isLoading){
+                        if (!isLoading) {
                             setIsLoading(true)
                         }
                     }}
                     onRemove={() => {
                         setUploadCount(prevState => {
-                            if (uploadCount>0){
-                                return prevState-1
+                            if (uploadCount > 0) {
+                                return prevState - 1
                             }
                             return prevState
                         })
                     }}
                     method={'POST'}
-                    onChange={(info)=>{
-                        if (info.file.status === 'done'){
+                    onChange={(info) => {
+                        if (info.file.status === 'done') {
                             setUploadCount(prevState => {
-                                const count = prevState+1
+                                const count = prevState + 1
                                 console.log(count)
-                                if (count === info.fileList.length){
+                                if (count === info.fileList.length) {
                                     setIsLoading(false)
                                 }
                                 return count
                             })
-                        }
-                        else if (info.file.status === 'error'){
+                        } else if (info.file.status === 'error') {
                             setUploadCount(prevState => {
-                                const count = prevState+1
+                                const count = prevState + 1
                                 console.log(count)
-                                if (count === info.fileList.length){
+                                if (count === info.fileList.length) {
                                     setIsLoading(false)
                                 }
                                 return count

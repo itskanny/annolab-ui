@@ -83,7 +83,7 @@ class TeamStore{
             description: this.description,
             avatar: this.avatar,
             organization: this.organization,
-            isProjectSet: this.isTeamSet,
+            isTeamSet: this.isTeamSet,
         }
     }
 

@@ -40,7 +40,7 @@ const Home = props => {
 
                     >
                         <div >
-                            <p className={'tw-text-xl tw-font-semibold'}>Its a lot easier when done done together</p>
+                            <p className={'tw-text-xl tw-font-semibold'}>Its a lot easier when done together</p>
                             <p className={'tw-text-base'}>
                                 Anno-Lab is the solution to your complex pictures data set and It
                                 provides solution to annotate images with accuracy. It helps you get work done fast by allowing you to work

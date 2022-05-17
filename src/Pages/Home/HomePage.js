@@ -1,10 +1,10 @@
 import {Button, Card, Col, Row} from "antd";
 import {authStore} from "../../store/AuthStore";
 import ObservedUserLoader from "../../helpers/UserLoader";
-import ListProjects from "./ListProjects";
+import ListProjects from "../../Components/Functional/HomePageComponents/ListProjects";
 
 
-
+const HOME_LIST_SIZE = 5
 const Home = props => {
     const DUMMY_DATA = [
 
@@ -31,7 +31,7 @@ const Home = props => {
             >
                 <Col span={24} md={8} className={'tw-pr-3'}>
                     <Card >
-                        <ListProjects data={DUMMY_DATA}/>
+                        <ListProjects data={DUMMY_DATA} listSize={HOME_LIST_SIZE}/>
                     </Card>
                 </Col>
                 <Col span={0} md={16} className={'tw-pl-3'}>

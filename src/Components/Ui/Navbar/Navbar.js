@@ -72,7 +72,7 @@ const Navbar = () => {
                                                     <Setting2
                                                         className={'tw-inline-block tw-mr-1  lg:tw-mr-3 mlg:tw-mr-6 tw-cursor-pointer'}/>
                                                 </Tooltip>
-                                                <Tooltip title={'Notifications'}>
+                                                <Tooltip title={'Notifications'} color={'white'} style={{color: "black"}}>
                                                     <Popover
                                                         content={<CustomizedEmpty description={'No notifications found'}
                                                                                   lottieAnimation={animationData}/>}
@@ -87,7 +87,7 @@ const Navbar = () => {
 
                                             : ""
                                     }
-                                    <Tooltip title={'Logout'}>
+                                    <Tooltip title={'Logout'} color={'white'} style={{color: "black"}}>
                                         <LogoutCurve className={'tw-inline-block tw-cursor-pointer'} onClick={logout}/>
                                     </Tooltip>
                                 </div>

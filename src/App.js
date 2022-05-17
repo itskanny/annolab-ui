@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from 'antd';
+import {Layout, Spin} from 'antd';
 import './App.less';
 import './App.css'
 import {Content} from "antd/es/layout/layout";
@@ -28,7 +28,9 @@ import PageNotFound from "./Pages/404NotFound";
 const Loader = observer(({auth}) => {
     return (
         auth.isLoading ?
-            <FullScreenLoader/>
+            <div className={`tw-h-full tw-w-full tw-z-50 tw-flex tw-justify-center tw-items-center tw-absolute tw-bg-white`}>
+                <Spin/>
+            </div>
             : <></>
     )
 })

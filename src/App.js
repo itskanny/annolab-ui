@@ -10,6 +10,7 @@ import ImportProject from "./Pages/ImportProject/ImportProject";
 import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
 import Invite from "./Pages/Invite/Invite";
+import Settings from "./Pages/Settings/Settings";
 import RecoverPassword from "./Pages/ForgetPassword/RecoverPassword";
 import ExportProject from "./Pages/ExportProject/ExportProject";
 import AddProject from "./Pages/AddProject/AddProject";
@@ -124,6 +125,14 @@ const App = () => (
                            render={
                                (props) => {
                                    return authStore.isLoggedIn ? <Invite/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
+
+                    <Route path="/settings" exact
+                           render={
+                               (props) => {
+                                   return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>
                                }
                            }
                     />

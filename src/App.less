@@ -111,9 +111,6 @@
 
   .an-header-icons{
     @apply tw-text-icon;
-
-
-
   }
 
   .an-avatar-text {
@@ -134,7 +131,9 @@
   }
 
   .an-navbar-button-active{
-    @apply tw-bg-primary-light tw-text-primary;
+    button {
+      @apply tw-bg-primary-light tw-text-primary;
+    }
   }
 }
 
@@ -177,6 +176,7 @@
 .ant-tooltip-content{
   .ant-tooltip-arrow-content{
     @apply tw-bg-white tw-text-black;
+    --antd-arrow-background-color: white;
   }
 
   .ant-tooltip-inner{

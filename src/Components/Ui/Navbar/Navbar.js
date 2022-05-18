@@ -11,10 +11,9 @@ import {
 import NavButton from "../Button/NavButton";
 import {authStore} from "../../../store/AuthStore";
 import {observer} from "mobx-react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import animationData from '../../../images/lotties/no-notification.json'
 import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
-
 
 
 const Navbar = () => {
@@ -51,12 +50,22 @@ const Navbar = () => {
 
                 {
                     auth.isLoggedIn && !auth.setup ?
-                        <div className={'nav-buttons'}>
-                            <NavButton>Projects</NavButton>
-                            <NavButton
-                                className={'tw-mr-0.5 lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3'}>Organization</NavButton>
-                            <NavButton active={true}
-                                       className={'tw-mr-0.5  lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3 '}>Home</NavButton>
+                        <div className={'nav-buttons'} >
+                            <NavLink  to={`/org/${auth.selectedOrganizationId}/projects`} activeClassName={'an-navbar-button-active'}>
+                                <NavButton>Projects</NavButton>
+                            </NavLink>
+
+                            <NavLink exact to={`/org/${auth.selectedOrganizationId}`} activeClassName={'an-navbar-button-active'}>
+                                <NavButton
+                                    className={'tw-mr-0.5 lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3'}>
+                                    Organization
+                                </NavButton>
+                            </NavLink>
+
+                            <NavLink exact to={`/home`} activeClassName={'an-navbar-button-active'} >
+                                <NavButton active={true}
+                                           className={'tw-mr-0.5  lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3 '}>Home</NavButton>
+                            </NavLink>
                         </div>
                         : ""
                 }
@@ -73,7 +82,8 @@ const Navbar = () => {
                                                     <Setting2
                                                         className={'tw-inline-block tw-mr-1  lg:tw-mr-3 mlg:tw-mr-6 tw-cursor-pointer'}/>
                                                 </Tooltip>
-                                                <Tooltip title={'Notifications'} color={'white'} style={{color: "black"}}>
+                                                <Tooltip title={'Notifications'} color={'white'}
+                                                         style={{color: "black"}}>
                                                     <Popover
                                                         content={<CustomizedEmpty description={'No notifications found'}
                                                                                   lottieAnimation={animationData}/>}

@@ -20,7 +20,7 @@ const ProjectsList = (props) => {
 
     return (<>
         <div className={'tw-mb-5'}>
-            <Input size={"middle"} placeholder={'Search Projects'} onChange={handleSearch}/>
+            <Input size={"middle"} placeholder={'Search Project'} onChange={handleSearch}/>
         </div>
         {
             props.loading ?
@@ -34,7 +34,7 @@ const ProjectsList = (props) => {
                 :
                 <ConfigProvider renderEmpty={() => (
                     <CustomizedEmpty
-                        description={'No Projects found for the organization'}
+                        description={'No Project found for the organization'}
                         lottieAnimation={animationData}
                         height={185}
                         width={205}

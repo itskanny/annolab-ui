@@ -6,7 +6,7 @@ const ExportProject = () => {
 
 
     return (<>
-        <h3 align={'center'} className="h1">Export Images</h3>
+        <h3 align={'center'} className="h1_AP">Export Images</h3>
 
 
         <Row align={"center"}

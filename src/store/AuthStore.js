@@ -9,6 +9,7 @@ class AuthStore{
     loading=false
     setup = false
     user
+    selectedOrganizationId = null
 
     constructor() {
         makeAutoObservable(this, {
@@ -41,8 +42,14 @@ class AuthStore{
             console.log('LoadingData')
             UserProvider.fetchUser().then(data => {
                 this.user.login(data.data)
-                this.user.setLoading(false)
+                this.user.getOrganization().then(data => {
+                    this.setSelectedOrganizationId(data.id)
+                    console.log("OrgId",this.getSelectedOrganizationId)
+                    this.user.setLoading(false)
+
+                })
                 this.setLoading(false)
+
             })
             this.printData()
         }
@@ -128,6 +135,14 @@ class AuthStore{
 
     get getToken(){
         return this.token
+    }
+
+    setSelectedOrganizationId(id){
+        this.selectedOrganizationId = id
+    }
+
+    get getSelectedOrganizationId(){
+        return this.selectedOrganizationId
     }
 
     printData(){

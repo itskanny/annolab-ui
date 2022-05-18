@@ -22,8 +22,10 @@ import List from "./Pages/List/List";
 import {authStore} from "./store/AuthStore";
 import HomePage from "./Pages/Home/HomePage";
 import {observer} from "mobx-react";
-import FullScreenLoader from "./helpers/FullScreenLoader";
 import PageNotFound from "./Pages/404NotFound";
+import ProjectListing from "./Pages/Listing/ProjectListing";
+import TeamListing from "./Pages/Listing/Team Listing";
+import ImageListing from "./Pages/Listing/ImageListing";
 
 const Loader = observer(({auth}) => {
     return (
@@ -151,7 +153,27 @@ const App = () => (
                                }
                            }
                     />
-
+                    <Route path={'/org/:orgnizationId/projects'} exact
+                           render={
+                               (props) => {
+                                   return authStore.isLoggedIn ? <ProjectListing/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
+                    <Route path={'/org/:orgnizationId/teams'} exact
+                           render={
+                               (props) => {
+                                   return authStore.isLoggedIn ? <TeamListing/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
+                    <Route path={'/org/:orgnizationId/projects/:projectID/'} exact
+                           render={
+                               (props) => {
+                                   return authStore.isLoggedIn ? <ImageListing/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
 
                     <Route path={'/*'} exact>
                         <PageNotFound/>

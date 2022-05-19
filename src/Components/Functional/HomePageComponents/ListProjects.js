@@ -27,14 +27,13 @@ const ListProjects = (props) => {
     const fetchProjects = () => {
         ProjectProvider.fetchProjects()
             .then(data => {
-                console.log(data)
                 if (!data.hasErrors) {
-                    setProjects(prevState => {
+                    setProjects(() => {
                         setLoading(false)
                         return data.data.slice(0,props.listSize ? props.listSize : data.data.length)
                     })
                 } else {
-                    setProjects(prevState => {
+                    setProjects(() => {
                         setLoading(false)
                         return []
                     })

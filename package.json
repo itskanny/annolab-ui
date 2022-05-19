@@ -15,6 +15,7 @@
     "iconsax-react": "^0.0.8",
     "mobx": "^6.5.0",
     "mobx-react": "^7.3.0",
+    "moment": "^2.29.3",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

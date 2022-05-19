@@ -6,8 +6,6 @@ import "./AddProject.css";
 
 const AddProject = () => {
     return (
-
-
         <>
             <div>
                 <h3 className="h1">Create Project</h3>
@@ -20,23 +18,6 @@ const AddProject = () => {
             </Row>
         </>
 
-
-
-        // <div>
-        //     <div>
-        //         <h3 className="h1">Create Project</h3>
-        //
-        //     </div>
-        //
-        //     <Row className="center">
-        //         <Col className={"gutter-row tw-mt-10 md:tw-mt-0"} span={24} md={8}>
-        //             <AddProjectForm/>
-        //         </Col>
-        //     </Row>
-        //     < div className=" flex justify-end ...">
-        //
-        //     </div>
-        // </div>
     );
 };
 

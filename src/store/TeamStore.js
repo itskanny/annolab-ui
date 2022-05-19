@@ -1,5 +1,4 @@
 import {makeAutoObservable} from "mobx";
-import {ProjectProvider} from "../providers/ProjectProvider";
 import {TeamProvider} from "../providers/TeamProvider";
 
 class TeamStore{

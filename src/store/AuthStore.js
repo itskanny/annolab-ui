@@ -31,7 +31,6 @@ class AuthStore{
 
     loadToken() {
         this.setToken(localStorage.getItem("auth_token"));
-        console.log('Loaded Token: ',this.getToken)
     }
 
     loadUserData(){
@@ -39,7 +38,6 @@ class AuthStore{
         if (this.isLoggedIn) {
             this.setIsLoginRequired(false)
             this.setLoading(true)
-            console.log('LoadingData')
             UserProvider.fetchUser().then(data => {
                 this.user.login(data.data)
                 this.user.getOrganization().then(data => {

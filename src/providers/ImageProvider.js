@@ -1,0 +1,27 @@
+import Form from "../utils/form";
+
+
+export class ImageProvider{
+
+    static fetchImages(projectId){
+        const form = new Form()
+
+        return form.get(`projects/${projectId}/images`)
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
+}

@@ -1,34 +1,77 @@
 import {Route, Switch, useParams, useRouteMatch} from "react-router-dom";
-import TeamListing from "../Listing/Team Listing";
-import ProjectDetail from "../Project/ProjectDetail";
+import Projects from "../Project/Projects";
 import PageNotFound from "../404NotFound";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {OrganizationProvider} from "../../providers/OrganizationProvider";
+import {InlineLoader} from "../../helpers/FullScreenLoader";
+import ObservedUserLoader from "../../helpers/UserLoader";
+import {authStore} from "../../store/AuthStore";
+import Team from "../Team/Team";
 
 const OrganizationDetail = (props) => {
     const match = useRouteMatch()
     const params = useParams()
 
+    const [loading, setLoading] = useState(true)
+    const [selectedOrganization, setSelectedOrganization] = useState(null)
+
+    const fetchSelectedOrganization = () => {
+        OrganizationProvider.checkOrganizationExists(params.orgnizationId)
+            .then(data => {
+                if (!data.hasErrors){
+                    setSelectedOrganization(() => {
+                        setLoading(false)
+                        return data.data
+                    })
+                }
+                else {
+                   setLoading(false)
+                }
+
+            })
+
+    }
+
+    useEffect(() => {
+        fetchSelectedOrganization()
+    }, [])
+
     return (
         <>
-            <Switch>
-                <Route path={`${match.path}`} exact>
-                    <p>Organization detail page for {params.orgnizationId}</p>
-                </Route>
+            {loading ?
+                <InlineLoader/>
+                :
+                selectedOrganization ?
+                    <Switch>
+                        <Route path={`${match.path}`} exact>
+                            <p>Organization detail page for {params.orgnizationId}</p>
+                        </Route>
 
-                <Route path={`${match.path}/projects`}>
-                    <ProjectDetail/>
-                </Route>
+                        <Route path={`${match.path}/projects`}>
+                            <Projects org={selectedOrganization}/>
+                        </Route>
 
-                <Route path={`${match.path}/teams`}>
-                    <TeamListing/>
-                </Route>
+                        <Route path={`${match.path}/teams`}>
+                            <Team org={selectedOrganization} />
+                        </Route>
 
-                <Route path={'/*'} exact>
+                        <Route path={'/*'} exact>
+                            <PageNotFound/>
+                        </Route>
+                    </Switch>
+                    :
                     <PageNotFound/>
-                </Route>
-            </Switch>
+            }
+
         </>
     )
 }
 
-export default OrganizationDetail
+const OrganizationDetailPage = props => {
+
+    return (
+        <ObservedUserLoader auth={authStore} node={<OrganizationDetail/>}/>
+    )
+}
+
+export default OrganizationDetailPage

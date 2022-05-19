@@ -28,7 +28,7 @@ export class ProjectProvider{
             })
     }
 
-    static fetchProjects(orgId){
+    static fetchProjects(){
         const form = new Form()
 
         return form.get('projects/')
@@ -44,6 +44,30 @@ export class ProjectProvider{
                 return {
                     data: error.response.data,
                     hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
+
+    static checkProjectExists(projId){
+        const form = new Form()
+        return form.get(`projects/${projId}`)
+            .then((response) => {
+
+                return {
+                    data: response,
+                    hasErrors: false,
+                    exists: true,
+                    status: response.status,
+                    statusText: response.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    exists: false,
                     status: error.response.status,
                     statusText: error.response.statusText
                 }

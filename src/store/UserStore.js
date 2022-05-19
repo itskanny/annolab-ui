@@ -1,6 +1,5 @@
 import {action, makeAutoObservable, observable} from "mobx";
 import {UserProvider} from "../providers/UserProvider";
-
 import {organizationStore} from "./OrganizationStore";
 import {OrganizationProvider} from "../providers/OrganizationProvider";
 

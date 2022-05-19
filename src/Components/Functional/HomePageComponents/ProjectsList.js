@@ -2,6 +2,7 @@ import {Avatar, ConfigProvider, Divider, Input, List, Skeleton} from "antd";
 import {useEffect, useState} from "react";
 import animationData from '../../../images/lotties/no-data.json'
 import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
+import {Link} from "react-router-dom";
 
 
 const ProjectsList = (props) => {
@@ -48,7 +49,7 @@ const ProjectsList = (props) => {
                                 <List.Item>
                                     {!props.loading && <div className={'tw-flex tw-items-center'}>
                                         <Avatar src={item.avatar}/>
-                                        <p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${props.obj.name}/${item.name}`}</p>
+                                        <Link to={`org/${props.obj.id}/projects/${item.id}/images`}><p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${props.obj.name}/${item.name}`}</p></Link>
                                     </div>}
                                 </List.Item>
                             )

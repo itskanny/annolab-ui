@@ -73,4 +73,28 @@ export class OrganizationProvider {
                 }
             })
     }
+
+    static checkOrganizationExists(orgId){
+        const form = new Form()
+        return form.get(`organizations/${orgId}`)
+            .then((response) => {
+
+                return {
+                    data: response,
+                    hasErrors: false,
+                    exists: true,
+                    status: response.status,
+                    statusText: response.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    exists: false,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

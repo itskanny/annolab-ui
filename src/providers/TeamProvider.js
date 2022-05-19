@@ -26,4 +26,50 @@ export class TeamProvider{
                 }
             })
     }
+
+    static fetchTeams(){
+        const form = new Form()
+
+        return form.get('teams/')
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
+
+    static checkTeamExists(projId){
+        const form = new Form()
+        return form.get(`teams/${projId}`)
+            .then((response) => {
+
+                return {
+                    data: response,
+                    hasErrors: false,
+                    exists: true,
+                    status: response.status,
+                    statusText: response.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    exists: false,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

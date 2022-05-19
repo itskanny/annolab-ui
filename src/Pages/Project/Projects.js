@@ -1,25 +1,25 @@
-import {Route, Switch, useParams, useRouteMatch} from "react-router-dom";
+import {Route, Switch, useRouteMatch} from "react-router-dom";
 import ProjectListing from "../Listing/ProjectListing";
-import ImageListing from "../Listing/ImageListing";
 import PageNotFound from "../404NotFound";
 import React from "react";
+import ProjectsDetail from "./ProjectsDetail";
 
 
-const ProjectDetail = props => {
+const Projects = props => {
 
     const match = useRouteMatch()
-    const params = useParams()
+    // const params = useParams()
 
     return (
         <>
             <Switch>
 
                 <Route path={`${match.path}`} exact>
-                    <ProjectListing/>
+                    <ProjectListing org={props.org}/>
                 </Route>
 
-                <Route path={`${match.path}/:projectId/images`}>
-                    <ImageListing/>
+                <Route path={`${match.path}/:projectId`}>
+                    <ProjectsDetail/>
                 </Route>
                 <Route path={'/*'} exact>
                     <PageNotFound/>
@@ -30,4 +30,4 @@ const ProjectDetail = props => {
     )
 }
 
-export default ProjectDetail
+export default Projects

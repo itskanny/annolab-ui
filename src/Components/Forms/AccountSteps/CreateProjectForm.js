@@ -65,6 +65,7 @@ const ProjectForm = props => {
                 label=""
                 name="name"
                 rules={[{ required: true, message: 'Enter Project Name' }]}
+                className={props.fieldClasses}
             >
                 <Input size={"large"} placeholder={'*Project Name'} type={"text"}/>
             </Form.Item>
@@ -75,7 +76,8 @@ const ProjectForm = props => {
             <Form.Item
                 label=""
                 name="description"
-                rules={[{ required: true, message: 'Enter Type Description' }]}
+                rules={[{ required: true, message: 'Enter Description' }]}
+                className={props.fieldClasses}
             >
                 <TextArea size={"large"} placeholder={'*Type Description'} type={"textarea"}/>
             </Form.Item>
@@ -84,6 +86,7 @@ const ProjectForm = props => {
                 label=""
                 name="avatar"
                 rules={[{ required: true, message: 'Select avatar' }]}
+                className={props.fieldClasses}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}
@@ -116,7 +119,10 @@ const ProjectForm = props => {
             </Form.Item>
 
 
-            <Form.Item>
+            <Form.Item
+
+                className={props.fieldClasses}
+            >
                 <Button type="primary" htmlType="submit" block size={'large'} loading={isLoading}>
                     Create
                 </Button>

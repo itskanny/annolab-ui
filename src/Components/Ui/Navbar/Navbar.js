@@ -51,9 +51,12 @@ const Navbar = () => {
                 {
                     auth.isLoggedIn && !auth.setup ?
                         <div className={'nav-buttons'} >
-                            <NavLink  to={`/org/${auth.selectedOrganizationId}/projects`} activeClassName={'an-navbar-button-active'}>
-                                <NavButton>Projects</NavButton>
+                            <NavLink exact to={`/home`} activeClassName={'an-navbar-button-active'} >
+                                <NavButton active={true}
+                                           className={'tw-mr-0.5  lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3 '}>Home</NavButton>
                             </NavLink>
+
+
 
                             <NavLink exact to={`/org/${auth.selectedOrganizationId}`} activeClassName={'an-navbar-button-active'}>
                                 <NavButton
@@ -62,9 +65,8 @@ const Navbar = () => {
                                 </NavButton>
                             </NavLink>
 
-                            <NavLink exact to={`/home`} activeClassName={'an-navbar-button-active'} >
-                                <NavButton active={true}
-                                           className={'tw-mr-0.5  lg:tw-mr-1 mlg:tw-mr-2 xl:tw-mr-3 '}>Home</NavButton>
+                            <NavLink  to={`/org/${auth.selectedOrganizationId}/projects`} activeClassName={'an-navbar-button-active'}>
+                                <NavButton>Projects</NavButton>
                             </NavLink>
                         </div>
                         : ""

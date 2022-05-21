@@ -82,7 +82,7 @@ const ImageForm = () => {
                                 }
                                 return count
                             })
-                            openNotification('error', `${info.file.name} filed to be uploaded`, false)
+                            openNotification('error', `${info.file.name} failed to be uploaded`, false)
                         }
                     }}
                 >

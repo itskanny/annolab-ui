@@ -1,54 +1,7 @@
-import {Avatar, Space, Tag} from "antd";
+import {Avatar, Space} from "antd";
 import React from "react";
 import {formatDate} from "../../helpers/DataFormater";
 import {Link, useLocation} from "react-router-dom";
-
-export const IMAGE_COLUMNS = [
-
-    {
-        title: 'Image',
-        dataIndex: 'image',
-        key: 'image',
-        render: avatar => <Avatar src={avatar}/>,
-    },
-    {
-        title: 'Image ID',
-        dataIndex: 'id',
-        key: 'id',
-        sorter: (a, b) => a.id - b.id,
-    },
-    {
-        title: 'Image Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: image => <p className={'tw-mb-0'}>{image}</p>,
-        sorter: (a, b) => a.name.length - b.name.length,
-    },
-    {
-        title: 'Image Status',
-        dataIndex: 'is_annotated',
-        key: 'is_annotated',
-        render: status => status? <Tag color={'blue'}>Annotated</Tag>: <Tag color={"cyan"}>Not Annotated</Tag>,
-        sorter: (a, b) => a.imageStatus - b.imageStatus,
-    },
-    {
-        title: 'Created Date',
-        dataIndex: 'created_date',
-        key: 'created_date',
-        render: timestamp => formatDate(timestamp, 'LL'),
-        sorter: (a, b) => new Date(a.created_date) - new Date(b.created_date),
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: () => (
-            <Space size="middle">
-                <p className={'tw-mb-0'}>Edit</p>
-                <p className={'tw-mb-0'}>Delete</p>
-            </Space>
-        ),
-    },
-];
 
 
 export function useTeamColumns(){

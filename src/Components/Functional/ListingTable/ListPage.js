@@ -5,6 +5,8 @@ import React from "react";
 
 const ListPage = props => {
 
+
+    console.log('Listing Rerendering')
     return (
         <>
             <Row align={"middle"}
@@ -23,7 +25,7 @@ const ListPage = props => {
                                 <Button onClick={props.buttonHandler} type={"primary"}>{props.buttonText}</Button>
                             </div>
                             <Divider className={'tw-mb-5'}/>
-                            <ListingTable columns={props.columns} fetcher={props.fetcher}/>
+                            <ListingTable loading={props.loading} render={props.render} columns={props.columns} fetcher={props.fetcher}/>
                         </div>
 
                     </Card>

@@ -20,7 +20,6 @@ const ProjectListing = (props) => {
 
         <>
             <ListPage buttonHandler={addProjectHandler} columns={PROJECT_COLUMNS} title={props.org.name} tableType={'All Projects'} buttonText={'Add Project'} fetcher={ProjectProvider.fetchProjects}/>
-
         </>);
 };
 

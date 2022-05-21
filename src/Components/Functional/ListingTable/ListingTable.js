@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const ListingTable = props => {
 
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(props.loading? props.loading : false)
     const [data, setData] = useState([])
     const [result, setResult] = useState(null)
 
@@ -34,7 +34,7 @@ const ListingTable = props => {
 
     useEffect(() => {
         fetchData()
-    },[])
+    },[props.render])
 
     return (
         <>

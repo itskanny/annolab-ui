@@ -24,9 +24,7 @@ const AddProject = () => {
                 <Col span={0} lg={10} xl={12} className={'tw-pr-3'}>
                     <Card title={'About Projects'}>
                         <p>Projects reside in workspaces containing images to be worked on. Projects are: </p>
-                        <Typography>
 
-                        </Typography>
                         <Paragraph>
                             <ul>
                                 <li>

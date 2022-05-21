@@ -6,7 +6,6 @@ import React from "react";
 const ListPage = props => {
 
 
-    console.log('Listing Rerendering')
     return (
         <>
             <Row align={"middle"}

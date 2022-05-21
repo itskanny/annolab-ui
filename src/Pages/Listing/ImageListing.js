@@ -2,11 +2,12 @@ import React, {useState} from "react";
 
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {ImageProvider} from "../../providers/ImageProvider";
-import AddImagesModelForm from "../../Components/Forms/ModelForms/AddImagesModelForm/AddImagesModelForm";
+import AddImagesModelForm from "../../Components/Forms/ModelForms/ImageModalForms/AddImagesModelForm/AddImagesModelForm";
 import {Avatar, Button, Space, Tag} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {openNotification} from "../../helpers/helper";
+import EditImageModalForm from "../../Components/Forms/ModelForms/ImageModalForms/EditImageModalForm/EditImageModalForm";
 
 
 const ImageListing = (props) => {
@@ -51,7 +52,7 @@ const ImageListing = (props) => {
             key: 'action',
             render: (_,row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Button type="dashed" shape={'circle'} icon={<EditOutlined className={'tw-text-icon'}/>}/>
+                    <Button onClick={() => setEditVisible({state: true, row: row.id})} type="dashed" shape={'circle'} icon={<EditOutlined className={'tw-text-icon'}/>}/>
                     <Button onClick={() => deleteHandler(row.id)} type="dashed" shape={'circle'} icon={<DeleteOutlined style={{color: 'red'}}/>}/>
                 </Space>
             ),
@@ -61,6 +62,7 @@ const ImageListing = (props) => {
     const [visible, setVisible] = useState(false)
     const [render, setRender] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [editVisible, setEditVisible] = useState({state: false, row: 0})
 
     const deleteHandler = (id) => {
 
@@ -89,7 +91,7 @@ const ImageListing = (props) => {
 
         <>
             <AddImagesModelForm setRender={setRender} visible={visible} setVisible={setVisible} proj={props.proj}/>
-
+            <EditImageModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible} proj={props.proj}/>
             <ListPage loading={loading} render={render} buttonHandler={openModelHandler} title={props.proj.name} tableType={'All Images'} buttonText={'Add Images'} columns={IMAGE_COLUMNS} fetcher={() => ImageProvider.fetchImages(props.proj.id)}/>
         </>
     )

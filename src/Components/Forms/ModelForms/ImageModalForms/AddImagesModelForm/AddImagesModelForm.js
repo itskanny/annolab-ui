@@ -1,7 +1,7 @@
 import {Button, Form, Modal, Upload} from "antd";
 import {useState} from "react";
-import {openNotification} from "../../../../helpers/helper";
-import {authStore} from "../../../../store/AuthStore";
+import {openNotification} from "../../../../../helpers/helper";
+import {authStore} from "../../../../../store/AuthStore";
 
 
 const AddImagesModelForm = (props) => {

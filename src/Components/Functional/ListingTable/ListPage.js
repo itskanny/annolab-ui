@@ -17,7 +17,7 @@ const ListPage = props => {
                             <p className={'tw-font-semibold tw-text-xl tw-mb-0'}>{props.tableType}</p>
 
 
-                            <Button type={"primary"}>{props.buttonText}</Button>
+                            <Button onClick={props.buttonHandler} type={"primary"}>{props.buttonText}</Button>
                         </div>
                         <Divider className={'tw-mb-5'}/>
                         <ListingTable columns={props.columns} fetcher={props.fetcher}/>

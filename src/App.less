@@ -142,6 +142,22 @@
   @apply tw-mb-5;
 }
 
+.an-wrapper{
+  @apply tw-overflow-auto;
+
+  &::-webkit-scrollbar {
+    @apply tw-w-5;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply tw-bg-primary-light tw-rounded-2xl;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply tw-bg-primary tw-rounded-2xl tw-border-4 tw-border-transparent tw-border-solid tw-bg-clip-content tw-bg-primary;
+  }
+}
+
 .an-avatar-uploader{
 
   .ant-upload-select-picture {
@@ -204,5 +220,24 @@
     @apply tw-m-0 tw-mb-5;
   }
 }
+
+.ant-card-bordered{
+  @apply tw-border-border-color;
+}
+
+.ant-card-head{
+  @apply tw-border-border-color;
+}
+
+
+.ant-list-split .ant-list-item{
+  @apply tw-border-border-color;
+}
+
+.ant-popover-title{
+  @apply tw-border-border-color;
+}
+
+
 
 

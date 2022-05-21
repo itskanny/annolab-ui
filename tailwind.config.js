@@ -12,6 +12,7 @@ module.exports = {
         "background": "#ffffff",
         "icon": "#9A9AAF",
         "item-hover": "#f5f5f5",
+        "border-color": "#e2e0ff"
       },
       boxShadow: {
         // '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',

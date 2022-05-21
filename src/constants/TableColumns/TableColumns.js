@@ -21,7 +21,7 @@ export const IMAGE_COLUMNS = [
         title: 'Image Name',
         dataIndex: 'name',
         key: 'name',
-        render: image => <p>{image}</p>,
+        render: image => <p className={'tw-mb-0'}>{image}</p>,
         sorter: (a, b) => a.name.length - b.name.length,
     },
     {
@@ -43,8 +43,8 @@ export const IMAGE_COLUMNS = [
         key: 'action',
         render: () => (
             <Space size="middle">
-                <p>Edit</p>
-                <p>Delete</p>
+                <p className={'tw-mb-0'}>Edit</p>
+                <p className={'tw-mb-0'}>Delete</p>
             </Space>
         ),
     },
@@ -95,8 +95,8 @@ export function useTeamColumns(){
             key: 'action',
             render: () => (
                 <Space size="middle">
-                    <p>Edit</p>
-                    <p>Delete</p>
+                    <p className={'tw-mb-0'}>Edit</p>
+                    <p className={'tw-mb-0'}>Delete</p>
                 </Space>
             ),
         },
@@ -160,8 +160,8 @@ export function useProjectColumns(){
             key: 'action',
             render: () => (
                 <Space size="middle">
-                    <p>Edit</p>
-                    <p>Delete</p>
+                    <p className={'tw-mb-0'}>Edit</p>
+                    <p className={'tw-mb-0'}>Delete</p>
                 </Space>
             ),
         },

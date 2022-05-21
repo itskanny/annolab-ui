@@ -10,6 +10,25 @@ class AuthStore{
     setup = false
     user
     selectedOrganizationId = null
+    _needsOrganization = false
+    _backendError = false
+
+
+    get backendError() {
+        return this._backendError;
+    }
+
+    set backendError(value) {
+        this._backendError = value;
+    }
+
+    get needsOrganization() {
+        return this._needsOrganization;
+    }
+
+    set needsOrganization(value) {
+        this._needsOrganization = value;
+    }
 
     constructor() {
         makeAutoObservable(this, {
@@ -41,8 +60,23 @@ class AuthStore{
             UserProvider.fetchUser().then(data => {
                 this.user.login(data.data)
                 this.user.getOrganization().then(data => {
-                    this.setSelectedOrganizationId(data.id)
-                    console.log("OrgId",this.getSelectedOrganizationId)
+
+                    if (!data.hasErrors){
+                        if (data.data){
+                            this.setSelectedOrganizationId(data.data.id)
+                            console.log('Org Id', this.getSelectedOrganizationId)
+                            this.user.setLoading(false)
+                        }
+                        else {
+                            this.needsOrganization = true
+                            console.log("Needs Organization: ",this.needsOrganization)
+                        }
+                    }
+                    else {
+                        this.backendError = true
+                        console.log("Backend Error",this.backendError)
+                    }
+
                     this.user.setLoading(false)
 
                 })

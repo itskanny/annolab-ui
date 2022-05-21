@@ -1,21 +1,11 @@
 import {Button, Form, Input, Upload, Alert} from "antd";
 import TextArea from "antd/es/input/TextArea";
-import {observer} from "mobx-react";
-import  {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
-
-
-const CreateProjectObserved = observer(({auth}) =>{
-    return (
-        auth.user.isLoading() ?
-            <InlineLoader/>
-            : <ProjectForm/>
-    )
-})
+import ObservedUserLoader from "../../../helpers/UserLoader";
 
 const ProjectForm = props => {
     const [form] = Form.useForm()
@@ -28,12 +18,12 @@ const ProjectForm = props => {
 
         setIsLoading(true)
 
-        projectStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.user.organization.id})
+        projectStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.getSelectedOrganizationId})
             .then(data => {
                 if (!data.hasErrors){
                     console.log(projectStore.getProject)
                     openNotification('success', "Project created successfully", true)
-                    history.replace('createteam')
+                    history.replace(`${props.redirect ? props.redirect : `/org/${authStore.getSelectedOrganizationId}/projects/${data.data.id}`}`)
                 }
                 else {
                     console.log(data)
@@ -103,7 +93,7 @@ const ProjectForm = props => {
                             "Authorization": `token ${authStore.token}`,
                         }
                     }
-                    beforeUpload={ file => {
+                    beforeUpload={ () => {
                         return false
                     }}
                     method={'POST'}
@@ -135,7 +125,7 @@ const ProjectForm = props => {
 const CreateProjectForm = props => {
 
     return (
-        <CreateProjectObserved auth={authStore}/>
+        <ObservedUserLoader auth={authStore} node={<ProjectForm redirect={props.redirect} fieldClasses={props.fieldClasses}/>}/>
     )
 }
 

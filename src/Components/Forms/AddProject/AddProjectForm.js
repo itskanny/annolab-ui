@@ -16,7 +16,7 @@ const AddProjectForm = (props) => {
 
               <Divider className={'tw-mb-5'}/>
 
-              <CreateProjectForm fieldClasses={'tw-mb-5'}/>
+              <CreateProjectForm fieldClasses={'tw-mb-5'} />
             </>
           }
       />

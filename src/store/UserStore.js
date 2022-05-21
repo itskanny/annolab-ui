@@ -136,7 +136,7 @@ export class UserStore{
                     })
                     console.log(this.organization)
                 }
-                return data.data
+                return data
             })
     }
 

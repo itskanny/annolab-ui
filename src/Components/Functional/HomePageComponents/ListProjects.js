@@ -1,13 +1,12 @@
-import {Button, Divider, Popover, Space} from "antd";
-import {ArrowDown2} from "iconsax-react";
+import {Button, Divider, Space} from "antd";
 import {useEffect, useState} from "react";
 import {authStore} from "../../../store/AuthStore";
-import DropdownList from "../DropdownList/DropdownList";
 import {PlusOutlined} from "@ant-design/icons";
 import {ProjectProvider} from "../../../providers/ProjectProvider";
 import {openNotification} from "../../../helpers/helper";
 import ProjectsList from "./ProjectsList";
 import OrganizationSelector from "../OrganizationSelector/OrganizationSelector";
+import {Link} from "react-router-dom";
 
 const ListProjects = (props) => {
 
@@ -45,7 +44,7 @@ const ListProjects = (props) => {
             <Divider className={'tw-mb-5'}/>
             <Space className={'tw-flex tw-justify-between tw-w-full tw-mb-4'}>
                 <p className={'tw-font-semibold tw-m-0'}>Organization Projects</p>
-                <Button type="primary" shape={'circle'} icon={<PlusOutlined style={{color: 'white'}}/>}/>
+                <Link to={'/addproject'}><Button type="primary" shape={'circle'} icon={<PlusOutlined style={{color: 'white'}}/>}/></Link>
             </Space>
 
 

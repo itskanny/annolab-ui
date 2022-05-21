@@ -1,20 +1,10 @@
 import {Button, Form, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
-import {observer} from "mobx-react";
-import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {openNotification} from "../../../helpers/helper";
-
-
-const AddImageObserved = observer(({auth}) => {
-    return (
-        auth.user.isLoading() ?
-            <InlineLoader/>
-            : <ImageForm/>
-    )
-})
+import ObservedUserLoader from "../../../helpers/UserLoader";
 
 const ImageForm = () => {
     const [form] = Form.useForm()
@@ -118,6 +108,7 @@ const ImageForm = () => {
 }
 
 
+
 const AddImageForm = () => {
     const history = useHistory()
 
@@ -126,7 +117,7 @@ const AddImageForm = () => {
     }
 
     return (
-        <AddImageObserved auth={authStore}/>
+        <ObservedUserLoader auth={authStore} node={<ImageForm/>}/>
     )
 }
 

@@ -1,22 +1,12 @@
 import {Alert, Button, Form, Input, Upload} from "antd";
-import {observer} from "mobx-react";
-import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {OrganizationProvider} from "../../../providers/OrganizationProvider";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import ObservedUserLoader from "../../../helpers/UserLoader";
 
-
-const CreateOrganizationObserved = observer(({auth}) =>{
-    return (
-        auth.user.isLoading() ?
-            <InlineLoader/>
-            : <OrganizationForm/>
-    )
-})
-
-const OrganizationForm = props => {
+const OrganizationForm = () => {
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
@@ -30,6 +20,9 @@ const OrganizationForm = props => {
             .then(data => {
                 if (!data.hasErrors){
                     authStore.user.setOrganization(data.data)
+                    authStore.setSelectedOrganizationId(data.data.id)
+                    authStore.backendError = false
+                    authStore.needsOrganization = false
                     openNotification('success', "Organization created successfully", true)
                     history.replace('createproject')
                 }
@@ -95,7 +88,7 @@ const OrganizationForm = props => {
                             "Authorization": `token ${authStore.token}`,
                         }
                     }
-                    beforeUpload={ file => {
+                    beforeUpload={ () => {
                         return false
                     }}
                     method={'POST'}
@@ -121,10 +114,10 @@ const OrganizationForm = props => {
     )
 }
 
-const CreateOrganizationForm = props => {
+const CreateOrganizationForm = () => {
 
     return (
-        <CreateOrganizationObserved auth={authStore}/>
+        <ObservedUserLoader preventOrganizationRedirect={true} auth={authStore} node={<OrganizationForm/>}/>
     )
 }
 

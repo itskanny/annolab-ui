@@ -1,21 +1,12 @@
 import {Alert, Button, DatePicker, Form, Upload} from "antd";
 import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
-import {observer} from "mobx-react";
-import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useHistory} from "react-router-dom";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
-
-const UpdateProfileObserved = observer(({auth}) => {
-    return (
-        auth.user.isLoading() ?
-            <InlineLoader/>
-            : <ProfileForm/>
-    )
-})
+import ObservedUserLoader from "../../../helpers/UserLoader";
 
 
-const ProfileForm = props => {
+const ProfileForm = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [form] = Form.useForm()
     const history = useHistory()
@@ -111,9 +102,9 @@ const ProfileForm = props => {
     )
 }
 
-const UpdateProfileForm = props => {
+const UpdateProfileForm = () => {
 
-    return <UpdateProfileObserved auth={authStore}/>
+    return <ObservedUserLoader preventOrganizationRedirect={true} auth={authStore} node={<ProfileForm/>}/>
 
 }
 

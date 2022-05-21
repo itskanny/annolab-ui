@@ -3,7 +3,7 @@ import CreateProjectForm from "../../Components/Forms/AccountSteps/CreateProject
 import Banner from "../../Components/Ui/Banner/Banner";
 
 
-const CreateProject = props => {
+const CreateProject = () => {
 
     return (
         <>
@@ -19,7 +19,7 @@ const CreateProject = props => {
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>
-                    <CreateProjectForm/>
+                    <CreateProjectForm redirect={'/createteam'}/>
                 </Col>
             </Row>
         </>

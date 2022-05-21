@@ -2,10 +2,11 @@ import {Button, Card, Col, Row} from "antd";
 import {authStore} from "../../store/AuthStore";
 import ObservedUserLoader from "../../helpers/UserLoader";
 import ListProjects from "../../Components/Functional/HomePageComponents/ListProjects";
+import {Link} from "react-router-dom";
 
 
 const HOME_LIST_SIZE = 5
-const Home = props => {
+const Home = () => {
     const DUMMY_DATA = [
 
         {
@@ -47,8 +48,8 @@ const Home = props => {
                                 with your teams and team members on the same dataset.
                             </p>
                             <div className={'tw-w-full tw-flex tw-justify-start'}>
-                                <Button className={'tw-mr-7'}>Add Project</Button>
-                                <Button>Read Guide</Button>
+                                <Link to={'/addproject'}><Button className={'tw-mr-7'}>Add Project</Button></Link>
+                                <Link to={`/org/${authStore.getSelectedOrganizationId}/projects`}><Button>View Projects</Button></Link>
                             </div>
 
                         </div>
@@ -60,7 +61,7 @@ const Home = props => {
 }
 
 
-const HomePage = props => {
+const HomePage = () => {
 
     return (
         <ObservedUserLoader auth={authStore} node={<Home/>}/>

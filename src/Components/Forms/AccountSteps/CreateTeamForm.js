@@ -1,41 +1,35 @@
 import {Button, Form, Input, Upload, Alert} from "antd";
 import TextArea from "antd/es/input/TextArea";
-import {observer} from "mobx-react";
-import {InlineLoader} from "../../../helpers/FullScreenLoader";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {authStore} from "../../../store/AuthStore";
 import {handleFormErrors, openNotification} from "../../../helpers/helper";
 import {teamStore} from "../../../store/TeamStore";
+import ObservedUserLoader from "../../../helpers/UserLoader";
 
-const CreateTeamObserved = observer(({auth}) =>{
-    return (
-        auth.user.isLoading() ?
-            <InlineLoader/>
-            : <TeamForm/>
-    )
-})
-
-const TeamForm = props => {
+const TeamForm = () => {
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
-    const [nonFieldVisible,  setNonFieldVisible] = useState(false)
+    const [nonFieldVisible, setNonFieldVisible] = useState(false)
     const [nonFieldErrorMessage, setNonFieldErrorMessage] = useState([])
 
     const onFinish = (values) => {
 
         setIsLoading(true)
 
-        teamStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.user.organization.id})
+        teamStore.create({
+            ...values,
+            avatar: values.avatar.fileList[0].originFileObj,
+            organization: authStore.user.organization.id
+        })
             .then(data => {
-                if (!data.hasErrors){
+                if (!data.hasErrors) {
                     console.log(projectStore.getProject)
                     openNotification('success', "Team created successfully", true)
                     history.replace('addimage')
-                }
-                else {
+                } else {
                     console.log(data)
                     handleFormErrors(data, form, setNonFieldErrorMessage, setNonFieldVisible)
                     setIsLoading(false)
@@ -64,7 +58,7 @@ const TeamForm = props => {
             <Form.Item
                 label=""
                 name="name"
-                rules={[{ required: true, message: 'Enter Team Name' }]}
+                rules={[{required: true, message: 'Enter Team Name'}]}
             >
                 <Input size={"large"} placeholder={'*Team Name'} type={"text"}/>
             </Form.Item>
@@ -72,7 +66,7 @@ const TeamForm = props => {
             <Form.Item
                 label=""
                 name="description"
-                rules={[{ required: true, message: 'Enter Team Description' }]}
+                rules={[{required: true, message: 'Enter Team Description'}]}
             >
                 <TextArea size={"large"} placeholder={'*Team Description'} type={"textarea"}/>
 
@@ -81,7 +75,7 @@ const TeamForm = props => {
             <Form.Item
                 label=""
                 name="avatar"
-                rules={[{ required: true, message: 'Select avatar' }]}
+                rules={[{required: true, message: 'Select avatar'}]}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}
@@ -98,7 +92,7 @@ const TeamForm = props => {
                             "Authorization": `token ${authStore.token}`,
                         }
                     }
-                    beforeUpload={ file => {
+                    beforeUpload={() => {
                         return false
                     }}
                     method={'POST'}
@@ -125,10 +119,11 @@ const TeamForm = props => {
 }
 
 
-const CreateTeamForm = props => {
+const CreateTeamForm = () => {
 
     return (
-        <CreateTeamObserved auth={authStore}/>
+
+        <ObservedUserLoader auth={authStore} node={<TeamForm/>}/>
     )
 }
 

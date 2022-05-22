@@ -4,7 +4,7 @@ import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {authStore} from "../../../store/AuthStore";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {handleFormErrors, normFile, openNotification} from "../../../helpers/helper";
 import {teamStore} from "../../../store/TeamStore";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
@@ -21,7 +21,7 @@ const TeamForm = () => {
 
         teamStore.create({
             ...values,
-            avatar: values.avatar.fileList[0].originFileObj,
+            avatar: values.avatar[0].originFileObj,
             organization: authStore.user.organization.id
         })
             .then(data => {
@@ -76,6 +76,8 @@ const TeamForm = () => {
                 label=""
                 name="avatar"
                 rules={[{required: true, message: 'Select avatar'}]}
+                valuePropName={'fileList'}
+                getValueFromEvent={normFile}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}

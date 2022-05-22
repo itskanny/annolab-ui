@@ -95,4 +95,26 @@ export class ProjectProvider{
                 }
             })
     }
+
+    static editImage(projectId, data){
+        const form = new Form(data)
+
+        return form.patch(`projects/${projectId}/`)
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

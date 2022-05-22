@@ -1,11 +1,11 @@
 import {Button, Form, Modal, Upload} from "antd";
 import {authStore} from "../../../../../store/AuthStore";
 import {useState} from "react";
-import {openNotification} from "../../../../../helpers/helper";
+import {normFile, openNotification} from "../../../../../helpers/helper";
 import {ImageProvider} from "../../../../../providers/ImageProvider";
 
 
-const EditImageModalForm = (props) => {
+const EditImageModalForm = (props) =>{
 
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
@@ -15,13 +15,14 @@ const EditImageModalForm = (props) => {
 
         setIsLoading(true)
 
-        ImageProvider.editImage(props.proj.id, props.visible.row, {'image': values.image.fileList[0].originFileObj})
+        ImageProvider.editImage(props.proj.id, props.visible.row, {'image': values.image[0].originFileObj})
             .then(data => {
                 if (!data.hasErrors) {
                     openNotification('success', "Image updated successfully", true)
                     Modal.destroyAll()
                     props.setRender(Math.random())
                     props.setVisible({static: false, row: 0})
+
                 } else {
                     console.log(data)
                     openNotification('error', "Image edit failed", false)
@@ -77,6 +78,8 @@ const EditImageModalForm = (props) => {
                         label=""
                         name="image"
                         rules={[{required: true, message: 'Select image'}]}
+                        valuePropName={'fileList'}
+                        getValueFromEvent={normFile}
                     >
                         <Upload
                             accept={"image/png, image/jpeg, image/jpg"}

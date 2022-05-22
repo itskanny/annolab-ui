@@ -3,7 +3,6 @@ import { Typography } from 'antd';
 import React, {useState} from "react";
 import {openNotification} from "../../../../../helpers/helper";
 import {ProjectProvider} from "../../../../../providers/ProjectProvider";
-import {authStore} from "../../../../../store/AuthStore";
 
 const { Text, Paragraph } = Typography
 

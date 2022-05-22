@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {ImageProvider} from "../../providers/ImageProvider";
 import AddImagesModelForm from "../../Components/Forms/ModelForms/ImageModalForms/AddImagesModelForm/AddImagesModelForm";
-import {Avatar, Button, Space, Tag} from "antd";
+import {Avatar, Button, List, Space, Tag} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {openNotification} from "../../helpers/helper";
@@ -63,6 +63,10 @@ const ImageListing = (props) => {
     const [render, setRender] = useState(false)
     const [loading, setLoading] = useState(false)
     const [editVisible, setEditVisible] = useState({state: false, row: 0})
+    const [data, setData] = useState([])
+    const [result, setResult] = useState(null)
+
+
 
     const deleteHandler = (id) => {
 
@@ -82,6 +86,31 @@ const ImageListing = (props) => {
     }
 
 
+    const fetchData = () => {
+        setLoading(true)
+        ImageProvider.fetchImages(props.proj.id)
+            .then(data => {
+                if (!data.hasErrors) {
+                    setData(() => {
+                        setLoading(false)
+                        return data.data
+                    })
+                } else {
+                    setResult({
+                        errors: true,
+                        status: data.status,
+                        statusText: data.statusText,
+                    })
+
+                }
+
+            })
+    }
+
+    useEffect(() => {
+        fetchData()
+    },[])
+
 
     const openModelHandler = () =>{
         setVisible(true)
@@ -90,9 +119,79 @@ const ImageListing = (props) => {
     return (
 
         <>
-            <AddImagesModelForm setRender={setRender} visible={visible} setVisible={setVisible} proj={props.proj}/>
-            <EditImageModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible} proj={props.proj}/>
-            <ListPage loading={loading} render={render} buttonHandler={openModelHandler} title={props.proj.name} tableType={'All Images'} buttonText={'Add Images'} columns={IMAGE_COLUMNS} fetcher={() => ImageProvider.fetchImages(props.proj.id)}/>
+            {/*<AddImagesModelForm setRender={setRender} visible={visible} setVisible={setVisible} proj={props.proj}/>*/}
+            {/*<EditImageModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible} proj={props.proj}/>*/}
+            {/*<ListPage loading={loading} render={render} buttonHandler={openModelHandler} title={props.proj.name} tableType={'All Images'} buttonText={'Add Images'} columns={IMAGE_COLUMNS} fetcher={() => ImageProvider.fetchImages(props.proj.id)}/>*/}
+
+
+            <div className={'tw-mx-16 tw-my-5'}>
+
+                <List
+                    grid={{ gutter: 16, column: 3 }}
+                    dataSource={data}
+                    renderItem={item => (
+                        <List.Item>
+                            <div className={'tw-bg-red-700 tw-h-56 tw-relative'}>
+                                <img className={'tw-w-full tw-h-full tw-object-cover'} src={item.image}/>
+                                <div className={'tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black/70 tw-h-20'}>
+
+                                </div>
+                                <div className={'tw-absolute tw-right-2 tw-top-3'}>
+                                    {/*{item.is_annotated ?  <Tag color={"success"}>Annotated</Tag> : <Tag color={"processing"}>Not Annotated</Tag>}*/}
+                                    <div className={'tw-p-0.5 tw-bg-primary/50 tw-text-pr tw-border tw-border-primary tw-rounded-md'}>
+                                        <b>Not Annotated</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </List.Item>
+                    )}
+                />
+
+
+            </div>
+
+            {/*<div className={'tw-grid tw-grid-cols-3 tw-h-full tw-gap-3 '}>*/}
+            {/*    <div className={'tw-bg-red-700 tw-h-56 tw-relative'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/organization_avatars/1_7_2ewoOpw.jpg"}/>*/}
+            {/*        <div className={'tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black/70 tw-h-20'}>*/}
+
+            {/*        </div>*/}
+            {/*        <Tag color={"processing"}>Not Annotated</Tag>*/}
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-yellow-400 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/avatars/1_9_GV0nEyy.jpg"}/>*/}
+
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-blue-600 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={'http://localhost:8000/media/project_avatars/1_7_JXIq5uG.jpg'}/>*/}
+
+            {/*    </div>*/}
+
+            {/*    <div className={'tw-bg-red-700 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/organization_avatars/1_7_2ewoOpw.jpg"}/>*/}
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-yellow-400 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/avatars/1_9_GV0nEyy.jpg"}/>*/}
+
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-blue-600 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={'http://localhost:8000/media/project_avatars/1_7_JXIq5uG.jpg'}/>*/}
+
+            {/*    </div>*/}
+
+            {/*    <div className={'tw-bg-red-700 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/organization_avatars/1_7_2ewoOpw.jpg"}/>*/}
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-yellow-400 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={"http://localhost:8000/media/avatars/1_9_GV0nEyy.jpg"}/>*/}
+
+            {/*    </div>*/}
+            {/*    <div className={'tw-bg-blue-600 tw-h-56'}>*/}
+            {/*        <img className={'tw-w-full tw-h-full tw-object-cover'} src={'http://localhost:8000/media/project_avatars/1_7_JXIq5uG.jpg'}/>*/}
+
+            {/*    </div>*/}
+
+            {/*</div>*/}
         </>
     )
 };

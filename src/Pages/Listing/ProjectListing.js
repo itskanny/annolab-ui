@@ -6,7 +6,7 @@ import {Avatar, Button, Space} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import DeleteModelForm from "../../Components/Forms/ModelForms/ProjectModalForms/DeleteModalForm/DeleteModelForm";
-
+import EditModalForm from "../../Components/Forms/ModelForms/ProjectModalForms/EditModalForm/EditModalForm";
 
 
 const ProjectListing = (props) => {
@@ -19,21 +19,27 @@ const ProjectListing = (props) => {
             title: 'Project Image',
             dataIndex: 'avatar',
             key: 'avatar',
-            render: (avatar, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}/images`}><Avatar src={avatar}/></Link>,
+            render: (avatar, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}/images`}><Avatar
+                src={avatar}/></Link>,
 
         },
         {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
-            render: (id, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}/images`}><p className={'tw-mb-0 tw-text-black hover:tw-text-primary'} >{id}</p></Link>,
+            render: (id, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}/images`}>
+                <p className={'tw-mb-0 tw-text-black hover:tw-text-primary'}>{id}</p></Link>,
             sorter: (a, b) => a.id - b.id,
         },
         {
             title: 'Title',
             dataIndex: 'name',
             key: 'name',
-            render: (name, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}/images`}><p className={'tw-mb-0 tw-text-black hover:tw-text-primary'} >{name}</p></Link>,
+            render: (name, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}/images`}>
+                <p className={'tw-mb-0 tw-text-black hover:tw-text-primary'}>{name}</p></Link>,
             sorter: (a, b) => a.name.length - b.name.length,
         },
         {
@@ -64,10 +70,12 @@ const ProjectListing = (props) => {
         {
             title: 'Action',
             key: 'action',
-            render: (_,row) => (
+            render: (_, row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'} icon={<EditOutlined className={'tw-text-icon'}/>}/>
-                    <Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'} icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                    <Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                            icon={<EditOutlined className={'tw-text-icon'}/>}/>
+                    <Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
                 </Space>
             ),
         },
@@ -80,7 +88,6 @@ const ProjectListing = (props) => {
     const [deleteVisible, setDeleteVisible] = useState({state: false, row: {}})
 
 
-
     const addProjectHandler = () => {
         history.push('/addproject')
     }
@@ -88,8 +95,10 @@ const ProjectListing = (props) => {
     return (
 
         <>
-            <DeleteModelForm setRender={setRender} visible={deleteVisible} setVisible={setDeleteVisible} />
+            <DeleteModelForm setRender={setRender} visible={deleteVisible} setVisible={setDeleteVisible}/>
+            <EditModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}/>
             <ListPage render={render} buttonHandler={addProjectHandler} columns={PROJECT_COLUMNS} title={props.org.name} tableType={'All Projects'} buttonText={'Add Project'} fetcher={ProjectProvider.fetchProjects}/>
+
         </>);
 };
 

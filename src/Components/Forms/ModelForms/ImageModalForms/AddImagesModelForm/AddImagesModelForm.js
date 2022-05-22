@@ -1,6 +1,6 @@
 import {Button, Form, Modal, Upload} from "antd";
 import {useState} from "react";
-import {openNotification} from "../../../../../helpers/helper";
+import {normFile, openNotification} from "../../../../../helpers/helper";
 import {authStore} from "../../../../../store/AuthStore";
 
 
@@ -72,6 +72,7 @@ const AddImagesModelForm = (props) => {
                             multiple={true}
                             name={'image'}
                             listType='picture'
+
                             className="avatar-uploader an-avatar-uploader"
                             headers={
                                 {

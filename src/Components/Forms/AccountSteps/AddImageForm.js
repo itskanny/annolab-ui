@@ -3,7 +3,7 @@ import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
-import {openNotification} from "../../../helpers/helper";
+import {normFile, openNotification} from "../../../helpers/helper";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
 const ImageForm = () => {
@@ -32,6 +32,8 @@ const ImageForm = () => {
                 label=""
                 name="image"
                 rules={[{required: true, message: 'Select Images'}]}
+                valuePropName={'fileList'}
+                getValueFromEvent={normFile}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}

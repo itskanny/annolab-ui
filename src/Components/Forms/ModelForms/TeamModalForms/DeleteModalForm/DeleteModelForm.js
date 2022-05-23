@@ -1,8 +1,7 @@
-import {Button, Modal} from "antd";
-import { Typography } from 'antd';
 import React, {useState} from "react";
+import {Button, Modal, Typography} from "antd";
 import {openNotification} from "../../../../../helpers/helper";
-import {ProjectProvider} from "../../../../../providers/ProjectProvider";
+import {TeamProvider} from "../../../../../providers/TeamProvider";
 
 const { Text, Paragraph } = Typography
 
@@ -17,15 +16,15 @@ const DeleteModelForm = (props) => {
 
     const handleOk = () => {
         setIsLoading(true)
-        ProjectProvider.deleteProject(props.visible.row.id)
+        TeamProvider.deleteTeam(props.visible.row.id)
             .then(data => {
                 if (!data.hasErrors){
                     props.setRender(Math.random())
-                    openNotification('success', 'Project deleted successfully', true)
+                    openNotification('success', 'Team deleted successfully', true)
                     props.setVisible({static: false, row: {}})
                 }
                 else {
-                    openNotification('error', 'Failed to delete Project', false)
+                    openNotification('error', 'Failed to delete Team', false)
                 }
 
                 setIsLoading(false)
@@ -37,7 +36,7 @@ const DeleteModelForm = (props) => {
         <>
             <Modal
                 visible={props.visible.state}
-                title={'Confirm Project Deletion'}
+                title={'Confirm Team Deletion'}
                 closable={false}
                 destroyOnClose={true}
                 centered
@@ -51,7 +50,7 @@ const DeleteModelForm = (props) => {
                     </Button>,
                 ]}
             >
-                <p>Are you sure you want to delete project named</p>
+                <p>Are you sure you want to delete team named</p>
 
                 <p><Text code >{props.visible.row.name} </Text> </p>
 
@@ -59,10 +58,10 @@ const DeleteModelForm = (props) => {
                 <Paragraph>
                     <ul>
                         <li className={'tw-mt-2'}>
-                            <Text code>Related Images</Text>
+                            <Text code>Related team history</Text>
                         </li>
                         <li>
-                            <Text code>Related Annotations</Text>
+                            <Text code>Related user history</Text>
                         </li>
                     </ul>
                 </Paragraph>
@@ -72,6 +71,7 @@ const DeleteModelForm = (props) => {
             </Modal>
         </>
     )
+
 }
 
 export default DeleteModelForm

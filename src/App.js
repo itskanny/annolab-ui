@@ -24,6 +24,7 @@ import HomePage from "./Pages/Home/HomePage";
 import {observer} from "mobx-react";
 import PageNotFound from "./Pages/404NotFound";
 import OrganizationDetailPage from "./Pages/Organization/OrganizationDetail";
+import AddTeam from "./Pages/AddTeam/AddTeam";
 
 const Loader = observer(({auth}) => {
     return (
@@ -109,6 +110,13 @@ const App = () => {
                                render={
                                    () => {
                                        return authStore.isLoggedIn ? <AddProject/> : <Redirect to="/login"/>
+                                   }
+                               }
+                        />
+                        <Route path="/addteam" exact
+                               render={
+                                   () => {
+                                       return authStore.isLoggedIn ? <AddTeam/> : <Redirect to="/login"/>
                                    }
                                }
                         />

@@ -8,7 +8,7 @@ import {handleFormErrors, normFile, openNotification} from "../../../helpers/hel
 import {teamStore} from "../../../store/TeamStore";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
-const TeamForm = () => {
+const TeamForm = (props) => {
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
@@ -28,7 +28,8 @@ const TeamForm = () => {
                 if (!data.hasErrors) {
                     console.log(projectStore.getProject)
                     openNotification('success', "Team created successfully", true)
-                    history.replace('addimage')
+                    // history.replace('addimage')
+                    history.replace(`${props.redirect ? props.redirect : `/org/${authStore.getSelectedOrganizationId}/teams/${data.data.id}`}`)
                 } else {
                     console.log(data)
                     handleFormErrors(data, form, setNonFieldErrorMessage, setNonFieldVisible)
@@ -121,11 +122,11 @@ const TeamForm = () => {
 }
 
 
-const CreateTeamForm = () => {
+const CreateTeamForm = ({redirect}) => {
 
     return (
 
-        <ObservedUserLoader auth={authStore} node={<TeamForm/>}/>
+        <ObservedUserLoader auth={authStore} node={<TeamForm redirect={redirect}/>}/>
     )
 }
 

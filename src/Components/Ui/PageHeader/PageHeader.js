@@ -3,7 +3,7 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 
 
-const AnnolabPageHeader = ({tag, tagText, proj, extras}) => {
+const AnnolabPageHeader = ({tag, tagText, item, extras}) => {
     const history = useHistory()
 
 
@@ -12,9 +12,9 @@ const AnnolabPageHeader = ({tag, tagText, proj, extras}) => {
             <PageHeader
                 className="site-page-header an-border-radius"
                 onBack={() => history.goBack()}
-                title={proj.name}
+                title={item.name}
                 tags={tag? <Tag color="blue">{tagText}</Tag> : null}
-                subTitle={proj.description}
+                subTitle={item.description}
                 extra={[
                     ...extras
                 ]

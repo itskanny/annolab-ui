@@ -3,7 +3,7 @@ import CreateTeamForm from "../../Components/Forms/AccountSteps/CreateTeamForm";
 import Banner from "../../Components/Ui/Banner/Banner";
 
 
-const CreateTeam = props => {
+const CreateTeam = () => {
 
     return (
         <>
@@ -19,7 +19,7 @@ const CreateTeam = props => {
                     />
                 </Col>
                 <Col className={'gutter-row tw-mt-10 md:tw-mt-0'} span={24} md={8}>
-                    <CreateTeamForm/>
+                    <CreateTeamForm redirect={'/addimage'}/>
                 </Col>
             </Row>
         </>

@@ -8,7 +8,6 @@ import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import DeleteModelForm from "../../Components/Forms/ModelForms/ProjectModalForms/DeleteModalForm/DeleteModelForm";
 import EditModalForm from "../../Components/Forms/ModelForms/ProjectModalForms/EditModalForm/EditModalForm";
 
-
 const ProjectListing = (props) => {
 
     const location = useLocation()
@@ -81,6 +80,17 @@ const ProjectListing = (props) => {
         },
     ];
 
+    const statistics = [
+        {
+            title: 'Total Projects',
+            text: props.org.total_projects
+        },
+        {
+            title: 'Total Teams',
+            text: props.org.total_teams
+        }
+    ]
+
     const history = useHistory()
 
     const [editVisible, setEditVisible] = useState({state: false, row: {}})
@@ -97,8 +107,29 @@ const ProjectListing = (props) => {
         <>
             <DeleteModelForm setRender={setRender} visible={deleteVisible} setVisible={setDeleteVisible}/>
             <EditModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}/>
-            <ListPage render={render} buttonHandler={addProjectHandler} columns={PROJECT_COLUMNS} title={props.org.name} tableType={'All Projects'} buttonText={'Add Project'} fetcher={ProjectProvider.fetchProjects}/>
 
+            <ListPage
+                render={render}
+                headerTag={true}
+                headerTagText={'Owner'}
+                item={props.org}
+                headerExtras={[
+                    <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
+                            icon={<EditOutlined className={'tw-text-icon'}/>}/>,
+                    <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
+                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                ]}
+                headerButtonHandler={addProjectHandler}
+                headerType={'All Projects'}
+                statistics={statistics}
+                viewType={'table'}
+                columns={PROJECT_COLUMNS}
+                fetcher={ProjectProvider.fetchProjects}
+                showTableViewIcon={true}
+                tableViewIconHandler={null}
+                showListViewIcon={false}
+                listViewIconHandler={null}
+                />
         </>);
 };
 

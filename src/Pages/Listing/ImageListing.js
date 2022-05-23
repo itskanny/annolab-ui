@@ -1,25 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {ImageProvider} from "../../providers/ImageProvider";
 import AddImagesModelForm
     from "../../Components/Forms/ModelForms/ImageModalForms/AddImagesModelForm/AddImagesModelForm";
-import {Avatar, Button, Divider, List, PageHeader, Row, Space, Statistic, Tag} from "antd";
+import {Avatar, Button, Space, Tag} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
-import {DeleteOutlined, EditOutlined, PlusOutlined} from "@ant-design/icons";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {openNotification} from "../../helpers/helper";
 import EditImageModalForm
     from "../../Components/Forms/ModelForms/ImageModalForms/EditImageModalForm/EditImageModalForm";
-import {useHistory} from "react-router-dom";
-import AnnolabPageHeader from "../../Components/Ui/PageHeader/PageHeader";
-import StatisticCard from "../../Components/Ui/Statistics/StatisticsCard/StatisticCard";
-import StatisticsHolder from "../../Components/Ui/Statistics/StatisticsHolder";
-import ListingHeader from "../../Components/Functional/ListingTable/ListingHeader";
-import AnnolabDivider from "../../Components/Ui/AnnolabDivider/AnnolabDivider";
-import ImageTag from "../../Components/Functional/ListView/ImageListCard/ImageTag";
-import FloatingImageTag from "../../Components/Functional/ListView/ImageListCard/FloatingImageTag";
 import ImageListCard from "../../Components/Functional/ListView/ImageListCard/ImageListCard";
-import ListView from "../../Components/Functional/ListView/ListView";
 
 
 const ImageListing = (props) => {
@@ -88,7 +79,7 @@ const ImageListing = (props) => {
     const [render, setRender] = useState(false)
     const [loading, setLoading] = useState(false)
     const [editVisible, setEditVisible] = useState({state: false, row: 0})
-
+    const [view, setView] = useState('list')
 
     const deleteHandler = (id) => {
 
@@ -106,6 +97,13 @@ const ImageListing = (props) => {
             })
     }
 
+    const tableViewIconHandler = () => {
+        setView('table')
+    }
+    const listViewIconHandler = () => {
+        setView('list')
+    }
+
 
     const openModelHandler = () => {
         setVisible(true)
@@ -119,43 +117,98 @@ const ImageListing = (props) => {
             <AddImagesModelForm setRender={setRender} visible={visible} setVisible={setVisible} proj={props.proj}/>
             <EditImageModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}
                                 proj={props.proj}/>
-            {/*<ListPage loading={loading} render={render} buttonHandler={openModelHandler} title={props.proj.name} tableType={'All Images'} buttonText={'Add Images'} columns={IMAGE_COLUMNS} fetcher={() => ImageProvider.fetchImages(props.proj.id)}/>*/}
 
-
-            <div className={'tw-mx-4 lg:tw-mx-8 xl:tw-mx-12 2xl:tw-mx-16 tw-my-5'}>
-
-                <AnnolabPageHeader
-                    proj={props.proj}
-                    tag={true}
-                    tagText={'Ongoing'}
-                    extras={[
+            {view === 'list'?
+                <ListPage
+                    item={props.proj}
+                    headerTag={true}
+                    headerTagText={'Ongoing'}
+                    headerExtras={[
                         <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
                                 icon={<EditOutlined className={'tw-text-icon'}/>}/>,
                         <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
                                 icon={<DeleteOutlined style={{color: 'red'}}/>}/>
                     ]}
+                    statistics={statistics}
+                    headerType={'All Images'}
+                    headerButtonHandler={openModelHandler}
+                    viewType={view}
+                    render={render}
+                    fetcher={() => ImageProvider.fetchImages(props.proj.id)}
+                    itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}
+                    showTableViewIcon={true}
+                    tableViewIconHandler={tableViewIconHandler}
+                    showListViewIcon={true}
+                    listViewIconHandler={listViewIconHandler}
                 />
+                :
+                <ListPage
+                loading={loading}
+                render={render}
+                headerTag={true}
+                headerTagText={'Ongoing'}
+                item={props.proj}
+                headerExtras={[
+                    <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
+                            icon={<EditOutlined className={'tw-text-icon'}/>}/>,
+                    <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
+                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                ]}
+                headerButtonHandler={openModelHandler}
+                headerType={'All Images'}
+                statistics={statistics}
+                viewType={'table'}
+                columns={IMAGE_COLUMNS}
+                fetcher={() => ImageProvider.fetchImages(props.proj.id)}
+                showTableViewIcon={true}
+                tableViewIconHandler={tableViewIconHandler}
+                showListViewIcon={true}
+                listViewIconHandler={listViewIconHandler}
+                />
+            }
+            {/*<ListPage*/}
+            {/*    loading={loading}*/}
+            {/*    render={render}*/}
+            {/*    headerTag={true}*/}
+            {/*    headerTagText={'Ongoing'}*/}
+            {/*    item={props.proj}*/}
+            {/*    headerExtras={[*/}
+            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}*/}
+            {/*                icon={<EditOutlined className={'tw-text-icon'}/>}/>,*/}
+            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}*/}
+            {/*                icon={<DeleteOutlined style={{color: 'red'}}/>}/>*/}
+            {/*    ]}*/}
+            {/*    headerButtonHandler={openModelHandler}*/}
+            {/*    headerType={'All Images'}*/}
+            {/*    statistics={statistics}*/}
+            {/*    viewType={'table'}*/}
+            {/*    columns={IMAGE_COLUMNS}*/}
+            {/*    fetcher={() => ImageProvider.fetchImages(props.proj.id)}*/}
+            {/*/>*/}
 
+            {/*<ListPage*/}
+            {/*    item={props.proj}*/}
+            {/*    headerTag={true}*/}
+            {/*    headerTagText={'Ongoing'}*/}
+            {/*    headerExtras={[*/}
+            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}*/}
+            {/*                icon={<EditOutlined className={'tw-text-icon'}/>}/>,*/}
+            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}*/}
+            {/*                icon={<DeleteOutlined style={{color: 'red'}}/>}/>*/}
+            {/*    ]}*/}
+            {/*    statistics={statistics}*/}
+            {/*    headerType={'All Images'}*/}
+            {/*    headerButtonHandler={openModelHandler}*/}
+            {/*    viewType={view}*/}
+            {/*    render={render}*/}
+            {/*    fetcher={() => ImageProvider.fetchImages(props.proj.id)}*/}
+            {/*    itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}*/}
+            {/*    showTableViewIcon={true}*/}
+            {/*    tableViewIconHandler={tableViewIconHandler}*/}
+            {/*    showListViewIcon={true}*/}
+            {/*    listViewIconHandler={listViewIconHandler}*/}
+            {/*/>*/}
 
-                <div className={'tw-mx-10 tw-mt-5'}>
-                    <StatisticsHolder statistics={statistics}/>
-                    <div className={'tw-mx-4 '}>
-
-                        <ListingHeader text={'All Images'} buttonHandler={openModelHandler}/>
-
-                        <AnnolabDivider/>
-
-                        <ListView
-                            proj={props.proj}
-                            render={render}
-                            setLoading={setLoading}
-                            itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}
-                        />
-
-                    </div>
-                </div>
-
-            </div>
         </>
     )
 };

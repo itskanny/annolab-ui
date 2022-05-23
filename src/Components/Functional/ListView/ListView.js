@@ -1,10 +1,11 @@
-import {Button, List, Result, Skeleton} from "antd";
+import {Button, ConfigProvider, List, Result, Skeleton} from "antd";
 import React, {useEffect, useState} from "react";
-import {ImageProvider} from "../../../providers/ImageProvider";
 import {Link} from "react-router-dom";
+import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
+import animationData from "../../../images/lotties/no-data.json";
 
 
-const ListView = ({proj, itemTemplate, render}) => {
+const ListView = ({itemTemplate, render, fetcher}) => {
 
     const [data, setData] = useState([])
     const [result, setResult] = useState(null)
@@ -12,7 +13,7 @@ const ListView = ({proj, itemTemplate, render}) => {
 
     const fetchData = () => {
         setLoading(true)
-        ImageProvider.fetchImages(proj.id)
+        fetcher()
             .then(data => {
                 if (!data.hasErrors) {
                     setData(() => {
@@ -59,22 +60,32 @@ const ListView = ({proj, itemTemplate, render}) => {
                                 <Skeleton active avatar={false}/>
                             </div>
                         }
-                        <List
-                            loading={loading}
-                            pagination={{
-                                onChange: page => {
-                                    console.log(page);
-                                },
-                                pageSize: 6,
-                            }}
-                            grid={{gutter: 25, column: 3}}
-                            dataSource={data}
-                            renderItem={item => (
-                                <List.Item>
-                                    {React.cloneElement(itemTemplate, {item: item})}
-                                </List.Item>
-                            )}
-                        />
+                        <ConfigProvider renderEmpty={() => (
+                            <CustomizedEmpty
+                                description={'No data found to be displayed'}
+                                lottieAnimation={animationData}
+                                height={205}
+                                width={225}
+
+                            />)}
+                        >
+                            <List
+                                loading={loading}
+                                pagination={{
+                                    onChange: page => {
+                                        console.log(page);
+                                    },
+                                    pageSize: 6,
+                                }}
+                                grid={{gutter: 25, column: 3}}
+                                dataSource={data}
+                                renderItem={item => (
+                                    <List.Item>
+                                        {React.cloneElement(itemTemplate, {item: item})}
+                                    </List.Item>
+                                )}
+                            />
+                        </ConfigProvider>
                     </>
 
 

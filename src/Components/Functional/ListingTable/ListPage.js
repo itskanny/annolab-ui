@@ -1,35 +1,60 @@
-import {Button, Card, Col, Divider, Row} from "antd";
 import ListingTable from "./ListingTable";
 import React from "react";
+import AnnolabPageHeader from "../../Ui/PageHeader/PageHeader";
+import StatisticsHolder from "../../Ui/Statistics/StatisticsHolder";
+import ListingHeader from "./ListingHeader";
+import AnnolabDivider from "../../Ui/AnnolabDivider/AnnolabDivider";
+import ListView from "../ListView/ListView";
 
 
-const ListPage = props => {
+const ListPage = ({item, headerTag, headerTagText, headerExtras, statistics, headerType, headerButtonHandler, render, viewType, loading, columns, fetcher, itemTemplate, showListViewIcon, listViewIconHandler, showTableViewIcon, tableViewIconHandler}) => {
 
 
     return (
         <>
-            <Row align={"middle"}
-                 className={'tw-p-4 tw-pt-4  md:tw-flex-col lg:tw-flex-row tw-flex-col tw-justify-center' +
-                     ' tw-mx-2 sm:tw-mx-4 md:tw-mx-0 lg:tw-mx-20 xl:tw-mx-36 2xl:tw-mx-48' +
-                     ' an-wrapper'}>
-                <Col className={"gutter-row tw-mt-10 md:tw-mt-0"} span={24} md={24}>
+            <div className={'tw-mx-4 lg:tw-mx-8 xl:tw-mx-12 2xl:tw-mx-16 tw-my-5'}>
+                {/*<Col className={"gutter-row tw-mt-10 md:tw-mt-0"} span={24} md={24}>*/}
+                <AnnolabPageHeader
+                    item={item}
+                    tag={headerTag}
+                    tagText={headerTagText}
+                    extras={[
+                        ...headerExtras
+                    ]}
+                />
+
+                <div className={'tw-mx-10 tw-mt-5'}>
+                    <StatisticsHolder statistics={statistics}/>
+                    <div className={'tw-mx-4 '}>
+                        <ListingHeader text={headerType} buttonHandler={headerButtonHandler} listViewIconHandler={listViewIconHandler} showListViewIcon={showListViewIcon} showTableViewIcon={showTableViewIcon} tableViewIconHandler={tableViewIconHandler} viewType={viewType}/>
+                        {/*<div className={'tw-flex tw-w-full tw-justify-between tw-mb-5'}>*/}
+                        {/*    <p className={'tw-font-semibold tw-text-base tw-t tw-mb-0'}>{props.tableType}</p>*/}
 
 
-                    <Card title={<p className={'tw-mb-0'}>{props.title}</p>} >
-                        <div className={'an-wrapper'}>
-                            <div className={'tw-flex tw-w-full tw-justify-between tw-mb-5'}>
-                                <p className={'tw-font-semibold tw-text-base tw-t tw-mb-0'}>{props.tableType}</p>
+                        {/*    <Button onClick={props.buttonHandler} type={"primary"}>{props.buttonText}</Button>*/}
+                        {/*</div>*/}
+                        <AnnolabDivider/>
+
+                        {(!viewType || viewType === 'table') &&
+                            <ListingTable loading={loading} render={render} columns={columns}
+                                          fetcher={fetcher}/>
+                        }
+
+                        {viewType === 'list' &&
+                            <ListView
+                                render={render}
+                                fetcher={fetcher}
+                                // itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}
+                                itemTemplate={itemTemplate}
+                            />
+                        }
 
 
-                                <Button onClick={props.buttonHandler} type={"primary"}>{props.buttonText}</Button>
-                            </div>
-                            <Divider className={'tw-mb-5'}/>
-                            <ListingTable loading={props.loading} render={props.render} columns={props.columns} fetcher={props.fetcher}/>
-                        </div>
 
-                    </Card>
-                </Col>
-            </Row>
+                    </div>
+
+                </div>
+            </div>
         </>
     )
 }

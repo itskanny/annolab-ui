@@ -1,12 +1,12 @@
-import React from "react";
-import { Card, Col, Row, Typography} from "antd";
-import AddProjectForm from "../../Components/Forms/AddProject/AddProjectForm";
 import {authStore} from "../../store/AuthStore";
+import {Card, Col, Row, Typography} from "antd";
+import React from "react";
+import AddTeamForm from "../../Components/Forms/AddTeamForm/AddTeamForm";
 import ObservedUserLoader from "../../helpers/UserLoader";
 const {Paragraph} = Typography;
 
 
-const AddProject = () => {
+const AddTeam = () => {
 
     return (
         <>
@@ -16,8 +16,8 @@ const AddProject = () => {
 
 
                 <Col span={0} lg={10} xl={12} className={'tw-pr-3'}>
-                    <Card title={'About Projects'}>
-                        <p>Projects reside in workspaces containing images to be worked on. Projects are: </p>
+                    <Card title={'About Teams'}>
+                        <p>Team reside in workspaces containing invited users who will work on projects. Teams are: </p>
 
                         <Paragraph>
                             <ul>
@@ -25,10 +25,10 @@ const AddProject = () => {
                                     <p>Unique in names</p>
                                 </li>
                                 <li>
-                                    <p>Are in workspaces and contain images</p>
+                                    <p>Are in workspaces and contain Invited users</p>
                                 </li>
                                 <li>
-                                    <p>Teams can be assigned to them</p>
+                                    <p>These teams can be assigned to projects</p>
                                 </li>
                             </ul>
                         </Paragraph>
@@ -36,15 +36,14 @@ const AddProject = () => {
                 </Col>
 
                 <Col className={"gutter-row tw-mt-10 md:tw-mt-0 tw-pl-3"} span={24} md={16} lg={14} xl={12}>
-                    <Card title={'Add Project'}>
-                        <ObservedUserLoader auth={authStore} node={<AddProjectForm />}/>
+                    <Card title={'Add Team'}>
+                        <ObservedUserLoader auth={authStore} node={<AddTeamForm/>}/>
                     </Card>
 
                 </Col>
             </Row>
         </>
+    )
+}
 
-    );
-};
-
-export default AddProject;
+export default AddTeam

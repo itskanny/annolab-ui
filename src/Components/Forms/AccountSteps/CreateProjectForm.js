@@ -4,7 +4,7 @@ import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {handleFormErrors, normFile, openNotification} from "../../../helpers/helper";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
 const ProjectForm = props => {
@@ -18,7 +18,7 @@ const ProjectForm = props => {
 
         setIsLoading(true)
 
-        projectStore.create({...values, avatar: values.avatar.fileList[0].originFileObj, organization: authStore.getSelectedOrganizationId})
+        projectStore.create({...values, avatar: values.avatar[0].originFileObj, organization: authStore.getSelectedOrganizationId})
             .then(data => {
                 if (!data.hasErrors){
                     console.log(projectStore.getProject)
@@ -76,6 +76,8 @@ const ProjectForm = props => {
                 label=""
                 name="avatar"
                 rules={[{ required: true, message: 'Select avatar' }]}
+                valuePropName={'fileList'}
+                getValueFromEvent={normFile}
                 className={props.fieldClasses}
             >
                 <Upload

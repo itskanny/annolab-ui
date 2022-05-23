@@ -6,13 +6,14 @@ import {InlineLoader} from "../../helpers/FullScreenLoader";
 import {ProjectProvider} from "../../providers/ProjectProvider";
 
 
-const ProjectsDetail = props => {
+const ProjectsDetail = () => {
 
     const match = useRouteMatch()
     const params = useParams()
 
     const [loading, setLoading] = useState(true)
     const [selectedProject, setSelectedProject] = useState(null)
+    const [refresh, setRefresh] = useState(false)
 
     const fetchSelectedProject = () => {
         ProjectProvider.checkProjectExists(params.projectId)
@@ -32,7 +33,7 @@ const ProjectsDetail = props => {
 
     useEffect(() => {
         fetchSelectedProject()
-    }, [])
+    }, [refresh])
 
 
     return (
@@ -48,7 +49,7 @@ const ProjectsDetail = props => {
                             <p>Project detail page for {params.projectId}</p>
                         </Route>
                         <Route path={`${match.path}/images`}>
-                            <ImageListing proj={selectedProject}/>
+                            <ImageListing proj={selectedProject} refresh={setRefresh}/>
                         </Route>
                         <Route path={'/*'} exact>
                             <PageNotFound/>

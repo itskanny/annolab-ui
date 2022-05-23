@@ -72,4 +72,48 @@ export class TeamProvider{
                 }
             })
     }
+
+    static editTeam(teamId, data){
+        const form = new Form(data)
+
+        return form.patch(`teams/${teamId}/`)
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
+
+    static deleteTeam(teamId){
+        const form = new Form()
+
+        return form.delete(`teams/${teamId}/`)
+            .then(data => {
+                return {
+                    data: data,
+                    hasErrors: false,
+                    status: data.status,
+                    statusText: data.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

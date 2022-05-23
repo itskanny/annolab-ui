@@ -10,6 +10,15 @@ export const openNotification = (type, message, success) => {
     });
 };
 
+export const normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+        return e;
+    }
+    console.log(e.fileList)
+    return e.fileList;
+};
+
 export const handleFormErrors = (data,form, setNonFieldErrorMessage, setNonFieldVisible) => {
     if (data.status === 400) {
         form.setFields(

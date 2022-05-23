@@ -4,11 +4,11 @@ import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {projectStore} from "../../../store/ProjectStore";
 import {authStore} from "../../../store/AuthStore";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {handleFormErrors, normFile, openNotification} from "../../../helpers/helper";
 import {teamStore} from "../../../store/TeamStore";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
-const TeamForm = () => {
+const TeamForm = (props) => {
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
@@ -21,14 +21,15 @@ const TeamForm = () => {
 
         teamStore.create({
             ...values,
-            avatar: values.avatar.fileList[0].originFileObj,
+            avatar: values.avatar[0].originFileObj,
             organization: authStore.user.organization.id
         })
             .then(data => {
                 if (!data.hasErrors) {
                     console.log(projectStore.getProject)
                     openNotification('success', "Team created successfully", true)
-                    history.replace('addimage')
+                    // history.replace('addimage')
+                    history.replace(`${props.redirect ? props.redirect : `/org/${authStore.getSelectedOrganizationId}/teams/${data.data.id}`}`)
                 } else {
                     console.log(data)
                     handleFormErrors(data, form, setNonFieldErrorMessage, setNonFieldVisible)
@@ -76,6 +77,8 @@ const TeamForm = () => {
                 label=""
                 name="avatar"
                 rules={[{required: true, message: 'Select avatar'}]}
+                valuePropName={'fileList'}
+                getValueFromEvent={normFile}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}
@@ -119,11 +122,11 @@ const TeamForm = () => {
 }
 
 
-const CreateTeamForm = () => {
+const CreateTeamForm = ({redirect}) => {
 
     return (
 
-        <ObservedUserLoader auth={authStore} node={<TeamForm/>}/>
+        <ObservedUserLoader auth={authStore} node={<TeamForm redirect={redirect}/>}/>
     )
 }
 

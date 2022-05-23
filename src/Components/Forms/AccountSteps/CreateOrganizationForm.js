@@ -3,7 +3,7 @@ import {authStore} from "../../../store/AuthStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {OrganizationProvider} from "../../../providers/OrganizationProvider";
-import {handleFormErrors, openNotification} from "../../../helpers/helper";
+import {handleFormErrors, normFile, openNotification} from "../../../helpers/helper";
 import ObservedUserLoader from "../../../helpers/UserLoader";
 
 const OrganizationForm = () => {
@@ -16,7 +16,7 @@ const OrganizationForm = () => {
     const onFinish = (values) => {
         setIsLoading(true)
         // OrganizationProvider.create({...values, avatar: values.avatar.fileList[0]})
-        OrganizationProvider.create({...values, avatar: values.avatar.fileList[0].originFileObj, owner: authStore.user.getId})
+        OrganizationProvider.create({...values, avatar: values.avatar[0].originFileObj, owner: authStore.user.getId})
             .then(data => {
                 if (!data.hasErrors){
                     authStore.user.setOrganization(data.data)
@@ -72,6 +72,8 @@ const OrganizationForm = () => {
                 label=""
                 name="avatar"
                 rules={[{required: true, message: 'Select an avatar for organization'}]}
+                valuePropName={'fileList'}
+                getValueFromEvent={normFile}
             >
                 <Upload
                     accept={"image/png, image/jpeg, image/jpg"}

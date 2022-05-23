@@ -21,6 +21,7 @@ module.exports = {
         "input-icon-suffix":"-12px 0 10px -10px rgba(0,0,0,.05);",
         "input-icon-focus":" rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.25) 0px 8px 32px;",
         "card-shadow": " 0px 4px 20px -4px rgba(0,0,0,0.1);",
+        "card-hover-shadow": " 0px 4px 40px 3px rgba(0,0,0,0.2);",
       },
       screens: {
         'xs': '480px',

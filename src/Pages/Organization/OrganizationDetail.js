@@ -8,12 +8,13 @@ import ObservedUserLoader from "../../helpers/UserLoader";
 import {authStore} from "../../store/AuthStore";
 import Team from "../Team/Team";
 
-const OrganizationDetail = (props) => {
+const OrganizationDetail = () => {
     const match = useRouteMatch()
     const params = useParams()
 
     const [loading, setLoading] = useState(true)
     const [selectedOrganization, setSelectedOrganization] = useState(null)
+    const [refresh, setRefresh] = useState(false)
 
     const fetchSelectedOrganization = () => {
         OrganizationProvider.checkOrganizationExists(params.orgnizationId)
@@ -34,7 +35,7 @@ const OrganizationDetail = (props) => {
 
     useEffect(() => {
         fetchSelectedOrganization()
-    }, [])
+    }, [refresh])
 
     return (
         <>
@@ -48,11 +49,11 @@ const OrganizationDetail = (props) => {
                         </Route>
 
                         <Route path={`${match.path}/projects`}>
-                            <Projects org={selectedOrganization}/>
+                            <Projects org={selectedOrganization} refresh={setRefresh}/>
                         </Route>
 
                         <Route path={`${match.path}/teams`}>
-                            <Team org={selectedOrganization} />
+                            <Team org={selectedOrganization} refresh={setRefresh}/>
                         </Route>
 
                         <Route path={'/*'} exact>
@@ -67,7 +68,7 @@ const OrganizationDetail = (props) => {
     )
 }
 
-const OrganizationDetailPage = props => {
+const OrganizationDetailPage = () => {
 
     return (
         <ObservedUserLoader auth={authStore} node={<OrganizationDetail/>}/>

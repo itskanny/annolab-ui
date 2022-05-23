@@ -15,7 +15,7 @@ const Projects = props => {
             <Switch>
 
                 <Route path={`${match.path}`} exact>
-                    <ProjectListing org={props.org}/>
+                    <ProjectListing org={props.org} refresh={props.refresh}/>
                 </Route>
 
                 <Route path={`${match.path}/:projectId`}>

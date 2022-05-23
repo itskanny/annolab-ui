@@ -3,11 +3,13 @@ import React, {useState} from "react";
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {TeamProvider} from "../../providers/TeamProvider";
 import {Link, useHistory, useLocation} from "react-router-dom";
-import {Avatar, Button, Space} from "antd";
+import {Avatar, Button, Space, Tooltip} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import EditModalForm from "../../Components/Forms/ModelForms/TeamModalForms/EditModalForm/EditModalForm";
 import DeleteModelForm from "../../Components/Forms/ModelForms/TeamModalForms/DeleteModalForm/DeleteModelForm";
+import OrganizationEditModalForm
+    from "../../Components/Forms/ModelForms/OrganizationModalForm/EditModalForm/OrganizationEditModalForm";
 
 
 const TeamListing = (props) => {
@@ -20,21 +22,27 @@ const TeamListing = (props) => {
             title: 'Team Image',
             dataIndex: 'avatar',
             key: 'avatar',
-            render: (avatar, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}`}><Avatar src={avatar}/></Link>,
+            render: (avatar, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}`}><Avatar
+                src={avatar}/></Link>,
 
         },
         {
             title: 'Team ID',
             dataIndex: 'id',
             key: 'id',
-            render: (id, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}`}><p className={'tw-mb-0 tw-text-black hover:tw-text-primary'} >{id}</p></Link>,
+            render: (id, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}`}>
+                <p className={'tw-mb-0 tw-text-black hover:tw-text-primary'}>{id}</p></Link>,
             sorter: (a, b) => a.id - b.id,
         },
         {
             title: 'Team Name',
             dataIndex: 'name',
             key: 'name',
-            render: (name, row) => <Link to={`${location.pathname}${location.pathname[location.pathname.length-1] === '/' ? row.id : `/${row.id}`}`}><p className={'tw-mb-0 tw-text-black hover:tw-text-primary'} >{name}</p></Link>,
+            render: (name, row) => <Link
+                to={`${location.pathname}${location.pathname[location.pathname.length - 1] === '/' ? row.id : `/${row.id}`}`}>
+                <p className={'tw-mb-0 tw-text-black hover:tw-text-primary'}>{name}</p></Link>,
             sorter: (a, b) => a.name.length - b.name.length,
         },
         {
@@ -53,12 +61,12 @@ const TeamListing = (props) => {
         {
             title: 'Action',
             key: 'action',
-            render: (_,row) => (
-                <Space size="middle">
-                    <Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>
-                    <Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+            render: (_, row) => (
+                <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
+                    <Tooltip title={'Edit Team'}><Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                                                         icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
+                    <Tooltip title={'Delete Team'}><Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                                                           icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
                 </Space>
             ),
         },
@@ -84,11 +92,17 @@ const TeamListing = (props) => {
     const [editVisible, setEditVisible] = useState({state: false, row: {}})
     const [render, setRender] = useState(false)
     const [deleteVisible, setDeleteVisible] = useState({state: false, row: {}})
+    const [organizationEditVisible, setOrganizationEditVisible] = useState({state: false, row: props.org})
 
+    const organizationEditHandler = () => {
+        setOrganizationEditVisible({state: true, row: props.org})
+    }
 
     return (
 
         <>
+            <OrganizationEditModalForm redirect={true} refresh={props.refresh} setRender={setRender}
+                                       visible={organizationEditVisible} setVisible={setOrganizationEditVisible}/>
             <DeleteModelForm setRender={setRender} visible={deleteVisible} setVisible={setDeleteVisible}/>
             <EditModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}/>
             {/*<ListPage columns={TEAM_COLUMNS} title={props.org.name} tableType={'All Teams'} buttonText={'Add Team'} fetcher={TeamProvider.fetchTeams}/>*/}
@@ -99,10 +113,12 @@ const TeamListing = (props) => {
                 headerTagText={'Owner'}
                 item={props.org}
                 headerExtras={[
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>,
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                    <Tooltip title={'Edit Organization'} key={'edit'}><Button onClick={organizationEditHandler} type="dashed"
+                                                                 shape={'circle'}
+                                                                 icon={<EditOutlined
+                                                                     className={'tw-text-icon'}/>}/></Tooltip>,
+                    // <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
+                    //         icon={<DeleteOutlined style={{color: 'red'}}/>}/>
                 ]}
                 headerButtonHandler={addTeamHandler}
                 headerType={'All Teams'}

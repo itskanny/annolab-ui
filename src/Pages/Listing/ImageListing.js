@@ -1,16 +1,17 @@
-import React, { useState} from "react";
-
+import React, {useState} from "react";
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {ImageProvider} from "../../providers/ImageProvider";
 import AddImagesModelForm
     from "../../Components/Forms/ModelForms/ImageModalForms/AddImagesModelForm/AddImagesModelForm";
-import {Avatar, Button, Space, Tag} from "antd";
+import {Avatar, Button, Space, Tag, Tooltip} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {openNotification} from "../../helpers/helper";
 import EditImageModalForm
     from "../../Components/Forms/ModelForms/ImageModalForms/EditImageModalForm/EditImageModalForm";
 import ImageListCard from "../../Components/Functional/ListView/ImageListCard/ImageListCard";
+import EditModalForm from "../../Components/Forms/ModelForms/ProjectModalForms/EditModalForm/EditModalForm";
+import DeleteModelForm from "../../Components/Forms/ModelForms/ProjectModalForms/DeleteModalForm/DeleteModelForm";
 
 
 const ImageListing = (props) => {
@@ -55,10 +56,12 @@ const ImageListing = (props) => {
             key: 'action',
             render: (_, row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Button onClick={() => setEditVisible({state: true, row: row.id})} type="dashed" shape={'circle'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>
-                    <Button onClick={() => deleteHandler(row.id)} type="dashed" shape={'circle'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                    <Tooltip title={'Edit Image'}><Button onClick={() => setEditVisible({state: true, row: row.id})}
+                                                          type="dashed" shape={'circle'}
+                                                          icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
+                    <Tooltip title={'Delete Image'}><Button onClick={() => deleteHandler(row.id)} type="dashed"
+                                                            shape={'circle'}
+                                                            icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
                 </Space>
             ),
         },
@@ -80,6 +83,9 @@ const ImageListing = (props) => {
     const [loading, setLoading] = useState(false)
     const [editVisible, setEditVisible] = useState({state: false, row: 0})
     const [view, setView] = useState('list')
+    const [projectEditVisible, setProjectEditVisible] = useState({state: false, row: props.proj})
+    const [projectDeleteVisible, setProjectDeleteVisible] = useState({state: false, row: props.proj})
+
 
     const deleteHandler = (id) => {
 
@@ -109,25 +115,39 @@ const ImageListing = (props) => {
         setVisible(true)
     }
 
-    console.log(props.proj)
+    const openProjectDeleteModelHandler = () => {
+        setProjectDeleteVisible({state: true, row: props.proj})
+    }
+
+    const openProjectEditModelHandler = () => {
+        setProjectEditVisible({state: true, row: props.proj})
+    }
 
     return (
 
         <>
+            <EditModalForm redirect={true} refresh={props.refresh} setRender={setRender} visible={projectEditVisible}
+                           setVisible={setProjectEditVisible}/>
+            <DeleteModelForm redirect={true} setRender={setRender} visible={projectDeleteVisible}
+                             setVisible={setProjectDeleteVisible}/>
             <AddImagesModelForm setRender={setRender} visible={visible} setVisible={setVisible} proj={props.proj}/>
             <EditImageModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}
                                 proj={props.proj}/>
 
-            {view === 'list'?
+            {view === 'list' ?
                 <ListPage
                     item={props.proj}
                     headerTag={true}
                     headerTagText={'Ongoing'}
                     headerExtras={[
-                        <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
-                                icon={<EditOutlined className={'tw-text-icon'}/>}/>,
-                        <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
-                                icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                        <Tooltip title={'Edit Project'} key={'edit'}> <Button onClick={openProjectEditModelHandler} type="dashed"
+                                                                              shape={'circle'}
+                                                                              icon={<EditOutlined
+                                                                                  className={'tw-text-icon'}/>}/></Tooltip>,
+                        <Tooltip title={'Delete Project'} key={'delete'}><Button onClick={openProjectDeleteModelHandler} type="dashed"
+                                                                                 shape={'circle'} key={'delete'}
+                                                                                 icon={<DeleteOutlined
+                                                                                     style={{color: 'red'}}/>}/></Tooltip>
                     ]}
                     statistics={statistics}
                     headerType={'All Images'}
@@ -143,71 +163,33 @@ const ImageListing = (props) => {
                 />
                 :
                 <ListPage
-                loading={loading}
-                render={render}
-                headerTag={true}
-                headerTagText={'Ongoing'}
-                item={props.proj}
-                headerExtras={[
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>,
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
-                ]}
-                headerButtonHandler={openModelHandler}
-                headerType={'All Images'}
-                statistics={statistics}
-                viewType={'table'}
-                columns={IMAGE_COLUMNS}
-                fetcher={() => ImageProvider.fetchImages(props.proj.id)}
-                showTableViewIcon={true}
-                tableViewIconHandler={tableViewIconHandler}
-                showListViewIcon={true}
-                listViewIconHandler={listViewIconHandler}
+                    loading={loading}
+                    render={render}
+                    headerTag={true}
+                    headerTagText={'Ongoing'}
+                    item={props.proj}
+                    headerExtras={[
+                        <Tooltip title={'Edit Project'} key={'edit'}> <Button onClick={openProjectEditModelHandler} type="dashed"
+                                                                              shape={'circle'}
+                                                                              icon={<EditOutlined
+                                                                                  className={'tw-text-icon'}/>}/></Tooltip>,
+                        <Tooltip title={'Delete Project'} key={'delete'}><Button onClick={openProjectDeleteModelHandler} type="dashed"
+                                                                                 shape={'circle'} key={'delete'}
+                                                                                 icon={<DeleteOutlined
+                                                                                     style={{color: 'red'}}/>}/></Tooltip>
+                    ]}
+                    headerButtonHandler={openModelHandler}
+                    headerType={'All Images'}
+                    statistics={statistics}
+                    viewType={'table'}
+                    columns={IMAGE_COLUMNS}
+                    fetcher={() => ImageProvider.fetchImages(props.proj.id)}
+                    showTableViewIcon={true}
+                    tableViewIconHandler={tableViewIconHandler}
+                    showListViewIcon={true}
+                    listViewIconHandler={listViewIconHandler}
                 />
             }
-            {/*<ListPage*/}
-            {/*    loading={loading}*/}
-            {/*    render={render}*/}
-            {/*    headerTag={true}*/}
-            {/*    headerTagText={'Ongoing'}*/}
-            {/*    item={props.proj}*/}
-            {/*    headerExtras={[*/}
-            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}*/}
-            {/*                icon={<EditOutlined className={'tw-text-icon'}/>}/>,*/}
-            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}*/}
-            {/*                icon={<DeleteOutlined style={{color: 'red'}}/>}/>*/}
-            {/*    ]}*/}
-            {/*    headerButtonHandler={openModelHandler}*/}
-            {/*    headerType={'All Images'}*/}
-            {/*    statistics={statistics}*/}
-            {/*    viewType={'table'}*/}
-            {/*    columns={IMAGE_COLUMNS}*/}
-            {/*    fetcher={() => ImageProvider.fetchImages(props.proj.id)}*/}
-            {/*/>*/}
-
-            {/*<ListPage*/}
-            {/*    item={props.proj}*/}
-            {/*    headerTag={true}*/}
-            {/*    headerTagText={'Ongoing'}*/}
-            {/*    headerExtras={[*/}
-            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}*/}
-            {/*                icon={<EditOutlined className={'tw-text-icon'}/>}/>,*/}
-            {/*        <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}*/}
-            {/*                icon={<DeleteOutlined style={{color: 'red'}}/>}/>*/}
-            {/*    ]}*/}
-            {/*    statistics={statistics}*/}
-            {/*    headerType={'All Images'}*/}
-            {/*    headerButtonHandler={openModelHandler}*/}
-            {/*    viewType={view}*/}
-            {/*    render={render}*/}
-            {/*    fetcher={() => ImageProvider.fetchImages(props.proj.id)}*/}
-            {/*    itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}*/}
-            {/*    showTableViewIcon={true}*/}
-            {/*    tableViewIconHandler={tableViewIconHandler}*/}
-            {/*    showListViewIcon={true}*/}
-            {/*    listViewIconHandler={listViewIconHandler}*/}
-            {/*/>*/}
 
         </>
     )

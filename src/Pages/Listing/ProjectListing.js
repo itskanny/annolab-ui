@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import ListPage from "../../Components/Functional/ListingTable/ListPage";
 import {ProjectProvider} from "../../providers/ProjectProvider";
 import {Link, useHistory, useLocation} from "react-router-dom";
-import {Avatar, Button, Space} from "antd";
+import {Avatar, Button, Space, Tooltip} from "antd";
 import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import DeleteModelForm from "../../Components/Forms/ModelForms/ProjectModalForms/DeleteModalForm/DeleteModelForm";
 import EditModalForm from "../../Components/Forms/ModelForms/ProjectModalForms/EditModalForm/EditModalForm";
+import OrganizationEditModalForm
+    from "../../Components/Forms/ModelForms/OrganizationModalForm/EditModalForm/OrganizationEditModalForm";
 
 const ProjectListing = (props) => {
 
@@ -71,10 +73,10 @@ const ProjectListing = (props) => {
             key: 'action',
             render: (_, row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>
-                    <Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                    <Tooltip title={'Edit Project'}><Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                            icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
+                    <Tooltip title={'Delete Project'}><Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                            icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
                 </Space>
             ),
         },
@@ -96,15 +98,21 @@ const ProjectListing = (props) => {
     const [editVisible, setEditVisible] = useState({state: false, row: {}})
     const [render, setRender] = useState(false)
     const [deleteVisible, setDeleteVisible] = useState({state: false, row: {}})
-
+    const [organizationEditVisible, setOrganizationEditVisible] = useState({state: false, row: props.org})
 
     const addProjectHandler = () => {
         history.push('/addproject')
     }
 
+    const organizationEditHandler = () => {
+        setOrganizationEditVisible({state: true, row: props.org})
+    }
+
     return (
 
         <>
+            <OrganizationEditModalForm redirect={true} refresh={props.refresh} setRender={setRender}
+                                       visible={organizationEditVisible} setVisible={setOrganizationEditVisible}/>
             <DeleteModelForm setRender={setRender} visible={deleteVisible} setVisible={setDeleteVisible}/>
             <EditModalForm setRender={setRender} visible={editVisible} setVisible={setEditVisible}/>
 
@@ -114,10 +122,12 @@ const ProjectListing = (props) => {
                 headerTagText={'Owner'}
                 item={props.org}
                 headerExtras={[
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'edit'}
-                            icon={<EditOutlined className={'tw-text-icon'}/>}/>,
-                    <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
-                            icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                    <Tooltip title={'Edit Organization'} key={'edit'}> <Button onClick={organizationEditHandler} type="dashed"
+                                                                  shape={'circle'} key={'edit'}
+                                                                  icon={<EditOutlined
+                                                                      className={'tw-text-icon'}/>}/></Tooltip>,
+                    // <Button onClick={null} type="dashed" shape={'circle'} key={'delete'}
+                    //         icon={<DeleteOutlined style={{color: 'red'}}/>}/>
                 ]}
                 headerButtonHandler={addProjectHandler}
                 headerType={'All Projects'}
@@ -129,7 +139,7 @@ const ProjectListing = (props) => {
                 tableViewIconHandler={null}
                 showListViewIcon={false}
                 listViewIconHandler={null}
-                />
+            />
         </>);
 };
 

@@ -96,7 +96,7 @@ export class ProjectProvider{
             })
     }
 
-    static editImage(projectId, data){
+    static editProject(projectId, data){
         const form = new Form(data)
 
         return form.patch(`projects/${projectId}/`)

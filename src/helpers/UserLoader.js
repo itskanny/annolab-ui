@@ -4,7 +4,6 @@ import {Button, Result} from "antd";
 import {Link, Redirect} from "react-router-dom";
 
 const ObservedUserLoader = observer(({auth, preventOrganizationRedirect, node}) => {
-    console.log(auth.user.organization.getOrganization)
     return (
         auth.user.isLoading() ?
             <InlineLoader/>

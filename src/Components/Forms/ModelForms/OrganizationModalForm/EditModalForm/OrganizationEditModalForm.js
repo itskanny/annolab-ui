@@ -1,12 +1,12 @@
 import {Alert, Button, Form, Input, Modal, Upload} from "antd";
 import {useState} from "react";
 import {handleFormErrors, normFile, openNotification} from "../../../../../helpers/helper";
-import TextArea from "antd/es/input/TextArea";
 import {authStore} from "../../../../../store/AuthStore";
-import {ProjectProvider} from "../../../../../providers/ProjectProvider";
+import {OrganizationProvider} from "../../../../../providers/OrganizationProvider";
 
 
-const EditModalForm = (props) => {
+const OrganizationEditModalForm = (props) => {
+
 
     const [form] = Form.useForm()
     const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +18,7 @@ const EditModalForm = (props) => {
 
         setIsLoading(true)
 
-        ProjectProvider.editProject(props.visible.row.id, values.avatar ? {
+        OrganizationProvider.editOrganization(props.visible.row.id, values.avatar ? {
                 ...values,
                 avatar: values.avatar[0].originFileObj
             }
@@ -26,7 +26,7 @@ const EditModalForm = (props) => {
             {...values})
             .then(data => {
                 if (!data.hasErrors) {
-                    openNotification('success', "Project updated successfully", true)
+                    openNotification('success', "Organization updated successfully", true)
                     if(props.redirect){
                         props.refresh(Math.random())
                     }
@@ -62,7 +62,7 @@ const EditModalForm = (props) => {
         <>
             <Modal
                 visible={props.visible.state}
-                title={'Edit Project'}
+                title={'Edit Organization'}
                 closable={false}
                 destroyOnClose={true}
                 centered
@@ -87,8 +87,8 @@ const EditModalForm = (props) => {
                             value: props.visible.row.name
                         },
                         {
-                            name: ["description"],
-                            value: props.visible.row.description
+                            name: ["tagline"],
+                            value: props.visible.row.tagline
                         }
                     ]}
                     onFinish={onFinish}
@@ -110,17 +110,17 @@ const EditModalForm = (props) => {
                         rules={[{required: true, message: 'Enter Project Name'}]}
                         className={props.fieldClasses}
                     >
-                        <Input size={"large"} value={props.visible.row.name} placeholder={'*Project Name'} type={"text"}/>
+                        <Input size={"large"} value={props.visible.row.name} placeholder={'*Organization Name'} type={"text"}/>
                     </Form.Item>
 
 
                     <Form.Item
                         label=""
-                        name="description"
-                        rules={[{required: true, message: 'Enter Description'}]}
+                        name="tagline"
+                        rules={[{required: true, message: 'Enter Tagline'}]}
                         className={props.fieldClasses}
                     >
-                        <TextArea size={"large"} value={props.visible.row.description} placeholder={'*Type Description'} type={"textarea"}/>
+                        <Input size={"large"} value={props.visible.row.tagline} placeholder={'*Enter Tagline'} type={"text"}/>
                     </Form.Item>
 
                     <Form.Item
@@ -166,6 +166,8 @@ const EditModalForm = (props) => {
             </Modal>
         </>
     )
+
+
 }
 
-export default EditModalForm
+export default OrganizationEditModalForm

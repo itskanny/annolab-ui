@@ -1,5 +1,5 @@
 import {formatDate} from "../../../../helpers/DataFormater";
-import {Button} from "antd";
+import {Button, Tooltip} from "antd";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import React from "react";
 import FloatingImageTag from "./FloatingImageTag";
@@ -33,13 +33,14 @@ const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
                     <div
                         className={'tw-mt-2  tw-transition-all tw-duration-500 tw-ease-in-out tw-ease-in-out tw-opacity-0 group-hover:tw-opacity-100'}>
                         <div className={'tw-flex tw-justify-between'}>
-                            <Button
+                            <Tooltip title={'Edit Image'}><Button
                                 onClick={() => setEditVisible({state: true, row: item.id})}
                                 type="dashed" shape={'circle'}
-                                icon={<EditOutlined className={'tw-text-icon'}/>}/>
-                            <Button onClick={() => deleteHandler(item.id)} type="dashed"
-                                    shape={'circle'}
-                                    icon={<DeleteOutlined style={{color: 'red'}}/>}/>
+                                icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
+                            <Tooltip title={'Delete Image'}><Button onClick={() => deleteHandler(item.id)} type="dashed"
+                                                                    shape={'circle'}
+                                                                    icon={<DeleteOutlined
+                                                                        style={{color: 'red'}}/>}/></Tooltip>
                         </div>
                     </div>
 

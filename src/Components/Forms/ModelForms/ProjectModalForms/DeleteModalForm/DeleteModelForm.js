@@ -42,7 +42,7 @@ const DeleteModelForm = (props) => {
                 closable={false}
                 destroyOnClose={true}
                 centered
-                onCancel={() => props.setVisible({state: false, row: {}})}
+                onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         Cancel

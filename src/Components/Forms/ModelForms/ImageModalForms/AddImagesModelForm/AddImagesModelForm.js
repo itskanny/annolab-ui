@@ -15,6 +15,7 @@ const AddImagesModelForm = (props) => {
             openNotification('success', 'Pictures added successfully', true)
             setUploadCount(0)
             Modal.destroyAll()
+            form.resetFields()
             props.setRender(Math.random())
             props.setVisible(false)
         }
@@ -22,6 +23,7 @@ const AddImagesModelForm = (props) => {
 
     const handleCancel = () => {
         Modal.destroyAll()
+        form.resetFields()
         props.setVisible(false)
     };
 
@@ -40,7 +42,7 @@ const AddImagesModelForm = (props) => {
                 closable={false}
                 destroyOnClose={true}
                 centered
-                onCancel={() => props.setVisible(false)}
+                onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         Cancel
@@ -55,12 +57,15 @@ const AddImagesModelForm = (props) => {
                     form={form}
                     initialValues={{remember: true}}
                     onFinish={onFinish}
+
                 >
                     <p>Select Images to upload</p>
                     <Form.Item
                         label=""
                         name="image"
                         rules={[{required: true, message: 'Select Images'}]}
+                        valuePropName={'fileList'}
+                        getValueFromEvent={normFile}
                     >
                         <Upload
                             accept={"image/png, image/jpeg, image/jpg"}

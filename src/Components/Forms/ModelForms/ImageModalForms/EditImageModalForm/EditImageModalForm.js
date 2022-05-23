@@ -20,6 +20,7 @@ const EditImageModalForm = (props) =>{
                 if (!data.hasErrors) {
                     openNotification('success', "Image updated successfully", true)
                     Modal.destroyAll()
+                    form.resetFields()
                     props.setRender(Math.random())
                     props.setVisible({static: false, row: 0})
 
@@ -35,6 +36,7 @@ const EditImageModalForm = (props) =>{
 
     const handleCancel = () => {
         Modal.destroyAll()
+        form.resetFields()
         props.setVisible({static: false, row: 0})
     };
 
@@ -54,7 +56,7 @@ const EditImageModalForm = (props) =>{
                 closable={false}
                 destroyOnClose={true}
                 centered
-                onCancel={() => props.setVisible({static: false, row: 0})}
+                onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         Cancel

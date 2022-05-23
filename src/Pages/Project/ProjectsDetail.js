@@ -20,6 +20,7 @@ const ProjectsDetail = props => {
                 if (!data.hasErrors) {
                     setSelectedProject(() => {
                         setLoading(false)
+                        console.log(data)
                         return data.data
                     })
                 } else {

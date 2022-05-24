@@ -27,7 +27,7 @@ const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
                     <p>{item.name}</p>
                     <div className={'tw-flex tw-justify-between'}>
                         <p className={'tw-mb-0'}>{formatDate(item.updated_date, 'LL')}</p>
-                        <ImageTag isAnnotated={item.is_annotated}/>
+                        <ImageTag isAnnotated={item.is_annotated} floating={false}/>
                     </div>
 
                     <div

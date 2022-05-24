@@ -46,6 +46,7 @@ const ListPage = ({item, headerTag, headerTagText, headerExtras, statistics, hea
                                 fetcher={fetcher}
                                 // itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}
                                 itemTemplate={itemTemplate}
+
                             />
                         }
 

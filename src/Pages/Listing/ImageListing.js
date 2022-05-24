@@ -155,7 +155,7 @@ const ImageListing = (props) => {
                     viewType={view}
                     render={render}
                     fetcher={() => ImageProvider.fetchImages(props.proj.id)}
-                    itemTemplate={<ImageListCard setEditVisible={setEditVisible}/>}
+                    itemTemplate={<ImageListCard setEditVisible={setEditVisible} deleteHandler={deleteHandler}/>}
                     showTableViewIcon={true}
                     tableViewIconHandler={tableViewIconHandler}
                     showListViewIcon={true}

@@ -1,6 +1,6 @@
 import {Button, DatePicker, Form, Upload,Input} from "antd";
 
-const SettingsForm = props => {
+const PublicProfile = props => {
 
     return (
         <Form className={'an-banner-form'}>
@@ -48,20 +48,6 @@ const SettingsForm = props => {
                 </Upload>
             </Form.Item>
 
-            <Form.Item
-                label=""
-                name="organization_name"
-                rules={[{ required: true, message: 'Enter Organization Name' }]}
-            >
-                <Input size={"large"} placeholder={'*Organization Name'} type={"text"}/>
-            </Form.Item>
-            <Form.Item
-                label=""
-                name="project_name"
-                rules={[{ required: true, message: 'Enter Project Name' }]}
-            >
-                <Input size={"large"} placeholder={'*Project Name'} type={"text"}/>
-            </Form.Item>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" block size={'large'}>
@@ -73,4 +59,4 @@ const SettingsForm = props => {
     )
 }
 
-export default SettingsForm
+export default PublicProfile

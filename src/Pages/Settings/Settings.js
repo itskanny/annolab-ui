@@ -1,6 +1,8 @@
 import {Button, Card, Col, Row} from "antd";
-import SettingsForm from "../../Components/Forms/SettingsForm/SettingsForm";
+import PublicProfile from "../../Components/Forms/SettingsForm/PublicProfile";
 import ListSettings from "./ListSettings";
+import Organization from "../../Components/Forms/SettingsForm/Organization";
+
 
 
 
@@ -19,12 +21,12 @@ const Settings = props => {
                 </Col>
                 <Col span={0} md={12} className={'tw-pl-3'}>
                     <Card
-                        title={'Public Profile'}
+                        title={'Settings'}
 
                     >
                         <div >
                             <div className={'tw-w-full tw-justify-start'}>
-                                <SettingsForm></SettingsForm>
+                                <Organization></Organization>
                             </div>
 
                         </div>

@@ -14,13 +14,14 @@ const ListSettings = (props) => {
     const [loading, setLoading] = useState(true)
 
     const data = [
-        'Public Profile',
-        'Account',
-        'Home',
-        'Projects',
-        'Annotations',
-        'Organizations',
-        'Log Out',
+        {
+        name:'Public Profile',
+        path:'/home'
+    },
+    {
+        name:'Organizations Profile',
+        path:'/settings'
+    }
       ];
 
 
@@ -38,7 +39,7 @@ const ListSettings = (props) => {
         <List.Item aria-orientation="left">
           {/* <Typography.Text mark></Typography.Text><Link to="#">{item}</Link> */}
             <ul>
-                <li><Typography.Text mark></Typography.Text><Link to="#">{item}</Link></li>
+                <li><Typography.Text mark></Typography.Text><Link to={item.path}>{item.name}</Link></li>
             </ul>
         </List.Item>
       )}

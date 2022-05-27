@@ -1,4 +1,4 @@
-import {Button, DatePicker, Form, Upload,Input} from "antd";
+import {Button, Form, Upload,Input} from "antd";
 
 const Organization = props => {
 

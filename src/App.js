@@ -129,7 +129,7 @@ const App = () => (
                            }
                     />
 
-                    <Route path="/settings" exact
+                    <Route path="/settings"
                            render={
                                (props) => {
                                    return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>

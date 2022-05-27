@@ -1,12 +1,19 @@
-import {Button, Card, Col, Row} from "antd";
-import PublicProfile from "../../Components/Forms/SettingsForm/PublicProfile";
+import { Card, Col, Row} from "antd";
 import ListSettings from "./ListSettings";
+import {Redirect, Route, Switch} from "react-router-dom";
+import React from "react";
+import {useRouteMatch} from "react-router-dom/cjs/react-router-dom";
+import PageNotFound from "../404NotFound";
+import PublicProfile from "../../Components/Forms/SettingsForm/PublicProfile";
 import Organization from "../../Components/Forms/SettingsForm/Organization";
 
 
 
 
 const Settings = props => {
+
+    const match = useRouteMatch()
+
 
     return (
         <>
@@ -16,7 +23,7 @@ const Settings = props => {
             >
                 <Col span={24} md={8} className={'tw-pr-3'}>
                     <Card >
-                        <ListSettings></ListSettings>
+                        <ListSettings/>
                     </Card>
                 </Col>
                 <Col span={0} md={12} className={'tw-pl-3'}>
@@ -26,7 +33,23 @@ const Settings = props => {
                     >
                         <div >
                             <div className={'tw-w-full tw-justify-start'}>
-                                <Organization></Organization>
+
+                                <Switch>
+
+                                    <Route path={`${match.path}`} exact>
+                                        <Redirect to={`${match.url}/profile`}/>
+                                    </Route>
+                                    <Route path={`${match.path}/profile`}>
+                                        <PublicProfile/>
+                                    </Route>
+                                    <Route path={`${match.path}/org`}>
+                                        <Organization/>
+                                    </Route>
+                                    <Route path={'*'}>
+                                        <PageNotFound/>
+                                    </Route>
+
+                                </Switch>
                             </div>
 
                         </div>

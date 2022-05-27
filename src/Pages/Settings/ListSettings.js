@@ -1,11 +1,5 @@
-import {Avatar, Button, Divider, Input, List,Typography, Popover, Skeleton, Space} from "antd";
-import {ArrowDown2} from "iconsax-react";
-import {useEffect, useState} from "react";
-import {authStore} from "../../store/AuthStore";
-import DropdownList from "../../Components/Functional/DropdownList/DropdownList";
-import {PlusOutlined} from "@ant-design/icons";
-import {ProjectProvider} from "../../providers/ProjectProvider";
-import {openNotification} from "../../helpers/helper";
+import { List} from "antd";
+import { useState} from "react";
 import {Link} from "react-router-dom";
 
 
@@ -16,11 +10,11 @@ const ListSettings = (props) => {
     const data = [
         {
         name:'Public Profile',
-        path:'/home'
+        path:'/settings/profile'
     },
     {
         name:'Organizations Profile',
-        path:'/settings'
+        path:'/settings/org'
     }
       ];
 
@@ -39,7 +33,7 @@ const ListSettings = (props) => {
         <List.Item aria-orientation="left">
           {/* <Typography.Text mark></Typography.Text><Link to="#">{item}</Link> */}
             <ul>
-                <li><Typography.Text mark></Typography.Text><Link to={item.path}>{item.name}</Link></li>
+                <li><Link to={item.path}>{item.name}</Link></li>
             </ul>
         </List.Item>
       )}

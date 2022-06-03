@@ -15,7 +15,9 @@ const AnnolabPageHeader = ({tag, tagText, item, extras}) => {
                 title={item.name}
                 tags={tag? <Tag color="blue">{tagText}</Tag> : null}
                 subTitle={item.description}
-                extra={[
+                extra={
+
+                extras && [
                     ...extras
                 ]
                 }

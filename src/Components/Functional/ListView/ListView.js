@@ -72,9 +72,6 @@ const ListView = ({itemTemplate, render, fetcher}) => {
                             <List
                                 loading={loading}
                                 pagination={{
-                                    onChange: page => {
-                                        console.log(page);
-                                    },
                                     pageSize: 6,
                                 }}
                                 grid={{gutter: 25, column: 3}}

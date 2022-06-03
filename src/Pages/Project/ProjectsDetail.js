@@ -4,6 +4,7 @@ import PageNotFound from "../404NotFound";
 import React, {useEffect, useState} from "react";
 import {InlineLoader} from "../../helpers/FullScreenLoader";
 import {ProjectProvider} from "../../providers/ProjectProvider";
+import ImageDetail from "../Image/ImageDetail";
 
 
 const ProjectsDetail = () => {
@@ -47,6 +48,9 @@ const ProjectsDetail = () => {
 
                         <Route path={`${match.path}`} exact>
                             <p>Project detail page for {params.projectId}</p>
+                        </Route>
+                        <Route path={`${match.path}/images/:imageID`}>
+                            <ImageDetail proj={selectedProject} />
                         </Route>
                         <Route path={`${match.path}/images`}>
                             <ImageListing proj={selectedProject} refresh={setRefresh}/>

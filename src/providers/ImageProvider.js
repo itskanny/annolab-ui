@@ -68,4 +68,28 @@ export class ImageProvider{
                 }
             })
     }
+
+    static checkImageExists(projId, imageId){
+        const form = new Form()
+        return form.get(`projects/${projId}/images/${imageId}/`)
+            .then((response) => {
+
+                return {
+                    data: response,
+                    hasErrors: false,
+                    exists: true,
+                    status: response.status,
+                    statusText: response.statusText
+                }
+            })
+            .catch((error) => {
+                return {
+                    data: error.response.data,
+                    hasErrors: true,
+                    exists: false,
+                    status: error.response.status,
+                    statusText: error.response.statusText
+                }
+            })
+    }
 }

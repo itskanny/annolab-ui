@@ -46,7 +46,7 @@ const ImageDetail = ({proj}) => {
                             <Redirect to={`${match.url}/annotate`}/>
                         </Route>
                         <Route path={`${match.path}/annotate`}>
-                            <Annotate proj={proj}/>
+                            <Annotate proj={proj} img={selectedImage}/>
                         </Route>
 
                     </Switch>

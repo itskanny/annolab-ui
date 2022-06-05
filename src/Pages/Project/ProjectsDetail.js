@@ -55,6 +55,9 @@ const ProjectsDetail = () => {
                         <Route path={`${match.path}/images`}>
                             <ImageListing proj={selectedProject} refresh={setRefresh}/>
                         </Route>
+                        <Route path={`${match.path}/annotate`}>
+                            <ImageListing proj={selectedProject} refresh={setRefresh}/>
+                        </Route>
                         <Route path={'/*'} exact>
                             <PageNotFound/>
                         </Route>

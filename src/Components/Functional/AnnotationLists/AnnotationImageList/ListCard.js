@@ -1,7 +1,7 @@
 import {Card, Divider} from "antd";
 import ImageList from "./ImageList";
 
-const ListCard = ({proj}) => {
+const ListCard = ({proj, img}) => {
 
     return (
         <>

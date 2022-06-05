@@ -10,7 +10,7 @@ const AnnolabPageHeader = ({tag, tagText, item, extras}) => {
     return (
         <>
             <PageHeader
-                className="site-page-header an-border-radius"
+                className="an-border an-border-radius"
                 onBack={() => history.goBack()}
                 title={item.name}
                 tags={tag? <Tag color="blue">{tagText}</Tag> : null}

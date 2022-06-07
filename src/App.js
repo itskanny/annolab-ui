@@ -8,9 +8,9 @@ import Navbar from "./Components/Ui/Navbar/Navbar";
 import {Redirect, Route, Switch, useHistory} from "react-router-dom";
 import ImportProject from "./Pages/ImportProject/ImportProject";
 import Signup from "./Pages/Signup/Signup";
+import Settings from "./Pages/Settings/Settings";
 import Login from "./Pages/Login/Login";
 import Invite from "./Pages/Invite/Invite";
-import Settings from "./Pages/Settings/Settings";
 import RecoverPassword from "./Pages/ForgetPassword/RecoverPassword";
 import ExportProject from "./Pages/ExportProject/ExportProject";
 import AddProject from "./Pages/AddProject/AddProject";
@@ -79,7 +79,6 @@ const App = () => {
                                }
                         />
 
-<<<<<<< Updated upstream
                         <Route path="/createorganization" exact
                                render={
                                    () => {
@@ -151,37 +150,6 @@ const App = () => {
                                    }
                                }
                         />
-=======
-                    <Route path="/settings"
-                           render={
-                               (props) => {
-                                   return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>
-                               }
-                           }
-                    />
-
-                    <Route path="/login" exact
-                           render={
-                               (props) => {
-                                   return !authStore.isLoggedIn ? <Login/> : <Redirect to="/home"/>
-                               }
-                           }
-                    />
-                    <Route path="/signup" exact
-                           render={
-                               (props) => {
-                                   return !authStore.isLoggedIn ? <Signup/> : <Redirect to="/home"/>
-                               }
-                           }
-                    />
-                    <Route path="/importproject" exact
-                           render={
-                               (props) => {
-                                   return authStore.isLoggedIn ? <ImportProject/> : <Redirect to="/login"/>
-                               }
-                           }
-                    />
->>>>>>> Stashed changes
 
                         <Route path="/login" exact
                                render={
@@ -211,6 +179,13 @@ const App = () => {
                                    }
                                }
                         />
+                        <Route path="/settings"
+                          render={
+                              (props) => {
+                                  return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
 
                         <Route path={'/*'} exact>
                             <PageNotFound/>

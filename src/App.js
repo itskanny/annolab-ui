@@ -25,6 +25,9 @@ import {observer} from "mobx-react";
 import PageNotFound from "./Pages/404NotFound";
 import OrganizationDetailPage from "./Pages/Organization/OrganizationDetail";
 import AddTeam from "./Pages/AddTeam/AddTeam";
+import OrgnizationDisplay from "./Pages/DisplayPages/OrgnizationDisplay";
+import TeamDisplay from "./Pages/DisplayPages/TeamDisplay";
+import ProjectDisplay from "./Pages/DisplayPages/ProjectDisplay";
 
 const Loader = observer(({auth}) => {
     return (
@@ -57,6 +60,9 @@ const App = () => {
 
                 <Navbar/>
                 <List/>
+                <TeamDisplay></TeamDisplay>
+                <OrgnizationDisplay></OrgnizationDisplay>
+                <ProjectDisplay/>
                 <Content>
                     <Switch>
 
@@ -66,7 +72,8 @@ const App = () => {
                         <Route path={'/home'} exact
                                render={
                                    () => {
-                                       return authStore.isLoggedIn ? <HomePage/> : <Redirect to="/login"/>
+
+                                      // return authStore.isLoggedIn ? <HomePage/> : <Redirect to="/login"/>
                                    }
                                }
                         />

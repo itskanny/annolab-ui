@@ -23,7 +23,7 @@ const ProjectForm = props => {
                 if (!data.hasErrors){
                     console.log(projectStore.getProject)
                     openNotification('success', "Project created successfully", true)
-                    history.replace(`${props.redirect ? props.redirect : `/org/${authStore.getSelectedOrganizationId}/projects/${data.data.id}`}`)
+                    history.replace(`${props.redirect ? props.redirect : `/org/${authStore.getSelectedOrganizationId}/projects/${data.data.id}/images`}`)
                 }
                 else {
                     console.log(data)

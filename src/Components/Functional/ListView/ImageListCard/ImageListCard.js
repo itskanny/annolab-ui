@@ -4,21 +4,26 @@ import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import React from "react";
 import FloatingImageTag from "./FloatingImageTag";
 import ImageTag from "./ImageTag";
+import {Link,  useRouteMatch} from "react-router-dom";
 
 
 const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
 
+    const match = useRouteMatch()
 
     return (
         <>
+
             <div className={'tw-h-[250px] tw-relative tw-group'}>
-                <div
-                    className={'tw-overflow-clip tw-relative tw-w-full tw-h-[200px] tw-shadow-card-shadow group-hover:tw-shadow-card-hover-shadow tw-rounded-tl-[7px] tw-rounded-br-[7px] tw-rounded-tr-[25px] tw-rounded-bl-[25px]  tw-transition-all tw-duration-500 tw-ease-in-out'}>
-                    <img alt={'Project Iamge'} className={'tw-h-full tw-w-full tw-object-cover '}
-                         src={item.image}/>
+                <Link to={`${match.url}/annotate/${item.id}`}>
                     <div
-                        className={'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black/0 group-hover:tw-bg-black/50 tw-transition-all tw-duration-500 tw-ease-in-out'}/>
-                </div>
+                        className={'tw-overflow-clip tw-relative tw-w-full tw-h-[200px] tw-shadow-card-shadow group-hover:tw-shadow-card-hover-shadow tw-rounded-tl-[7px] tw-rounded-br-[7px] tw-rounded-tr-[25px] tw-rounded-bl-[25px]  tw-transition-all tw-duration-500 tw-ease-in-out'}>
+                        <img alt={'Project Iamge'} loading={"lazy"} className={'tw-h-full tw-w-full tw-object-cover '}
+                             src={item.image}/>
+                        <div
+                            className={'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-black/0 group-hover:tw-bg-black/50 tw-transition-all tw-duration-500 tw-ease-in-out'}/>
+                    </div>
+                </Link>
 
                 <FloatingImageTag is_annotated={item.is_annotated}/>
 
@@ -47,6 +52,7 @@ const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
                 </div>
 
             </div>
+
         </>
     )
 

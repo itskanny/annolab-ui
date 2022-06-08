@@ -18,7 +18,6 @@ import CreateTeam from "./Pages/AccountSteps/CreateTeam";
 import CreateProject from "./Pages/AccountSteps/CreateProject";
 import CreateOrganization from "./Pages/AccountSteps/CreateOrganization";
 import AddImage from "./Pages/AccountSteps/AddImage";
-import List from "./Pages/List/List";
 import {authStore} from "./store/AuthStore";
 import HomePage from "./Pages/Home/HomePage";
 import {observer} from "mobx-react";
@@ -56,7 +55,7 @@ const App = () => {
             <Layout className={"tw-h-full"}>
 
                 <Navbar/>
-                <List/>
+                {/*<List/>*/}
                 <Content>
                     <Switch>
 

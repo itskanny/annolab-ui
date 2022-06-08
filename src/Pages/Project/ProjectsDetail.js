@@ -4,6 +4,8 @@ import PageNotFound from "../404NotFound";
 import React, {useEffect, useState} from "react";
 import {InlineLoader} from "../../helpers/FullScreenLoader";
 import {ProjectProvider} from "../../providers/ProjectProvider";
+import ImageDetail from "../Image/ImageDetail";
+import Annotate from "../Annotation/Annotate";
 
 
 const ProjectsDetail = () => {
@@ -35,7 +37,6 @@ const ProjectsDetail = () => {
         fetchSelectedProject()
     }, [refresh])
 
-
     return (
 
         <>
@@ -48,8 +49,14 @@ const ProjectsDetail = () => {
                         <Route path={`${match.path}`} exact>
                             <p>Project detail page for {params.projectId}</p>
                         </Route>
-                        <Route path={`${match.path}/images`}>
+                        {/*<Route path={`${match.path}/images/:imageID`}>*/}
+                        {/*    <ImageDetail proj={selectedProject} />*/}
+                        {/*</Route>*/}
+                        <Route path={`${match.path}/images`} exact>
                             <ImageListing proj={selectedProject} refresh={setRefresh}/>
+                        </Route>
+                        <Route path={`${match.path}/images/annotate`}>
+                            <Annotate proj={selectedProject}/>
                         </Route>
                         <Route path={'/*'} exact>
                             <PageNotFound/>

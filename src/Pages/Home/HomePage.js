@@ -12,14 +12,14 @@ const Home = () => {
         {
             ...authStore.user.organization.getOrganization
         },
-        {
-            name: 'tesds',
-            id: '43',
-        },
-        {
-            name: 'tesasdsd',
-            id: '44',
-        }
+        // {
+        //     name: 'tesds',
+        //     id: '43',
+        // },
+        // {
+        //     name: 'tesasdsd',
+        //     id: '44',
+        // }
 
     ]
 

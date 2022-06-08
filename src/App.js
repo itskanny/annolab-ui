@@ -8,6 +8,7 @@ import Navbar from "./Components/Ui/Navbar/Navbar";
 import {Redirect, Route, Switch, useHistory} from "react-router-dom";
 import ImportProject from "./Pages/ImportProject/ImportProject";
 import Signup from "./Pages/Signup/Signup";
+import Settings from "./Pages/Settings/Settings";
 import Login from "./Pages/Login/Login";
 import Invite from "./Pages/Invite/Invite";
 import RecoverPassword from "./Pages/ForgetPassword/RecoverPassword";
@@ -177,6 +178,13 @@ const App = () => {
                                    }
                                }
                         />
+                        <Route path="/settings"
+                          render={
+                              (props) => {
+                                  return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>
+                               }
+                           }
+                    />
 
                         <Route path={'/*'} exact>
                             <PageNotFound/>

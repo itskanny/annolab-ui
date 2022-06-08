@@ -81,8 +81,8 @@ const Navbar = () => {
                                         !auth.setup ?
                                             <>
                                                 <Tooltip title={'Settings'} color={'white'} style={{color: "black"}}>
-                                                    <Setting2
-                                                        className={'tw-inline-block tw-mr-1  lg:tw-mr-3 mlg:tw-mr-6 tw-cursor-pointer'}/>
+                                                    <Link className={'tw-text-icon'} to={'/settings'}><Setting2
+                                                        className={'tw-inline-block tw-mr-1  lg:tw-mr-3 mlg:tw-mr-6 tw-cursor-pointer'}/></Link>
                                                 </Tooltip>
                                                 <Tooltip title={'Notifications'} color={'white'}
                                                          style={{color: "black"}}>

@@ -4,7 +4,7 @@ import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import React from "react";
 import FloatingImageTag from "./FloatingImageTag";
 import ImageTag from "./ImageTag";
-import {Link, useRouteMatch} from "react-router-dom";
+import {Link,  useRouteMatch} from "react-router-dom";
 
 
 const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
@@ -15,7 +15,7 @@ const ImageListCard = ({item, setEditVisible, deleteHandler}) => {
         <>
 
             <div className={'tw-h-[250px] tw-relative tw-group'}>
-                <Link to={`${match.url}/${item.id}/annotate`}>
+                <Link to={`${match.url}/annotate/${item.id}`}>
                     <div
                         className={'tw-overflow-clip tw-relative tw-w-full tw-h-[200px] tw-shadow-card-shadow group-hover:tw-shadow-card-hover-shadow tw-rounded-tl-[7px] tw-rounded-br-[7px] tw-rounded-tr-[25px] tw-rounded-bl-[25px]  tw-transition-all tw-duration-500 tw-ease-in-out'}>
                         <img alt={'Project Iamge'} loading={"lazy"} className={'tw-h-full tw-w-full tw-object-cover '}

@@ -1,17 +1,16 @@
-import {Layer, Rect, Stage} from "react-konva";
+import {Group, Layer, Rect, Stage, Text} from "react-konva";
 import React, {useEffect, useRef, useState} from "react";
+import AnnotatorModalForm from "../../Forms/ModelForms/AnnotatorModalForm/AnnotatorModalForm";
 
 
-const CanvasBoard = ({img}) => {
+const CanvasBoard = ({img, annotations, setAnnotations, newAnnotation, setNewAnnotation}) => {
 
-
-    const [annotations, setAnnotations] = useState([]);
-    const [newAnnotation, setNewAnnotation] = useState([]);
+    const [annotation, setAnnotation] = useState({})
 
     const handleMouseDown = event => {
         if (newAnnotation.length === 0) {
-            const { x, y } = event.target.getStage().getPointerPosition();
-            setNewAnnotation([{ x, y, width: 0, height: 0, key: "0" }]);
+            const {x, y} = event.target.getStage().getPointerPosition();
+            setNewAnnotation([{x, y, width: 0, height: 0, key: "0", id: 0, classification: ''}]);
         }
     };
 
@@ -19,7 +18,7 @@ const CanvasBoard = ({img}) => {
         if (newAnnotation.length === 1) {
             const sx = newAnnotation[0].x;
             const sy = newAnnotation[0].y;
-            const { x, y } = event.target.getStage().getPointerPosition();
+            const {x, y} = event.target.getStage().getPointerPosition();
             const annotationToAdd = {
                 x: sx,
                 y: sy,
@@ -27,9 +26,11 @@ const CanvasBoard = ({img}) => {
                 height: y - sy,
                 key: annotations.length + 1
             };
-            annotations.push(annotationToAdd);
+            // annotations.push(annotationToAdd);
+            showModal()
             setNewAnnotation([]);
-            setAnnotations(annotations);
+            setAnnotation(annotationToAdd)
+            // setAnnotations(annotations);
         }
     };
 
@@ -37,7 +38,7 @@ const CanvasBoard = ({img}) => {
         if (newAnnotation.length === 1) {
             const sx = newAnnotation[0].x;
             const sy = newAnnotation[0].y;
-            const { x, y } = event.target.getStage().getPointerPosition();
+            const {x, y} = event.target.getStage().getPointerPosition();
             setNewAnnotation([
                 {
                     x: sx,
@@ -53,18 +54,38 @@ const CanvasBoard = ({img}) => {
     const annotationsToDraw = [...annotations, ...newAnnotation];
 
     const [imgDimensions, setImgDimensions] = useState({height: 0, width: 0})
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
 
     const imgRef = useRef(null)
+    const canvasRef = useRef(null)
+
+
+    const imageLoaded = (data) => {
+        setImgDimensions({height: data.target.naturalHeight, width: data.target.naturalWidth})
+    }
+
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
 
     useEffect(() => {
-        setImgDimensions({height: imgRef.current.height , width: imgRef.current.width})
+        setAnnotations([])
+        setNewAnnotation([])
     }, [img])
+
 
     return (
         <>
-            <div className={'tw-relative an-wrapper'}>
-                <img ref={imgRef} draggable={false} style={{zIndex: 0}} className={'tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0'} src={img.image}/>
+            <AnnotatorModalForm setAnnotations={setAnnotations} annotations={annotations} annotation={annotation}
+                                isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} img={img}/>
+            <div className={'tw-relative'}>
+                <img ref={imgRef} onLoad={imageLoaded} draggable={false} style={{zIndex: 0}}
+                     className={'tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0'} src={img.image}
+                     alt={'to be annotated'}/>
                 <Stage
+                    ref={canvasRef}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
@@ -74,14 +95,32 @@ const CanvasBoard = ({img}) => {
                     <Layer>
                         {annotationsToDraw.map(value => {
                             return (
-                                <Rect
-                                    x={value.x}
-                                    y={value.y}
-                                    width={value.width}
-                                    height={value.height}
-                                    fill="transparent"
-                                    stroke="black"
-                                />
+                                <Group
+
+                                    key={`annotatedRect-${value.x}${Math.random()}${Math.random()}`}
+                                >
+                                    {
+                                        value.visible ?
+                                            <>
+
+                                                <Text text={value.classification} height={8} x={value.x + 2}
+                                                      y={value.y - 12}/>
+                                                <Rect
+                                                    x={value.x}
+                                                    y={value.y}
+                                                    width={value.width}
+                                                    height={value.height}
+                                                    key={`annotatedRect-${value.x}${Math.random()}${Math.random()}`}
+                                                    fill="transparent"
+                                                    stroke="black"
+                                                />
+                                            </>
+                                            :
+                                            <></>
+                                    }
+
+                                </Group>
+
                             );
                         })}
                     </Layer>

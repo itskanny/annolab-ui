@@ -4,6 +4,8 @@ import animationData from "../../../../images/lotties/no-data.json";
 import {useCallback, useEffect, useState} from "react";
 import {ImageProvider} from "../../../../providers/ImageProvider";
 import {openNotification} from "../../../../helpers/helper";
+import {Link, useHistory} from "react-router-dom";
+import {authStore} from "../../../../store/AuthStore";
 
 
 const ImageList = ({proj}) => {
@@ -12,9 +14,12 @@ const ImageList = ({proj}) => {
     const [filtered, setFiltered] = useState([])
     const [loading, setLoading] = useState(false)
 
+    const history = useHistory()
+
     const handleSearch = (event) => {
         setFiltered(images.filter(image => image.name.includes(event.target.value)))
     }
+
 
 
     const fetchImages = useCallback(() => {
@@ -33,10 +38,11 @@ const ImageList = ({proj}) => {
     }, [proj.id])
 
 
-
     useEffect(() => {
         fetchImages()
     }, [fetchImages])
+
+
 
     return (
         <>
@@ -71,11 +77,13 @@ const ImageList = ({proj}) => {
                                 renderItem={(item => {
                                     return (
                                         <List.Item>
-                                            <div className={'tw-flex tw-items-center'}>
-                                                <Avatar src={item.image} shape={"square"}
-                                                        size={"large"}/>
-                                                <p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${item.name}`}</p>
-                                            </div>
+                                            <Link replace to={`/org/${authStore.selectedOrganizationId}/projects/${proj.id}/images/annotate/${item.id}`}>
+                                                <div className={'tw-flex tw-items-center'} >
+                                                    <Avatar src={item.image} shape={"square"}
+                                                            size={"large"}/>
+                                                    <p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${item.name}`}</p>
+                                                </div>
+                                            </Link>
                                         </List.Item>
                                     )
                                 })}

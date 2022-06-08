@@ -3,9 +3,8 @@ import { useState} from "react";
 import {Link} from "react-router-dom";
 
 
-const ListSettings = (props) => {
+const ListSettings = () => {
 
-    const [loading, setLoading] = useState(true)
 
     const data = [
         {
@@ -27,14 +26,13 @@ const ListSettings = (props) => {
     <List
     //   header={<div>Header</div>}
     //   footer={<div>Footer</div>}
-      bordered
       dataSource={data}
       renderItem={item => (
         <List.Item aria-orientation="left">
           {/* <Typography.Text mark></Typography.Text><Link to="#">{item}</Link> */}
-            <ul>
-                <li><Link to={item.path}>{item.name}</Link></li>
-            </ul>
+
+                <Link to={item.path}>{item.name}</Link>
+
         </List.Item>
       )}
     />

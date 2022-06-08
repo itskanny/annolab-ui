@@ -50,8 +50,7 @@ const AnnotatorModalForm = ({isModalVisible, setIsModalVisible, annotation, setA
         <Modal
             title="Label class" visible={isModalVisible} onOk={enterPressed}
             destroyOnClose={true}
-            maskClosable={false}
-            closable={false}
+            onCancel={handleOk}
             footer={<Button type={"primary"} loading={loading} onClick={enterPressed}>Add</Button> }
             centered={true}
         >

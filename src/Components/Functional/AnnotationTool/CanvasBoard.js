@@ -10,7 +10,7 @@ const CanvasBoard = ({img, annotations, setAnnotations, newAnnotation, setNewAnn
     const handleMouseDown = event => {
         if (newAnnotation.length === 0) {
             const {x, y} = event.target.getStage().getPointerPosition();
-            setNewAnnotation([{x, y, width: 0, height: 0, key: "0", id: 0, classification: ''}]);
+            setNewAnnotation([{x, y, width: 0, height: 0, key: "0", id: 0, classification: '', visible: true}]);
         }
     };
 
@@ -24,7 +24,8 @@ const CanvasBoard = ({img, annotations, setAnnotations, newAnnotation, setNewAnn
                 y: sy,
                 width: x - sx,
                 height: y - sy,
-                key: annotations.length + 1
+                key: annotations.length + 1,
+                visible: true
             };
             // annotations.push(annotationToAdd);
             showModal()
@@ -45,7 +46,8 @@ const CanvasBoard = ({img, annotations, setAnnotations, newAnnotation, setNewAnn
                     y: sy,
                     width: x - sx,
                     height: y - sy,
-                    key: "0"
+                    key: "0",
+                    visible: true
                 }
             ]);
         }

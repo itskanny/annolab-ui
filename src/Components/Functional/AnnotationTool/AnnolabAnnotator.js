@@ -64,7 +64,7 @@ const Annotator = ({proj}) => {
                                         style={{padding: '5px 15px'}}/>
                         </div>
                         <div className={'tw-flex-1 tw-flex '}>
-                            <div className={'tw-h-70 tw-flex-1 an-wrapper tw-bg-icon'}>
+                            <div className={'tw-h-70 tw-flex-1 an-wrapper tw-bg-primary-light'}>
                                 <div>
                                     <CanvasBoard img={img} annotations={annotations} setAnnotations={setAnnotations} newAnnotation={newAnnotation} setNewAnnotation={setNewAnnotation}/>
                                 </div>

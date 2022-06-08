@@ -1,8 +1,6 @@
-import {Button, ConfigProvider, List, Result, Skeleton} from "antd";
+import {Button, List, Result, Skeleton} from "antd";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
-import animationData from "../../../images/lotties/no-data.json";
 
 
 const ListView = ({itemTemplate, render, fetcher}) => {
@@ -60,15 +58,15 @@ const ListView = ({itemTemplate, render, fetcher}) => {
                                 <Skeleton active avatar={false}/>
                             </div>
                         }
-                        <ConfigProvider renderEmpty={() => (
-                            <CustomizedEmpty
-                                description={'No data found to be displayed'}
-                                lottieAnimation={animationData}
-                                height={205}
-                                width={225}
+                        {/*<ConfigProvider renderEmpty={() => (*/}
+                        {/*    <CustomizedEmpty*/}
+                        {/*        description={'No data found to be displayed'}*/}
+                        {/*        lottieAnimation={animationData}*/}
+                        {/*        height={205}*/}
+                        {/*        width={225}*/}
 
-                            />)}
-                        >
+                        {/*    />)}*/}
+                        {/*>*/}
                             <List
                                 loading={loading}
                                 pagination={{
@@ -82,7 +80,7 @@ const ListView = ({itemTemplate, render, fetcher}) => {
                                     </List.Item>
                                 )}
                             />
-                        </ConfigProvider>
+                        {/*</ConfigProvider>*/}
                     </>
 
 

@@ -1,9 +1,11 @@
-import {Button, List, Tooltip} from "antd";
+import {Button, ConfigProvider, List, Tooltip} from "antd";
 import {DeleteOutlined, EyeInvisibleOutlined, EyeOutlined} from "@ant-design/icons";
 import React, {useEffect, useState} from "react";
 import {AnnotationProvider} from "../../../providers/AnnotationProvider";
 import {openNotification} from "../../../helpers/helper";
 import {InlineLoader} from "../../../helpers/FullScreenLoader";
+import CustomizedEmpty from "../../../helpers/CustomizedEmpty";
+import animationData from "../../../images/lotties/no-data.json";
 
 
 const AnnotationList = ({annotations, img, setAnnotations, render, setRender, setUpdater}) => {
@@ -14,14 +16,13 @@ const AnnotationList = ({annotations, img, setAnnotations, render, setRender, se
         setLoading(true)
         AnnotationProvider.fetchAnnotations(img.id)
             .then(data => {
-                if (!data.hasErrors){
+                if (!data.hasErrors) {
                     data.data.forEach(((data, index) => {
                         data.key = index + 1
                         data.visible = true
                     }))
                     setAnnotations(data.data)
-                }
-                else {
+                } else {
                     openNotification('error', 'Annotations could not be loaded', false)
                 }
                 setLoading(false)
@@ -31,11 +32,10 @@ const AnnotationList = ({annotations, img, setAnnotations, render, setRender, se
     const deleteHandler = (id) => {
         AnnotationProvider.deleteAnnotation(id)
             .then(data => {
-                if (!data.hasErrors){
+                if (!data.hasErrors) {
                     openNotification('success', 'Annotation deleted successfully', true)
                     setRender(Math.random())
-                }
-                else {
+                } else {
                     openNotification('error', 'Annotation could not be deleted', false)
                 }
             })
@@ -51,37 +51,47 @@ const AnnotationList = ({annotations, img, setAnnotations, render, setRender, se
     }, [render])
 
 
-
     return (
         <>
             <h3 className={'tw-font-semibold tw-text-lg'}>Annotations</h3>
             {loading ?
                 <InlineLoader/>
                 :
-                <List
-                    dataSource={annotations}
-                    renderItem={item => {
-                        return (
-                            <List.Item>
-                                <div className="tw-flex tw-justify-between tw-items-center tw-w-full">
-                                    <p className={'tw-font-semibold tw-mb-0'}>{item.key}</p>
-                                    <p className={'tw-mb-0'}>{item.classification}</p>
-                                    <Tooltip title={'Hide Annotation'}><Button
-                                        onClick={() => visibilityHandler(item)} type="dashed"
-                                        shape={'circle'}
-                                        icon={item.visible ? <EyeInvisibleOutlined />: <EyeOutlined/>}/></Tooltip>
-                                    <Tooltip title={'Delete Annotation'}><Button
-                                        onClick={() => deleteHandler(item.id)} type="dashed"
-                                        shape={'circle'}
-                                        icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
-                                </div>
-                            </List.Item>
+                <ConfigProvider renderEmpty={() => (
+                    <CustomizedEmpty
+                        description={'No data found to be displayed'}
+                        lottieAnimation={animationData}
 
-                        )
-                    }}
+
+                    />)}
                 >
+                    <List
+                        dataSource={annotations}
+                        renderItem={item => {
+                            return (
 
-                </List>
+                                <List.Item>
+                                    <div className="tw-flex tw-justify-between tw-items-center tw-w-full">
+                                        <p className={'tw-font-semibold tw-mb-0'}>{item.key}</p>
+                                        <p className={'tw-mb-0'}>{item.classification}</p>
+                                        <Tooltip title={'Hide Annotation'}><Button
+                                            onClick={() => visibilityHandler(item)} type="dashed"
+                                            shape={'circle'}
+                                            icon={item.visible ? <EyeInvisibleOutlined/> : <EyeOutlined/>}/></Tooltip>
+                                        <Tooltip title={'Delete Annotation'}><Button
+                                            onClick={() => deleteHandler(item.id)} type="dashed"
+                                            shape={'circle'}
+                                            icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
+                                    </div>
+                                </List.Item>
+
+                            )
+                        }}
+                    >
+
+                    </List>
+                </ConfigProvider>
+
             }
 
         </>

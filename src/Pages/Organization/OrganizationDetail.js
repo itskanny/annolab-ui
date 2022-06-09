@@ -7,6 +7,7 @@ import {InlineLoader} from "../../helpers/FullScreenLoader";
 import ObservedUserLoader from "../../helpers/UserLoader";
 import {authStore} from "../../store/AuthStore";
 import Team from "../Team/Team";
+import OrgnizationDisplay from "../DisplayPages/OrgnizationDisplay";
 
 const OrganizationDetail = () => {
     const match = useRouteMatch()
@@ -45,7 +46,7 @@ const OrganizationDetail = () => {
                 selectedOrganization ?
                     <Switch>
                         <Route path={`${match.path}`} exact>
-                            <p>Organization detail page for {params.orgnizationId}</p>
+                            <OrgnizationDisplay org={selectedOrganization}/>
                         </Route>
 
                         <Route path={`${match.path}/projects`}>

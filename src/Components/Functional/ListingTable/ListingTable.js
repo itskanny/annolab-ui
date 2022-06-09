@@ -18,7 +18,7 @@ const ListingTable = props => {
                 if (!data.hasErrors) {
                     setData(() => {
                         setLoading(false)
-                        return data.data
+                        return data.data.slice(0,props.listSize ? props.listSize : data.data.length)
                     })
                 } else {
                     setResult({
@@ -45,7 +45,7 @@ const ListingTable = props => {
                     extra={<Link className={'tw-flex tw-items-center tw-justify-center'} to={'/home'}><Button type="primary">Back Home</Button></Link>}
                 />
                 :
-                <DataTable columns={props.columns} data={data} loading={loading}/>
+                <DataTable columns={props.columns} data={data} loading={loading} pagination={props.pagination}/>
 
             }
         </>

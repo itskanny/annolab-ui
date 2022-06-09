@@ -60,9 +60,9 @@ const App = () => {
 
                 <Navbar/>
                 <List/>
-                <TeamDisplay></TeamDisplay>
-                <OrgnizationDisplay></OrgnizationDisplay>
-                <ProjectDisplay/>
+                {/*<TeamDisplay></TeamDisplay>*/}
+                {/*<OrgnizationDisplay></OrgnizationDisplay>*/}
+                {/*<ProjectDisplay/>*/}
                 <Content>
                     <Switch>
 

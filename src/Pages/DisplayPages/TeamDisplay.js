@@ -10,7 +10,7 @@ import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 
 
-const TeamDisplay = (props) => {
+const TeamDisplay = ({team}) => {
 
     const [editVisible, setEditVisible] = useState({state: false, row: {}})
     const [deleteVisible, setDeleteVisible] = useState({state: false, row: {}})
@@ -171,7 +171,7 @@ const TeamDisplay = (props) => {
             >
                 <Col span={24} md={8} className={'tw-pr-3'}>
                     <Card >
-                        <Meta title="Team Name" description="This will be the orgnizations description that will contain all the details for the orgnization." />
+                        <Meta title={team.name} description={team.description}/>
                     </Card>
                 </Col>
                 <Col span={0} md={16} className={'tw-pl-3'}>

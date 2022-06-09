@@ -3,9 +3,10 @@ import PageNotFound from "../404NotFound";
 import React, {useEffect, useState} from "react";
 import {InlineLoader} from "../../helpers/FullScreenLoader";
 import {TeamProvider} from "../../providers/TeamProvider";
+import TeamDisplay from "../DisplayPages/TeamDisplay";
 
 
-const TeamDetail = (props) => {
+const TeamDetail = ({props}) => {
 
     const match = useRouteMatch()
     const params = useParams()
@@ -42,7 +43,7 @@ const TeamDetail = (props) => {
                     <Switch>
 
                         <Route path={`${match.path}`} exact>
-                            <p>Team detail page for {params.teamId}</p>
+                            <TeamDisplay team={selectedTeam}/>
                         </Route>
                         <Route path={'/*'} exact>
                             <PageNotFound/>

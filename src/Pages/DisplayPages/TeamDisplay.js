@@ -177,7 +177,7 @@ const TeamDisplay = ({team}) => {
                 <Col span={0} md={16} className={'tw-pl-3'}>
                     <Card>
 
-                        <h2>Current Ptojects</h2>
+                        <h2>Current Projects</h2>
                     <Tooltip className={' tw-justify-end' }  title={'Edit Projects'} key={'edit'}> <Button /*onClick={organizationEditHandler}*/ type="dashed"
                                                                                                                  shape={'circle'} key={'edit'}
                                                                                                                  icon={<EditOutlined

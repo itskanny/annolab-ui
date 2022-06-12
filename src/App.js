@@ -184,7 +184,7 @@ const App = () => {
                                   return authStore.isLoggedIn ? <Settings/> : <Redirect to="/login"/>
                                }
                            }
-                    />
+                        />
 
                         <Route path={'/*'} exact>
                             <PageNotFound/>

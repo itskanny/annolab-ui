@@ -19,48 +19,52 @@ const ProjectsList = (props) => {
     }, [props.data])
 
 
-    return (<>
-        <div className={'tw-mb-5'}>
-            <Input size={"middle"} placeholder={'Search Project'} onChange={handleSearch}/>
-        </div>
-        {
-            props.loading ?
-                <div className={'list-skeleton'}>
-                    <Skeleton avatar paragraph={{rows: 0}} active/>
-                    <Divider className={'tw-m-0 tw-mb-2'}/>
-                    <Skeleton avatar paragraph={{rows: 0}} active/>
-                    <Divider/>
-                    <Skeleton avatar paragraph={{rows: 0}} active/>
-                </div>
-                :
-                <ConfigProvider renderEmpty={() => (
-                    <CustomizedEmpty
-                        description={'No Project found for the organization'}
-                        lottieAnimation={animationData}
-                        height={185}
-                        width={205}
+    return (
+        <>
+            <div className={'tw-mb-5'}>
+                <Input size={"middle"} placeholder={'Search Project'} onChange={handleSearch}/>
+            </div>
+            {
+                props.loading ?
+                    <div className={'list-skeleton'}>
+                        <Skeleton avatar paragraph={{rows: 0}} active/>
+                        <Divider className={'tw-m-0 tw-mb-2'}/>
+                        <Skeleton avatar paragraph={{rows: 0}} active/>
+                        <Divider/>
+                        <Skeleton avatar paragraph={{rows: 0}} active/>
+                    </div>
+                    :
+                    <ConfigProvider renderEmpty={() => (
+                        <CustomizedEmpty
+                            description={'No Project found for the organization'}
+                            lottieAnimation={animationData}
+                            height={185}
+                            width={205}
 
-                    />)}
-                >
-                    <List
-                        dataSource={filtered}
-                        renderItem={item => {
-                            return (
-                                <List.Item>
-                                    {!props.loading && <div className={'tw-flex tw-items-center'}>
-                                        <Avatar src={item.avatar}/>
-                                        <Link to={`org/${props.obj.id}/projects/${item.id}/images`}><p className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${props.obj.name}/${item.name}`}</p></Link>
-                                    </div>}
-                                </List.Item>
-                            )
-                        }}
+                        />)}
                     >
+                        <List
+                            dataSource={filtered}
+                            renderItem={item => {
+                                return (
+                                    <List.Item>
+                                        {!props.loading && <div className={'tw-flex tw-items-center'}>
+                                            <Avatar src={item.avatar}/>
+                                            <Link to={`org/${props.obj.id}/projects/${item.id}/images`}><p
+                                                className={'tw-m-0 tw-ml-4 tw-text-gray-800 tw-cursor-pointer hover:tw-underline'}>{`${props.obj.name}/${item.name}`}</p>
+                                            </Link>
+                                        </div>}
+                                    </List.Item>
+                                )
+                            }}
+                        >
 
-                    </List>
-                </ConfigProvider>
+                        </List>
+                    </ConfigProvider>
 
-        }
-    </>)
+            }
+        </>
+    )
 
 }
 

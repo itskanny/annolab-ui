@@ -9,7 +9,6 @@ import {formatDate} from "../../helpers/DataFormater";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 
-
 const TeamDisplay = ({team}) => {
 
     const [editVisible, setEditVisible] = useState({state: false, row: {}})
@@ -58,9 +57,11 @@ const TeamDisplay = ({team}) => {
             key: 'action',
             render: (_, row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Tooltip title={'Edit Team'}><Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                    <Tooltip title={'Edit Team'}><Button onClick={() => setEditVisible({state: true, row: row})}
+                                                         type="dashed" shape={'circle'}
                                                          icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
-                    <Tooltip title={'Delete Team'}><Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
+                    <Tooltip title={'Delete Team'}><Button onClick={() => setDeleteVisible({state: true, row: row})}
+                                                           type="dashed" shape={'circle'}
                                                            icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
                 </Space>
             ),
@@ -72,7 +73,7 @@ const TeamDisplay = ({team}) => {
             avatar: "",
             id: 6,
             name: "User Name",
-            email:"tantuu.com",
+            email: "tantuu.com",
             action: "hju"
 
         }
@@ -139,10 +140,14 @@ const TeamDisplay = ({team}) => {
             key: 'action',
             render: (_, row) => (
                 <Space size="middle" className={'tw-w-full tw-flex tw-justify-evenly'}>
-                    <Tooltip title={'Edit Project'}><Button onClick={() => setEditVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                                                            icon={<EditOutlined className={'tw-text-icon'}/>}/></Tooltip>
-                    <Tooltip title={'Delete Project'}><Button onClick={() => setDeleteVisible({state: true, row: row})} type="dashed" shape={'circle'}
-                                                              icon={<DeleteOutlined style={{color: 'red'}}/>}/></Tooltip>
+                    <Tooltip title={'Edit Project'}><Button onClick={() => setEditVisible({state: true, row: row})}
+                                                            type="dashed" shape={'circle'}
+                                                            icon={<EditOutlined
+                                                                className={'tw-text-icon'}/>}/></Tooltip>
+                    <Tooltip title={'Delete Project'}><Button onClick={() => setDeleteVisible({state: true, row: row})}
+                                                              type="dashed" shape={'circle'}
+                                                              icon={<DeleteOutlined
+                                                                  style={{color: 'red'}}/>}/></Tooltip>
                 </Space>
             ),
         },
@@ -162,7 +167,6 @@ const TeamDisplay = ({team}) => {
     ]
 
 
-
     return (
         <>
             <Row align={"top"} justify={"center"}
@@ -170,7 +174,7 @@ const TeamDisplay = ({team}) => {
 
             >
                 <Col span={24} md={8} className={'tw-pr-3'}>
-                    <Card >
+                    <Card>
                         <Meta title={team.name} description={team.description}/>
                     </Card>
                 </Col>
@@ -178,23 +182,25 @@ const TeamDisplay = ({team}) => {
                     <Card>
 
                         <h2>Current Projects</h2>
-                    <Tooltip className={' tw-justify-end' }  title={'Edit Projects'} key={'edit'}> <Button /*onClick={organizationEditHandler}*/ type="dashed"
-                                                                                                                 shape={'circle'} key={'edit'}
-                                                                                                                 icon={<EditOutlined
-                                                                                                                     className={'tw-text-icon'}/>}/></Tooltip>
+                        <Tooltip className={' tw-justify-end'} title={'Edit Projects'} key={'edit'}>
+                            <Button /*onClick={organizationEditHandler}*/ type="dashed"
+                                                                          shape={'circle'} key={'edit'}
+                                                                          icon={<EditOutlined
+                                                                              className={'tw-text-icon'}/>}/></Tooltip>
 
-                    <Table dataSource={dataSource1} columns={PROJECT_COLUMNS} />
+                        <Table dataSource={dataSource1} columns={PROJECT_COLUMNS}/>
 
                     </Card>
 
-<Card>
-                    <h2>Current Users</h2>
-                    <Tooltip title={'Edit Teams'} key={'edit'}> <Button /*onClick={organizationEditHandler}*/ type="dashed"
-                                                                                                              shape={'circle'} key={'edit'}
-                                                                                                              icon={<EditOutlined
-                                                                                                                  className={'tw-text-icon'}/>}/></Tooltip>
-                    <Table dataSource={dataSource2} columns={TEAM_COLUMNS} />
-</Card>
+                    <Card>
+                        <h2>Current Users</h2>
+                        <Tooltip title={'Edit Teams'} key={'edit'}> <Button /*onClick={organizationEditHandler}*/
+                            type="dashed"
+                            shape={'circle'} key={'edit'}
+                            icon={<EditOutlined
+                                className={'tw-text-icon'}/>}/></Tooltip>
+                        <Table dataSource={dataSource2} columns={TEAM_COLUMNS}/>
+                    </Card>
 
                 </Col>
             </Row>

@@ -6,7 +6,7 @@ import {useState} from "react";
 import {authStore} from "../../../store/AuthStore";
 
 
-const SignupForm = props => {
+const SignupForm = () => {
     const [form] = Form.useForm()
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)

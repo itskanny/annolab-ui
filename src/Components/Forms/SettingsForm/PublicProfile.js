@@ -127,7 +127,7 @@ const PublicProfileUpdateForm = observer(({auth}) => {
     )
 })
 
-const PublicProfile = props => {
+const PublicProfile = () => {
 
     return (
         <ObservedUserLoader preventOrganizationRedirect={false} auth={authStore} node={<PublicProfileUpdateForm auth={authStore}/>}/>

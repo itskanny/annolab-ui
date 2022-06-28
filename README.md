@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Frontend for annotation tool. The backend is present in itsKanny/annolab repository
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## How to run development sever
